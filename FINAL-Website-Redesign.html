@@ -1732,94 +1732,302 @@
     margin-right: auto;
   }
 
-  .voice-player {
-    background: var(--surface-card);
-    border-radius: var(--r-lg);
-    border: 1px solid var(--border);
-    padding: 32px;
-    max-width: 700px;
-    margin: 0 auto 40px;
-    box-shadow: var(--shadow-md);
+  /* ========= CALL CONSOLE ========= */
+  /* Scenario selector cards */
+  .vd-scenarios {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    max-width: 1100px;
+    margin: 0 auto 32px;
   }
 
-  .scenario-tabs {
+  .vd-scenario {
     display: flex;
-    gap: 8px;
-    margin-bottom: 32px;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 18px 20px;
+    background: var(--surface-card);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.2s ease;
+    font-family: inherit;
+    color: var(--text-primary);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .vd-scenario:hover {
+    border-color: var(--border-strong);
+    transform: translateY(-2px);
+  }
+
+  .vd-scenario.active {
+    border-color: rgba(205, 220, 57, 0.5);
+    background: linear-gradient(180deg, rgba(205, 220, 57, 0.06) 0%, var(--surface-card) 70%);
+    box-shadow: 0 0 0 1px rgba(205, 220, 57, 0.3);
+  }
+
+  .vd-scenario.active::before {
+    content: '';
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 10px var(--accent);
+  }
+
+  .vd-scenario-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent-dim), rgba(205, 220, 57, 0.28));
+    color: var(--accent);
+    display: flex;
+    align-items: center;
     justify-content: center;
+    font-weight: 700;
+    font-family: var(--font-display);
+    font-size: 15px;
+    flex-shrink: 0;
+    border: 1px solid rgba(205, 220, 57, 0.35);
+  }
+
+  .vd-scenario-body { flex: 1; min-width: 0; }
+
+  .vd-scenario-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.2;
+  }
+
+  .vd-scenario-title {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-top: 3px;
+    line-height: 1.35;
+  }
+
+  .vd-scenario-meta {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11.5px;
+    color: var(--text-tertiary);
     flex-wrap: wrap;
   }
 
-  .scenario-tab {
-    padding: 9px 16px;
-    border-radius: var(--r-pill);
-    border: 1px solid var(--border);
-    background: transparent;
-    color: var(--text-secondary);
-    cursor: pointer;
-    font-size: 13px;
+  .vd-tag {
+    color: var(--accent);
     font-weight: 500;
-    transition: all 0.2s ease;
-    font-family: inherit;
   }
 
-  .scenario-tab.active {
-    background: var(--accent);
-    color: var(--base);
-    border-color: var(--accent);
-    font-weight: 600;
+  .vd-dot-sep { color: var(--text-tertiary); }
+
+  .vd-tag-icon {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
   }
 
-  .scenario-tab:hover:not(.active) {
-    border-color: var(--border-strong);
-    color: var(--text-primary);
+  .vd-tag-icon svg {
+    width: 11px;
+    height: 11px;
   }
 
-  .scenario-tab:focus-visible {
+  .vd-scenario:focus-visible {
     outline: 2px solid var(--accent);
     outline-offset: 2px;
   }
 
-  .waveform {
+  /* Split console */
+  .vd-console {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    gap: 20px;
+    max-width: 1100px;
+    margin: 0 auto 28px;
+  }
+
+  .vd-customer,
+  .vd-ai {
+    background: var(--surface-card);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    padding: 24px;
     display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    gap: 4px;
-    height: 80px;
-    margin-bottom: 24px;
+    flex-direction: column;
+    box-shadow: var(--shadow-md);
   }
 
-  .waveform-bar {
-    width: 3px;
-    background: var(--accent);
-    border-radius: 2px;
-    height: 12px;
-    opacity: 0.4;
-    transition: opacity 0.3s ease;
-    animation: none;
+  .vd-panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 12px;
   }
 
-  .waveform.playing .waveform-bar {
-    opacity: 1;
-    animation: wave 0.8s ease-in-out infinite;
+  .vd-panel-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
   }
 
-  @keyframes wave {
-    0%, 100% { height: 12px; }
-    50% { height: 48px; }
+  .vd-panel-tag-ai { color: var(--accent); }
+  .vd-panel-tag-ai svg { width: 13px; height: 13px; }
+
+  .vd-live-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: var(--r-pill);
+    background: var(--surface-soft);
+    border: 1px solid var(--border);
+    font-size: 11px;
+    color: var(--text-secondary);
+    font-weight: 500;
   }
 
-  .controls {
+  .vd-live-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--text-tertiary);
+  }
+
+  .vd-live-indicator[data-state="live"] {
+    background: rgba(255, 89, 89, 0.08);
+    border-color: rgba(255, 89, 89, 0.3);
+    color: #ff8080;
+  }
+
+  .vd-live-indicator[data-state="live"] .vd-live-dot {
+    background: #ff5959;
+    animation: vd-pulse 1.4s ease-in-out infinite;
+  }
+
+  @keyframes vd-pulse {
+    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(255, 89, 89, 0.6); }
+    50% { opacity: 0.7; box-shadow: 0 0 0 6px rgba(255, 89, 89, 0); }
+  }
+
+  .vd-live-indicator[data-state="done"] {
+    background: rgba(139, 195, 74, 0.08);
+    border-color: rgba(139, 195, 74, 0.3);
+    color: var(--success-text);
+  }
+
+  .vd-live-indicator[data-state="done"] .vd-live-dot {
+    background: var(--success-text);
+  }
+
+  /* Caller card */
+  .vd-caller {
     display: flex;
     align-items: center;
-    gap: 16px;
-    margin-bottom: 24px;
-    flex-wrap: wrap;
+    gap: 12px;
+    padding: 14px;
+    background: var(--surface-alt);
+    border: 1px solid var(--border);
+    border-radius: var(--r-md);
+    margin-bottom: 18px;
   }
 
-  .play-btn {
-    width: 56px;
-    height: 56px;
+  .vd-caller-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent-dim), rgba(205, 220, 57, 0.28));
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-family: var(--font-display);
+    font-size: 15px;
+    flex-shrink: 0;
+    border: 1px solid rgba(205, 220, 57, 0.35);
+  }
+
+  .vd-caller-info { flex: 1; min-width: 0; }
+
+  .vd-caller-name {
+    font-size: 14.5px;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.2;
+  }
+
+  .vd-caller-phone {
+    font-size: 12px;
+    color: var(--text-tertiary);
+    font-family: 'SF Mono', Menlo, monospace;
+    margin-top: 3px;
+  }
+
+  .vd-caller-lang {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--accent);
+    padding: 4px 10px;
+    background: var(--accent-dim);
+    border: 1px solid rgba(205, 220, 57, 0.28);
+    border-radius: var(--r-pill);
+    letter-spacing: 0.3px;
+    flex-shrink: 0;
+  }
+
+  /* Visualizer */
+  .vd-visualizer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    height: 64px;
+    padding: 0 4px;
+    margin-bottom: 20px;
+    background: var(--surface-alt);
+    border-radius: var(--r-md);
+    border: 1px solid var(--border);
+  }
+
+  .vd-bar {
+    width: 3px;
+    min-height: 4px;
+    background: var(--accent);
+    border-radius: 2px;
+    opacity: 0.25;
+    transform-origin: center;
+    transition: height 80ms ease-out, opacity 0.3s ease;
+  }
+
+  .vd-visualizer.playing .vd-bar { opacity: 0.9; }
+
+  /* Play controls */
+  .vd-controls {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+
+  .vd-play {
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
     background: var(--accent);
     border: none;
@@ -1833,64 +2041,43 @@
     box-shadow: var(--shadow-accent);
   }
 
-  .play-btn-icon {
-    width: 22px;
-    height: 22px;
-  }
+  .vd-play:hover { background: var(--accent-hover); transform: scale(1.05); }
+  .vd-play:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
-  .play-btn-icon.play { margin-left: 3px; }
+  .vd-play .play-btn-icon { width: 20px; height: 20px; }
+  .vd-play .play-btn-icon.play { margin-left: 2px; }
 
-  .play-btn:hover {
-    background: var(--accent-hover);
-    transform: scale(1.05);
-  }
+  .vd-progress-group { flex: 1; min-width: 0; }
 
-  .play-btn:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 3px;
-  }
-
-  .progress-container {
-    flex: 1;
-    min-width: 150px;
-  }
-
-  .progress-bar {
+  .vd-progress-bar {
     width: 100%;
-    height: 6px;
-    background: #1a1a24;
-    border-radius: 3px;
+    height: 4px;
+    background: var(--surface-soft);
+    border-radius: 2px;
     overflow: hidden;
     margin-bottom: 8px;
   }
 
-  .progress-fill {
+  .vd-progress-fill {
     height: 100%;
-    background: #CDDC39;
+    background: var(--accent);
     width: 0%;
-    border-radius: 3px;
+    border-radius: 2px;
+    transition: width 0.2s linear;
   }
 
-  .progress-fill.playing {
-    animation: progress 15s linear forwards;
-  }
-
-  @keyframes progress {
-    0% { width: 0%; }
-    100% { width: 100%; }
-  }
-
-  .progress-meta {
+  .vd-progress-meta {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
   }
 
-  .time-display {
-    font-size: 12px;
+  .vd-time {
+    font-size: 11.5px;
     color: var(--text-secondary);
     font-variant-numeric: tabular-nums;
+    font-family: 'SF Mono', Menlo, monospace;
   }
 
   .language-badge {
@@ -1900,59 +2087,283 @@
     background: var(--accent-dim);
     border: 1px solid rgba(205, 220, 57, 0.28);
     color: var(--accent);
-    padding: 4px 10px;
+    padding: 3px 10px;
     border-radius: var(--r-pill);
-    font-size: 11px;
+    font-size: 10.5px;
     font-weight: 500;
     letter-spacing: 0.3px;
     line-height: 1;
   }
 
-  .transcript {
-    text-align: left;
+  /* Transcript */
+  .vd-transcript {
     background: var(--surface-alt);
     border: 1px solid var(--border);
     border-radius: var(--r-md);
-    padding: 20px;
-    min-height: 200px;
-    max-height: 300px;
+    padding: 16px;
+    flex: 1;
+    min-height: 220px;
+    max-height: 320px;
     overflow-y: auto;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .vd-transcript-empty {
+    font-size: 13px;
+    color: var(--text-tertiary);
+    text-align: center;
+    padding: 40px 20px;
+    line-height: 1.5;
   }
 
   .transcript-line {
-    margin-bottom: 12px;
-    padding: 12px 14px;
+    padding: 10px 14px;
     border-radius: var(--r-md);
-    animation: slideUp 0.5s ease-out;
+    animation: slideUp 0.45s ease-out;
     opacity: 0;
+    max-width: 94%;
   }
 
-  .transcript-line.show {
-    opacity: 1;
-  }
+  .transcript-line.show { opacity: 1; }
 
   @keyframes slideUp {
-    from {
-      opacity: 0;
-      transform: translateY(10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 
   .transcript-line.agent {
     background: var(--accent-dim);
-    border: 1px solid rgba(205, 220, 57, 0.18);
-    text-align: left;
+    border: 1px solid rgba(205, 220, 57, 0.2);
+    align-self: flex-start;
   }
 
   .transcript-line.customer {
     background: rgba(255, 255, 255, 0.04);
     border: 1px solid var(--border);
-    text-align: left;
-    margin-left: 24px;
+    align-self: flex-end;
+  }
+
+  /* AI supervisor panel */
+  .vd-ai-confidence {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }
+
+  .vd-ai-confidence strong {
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--success-text);
+    text-transform: none;
+    letter-spacing: -0.01em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .vd-ai-intent {
+    background: var(--surface-alt);
+    border: 1px solid var(--border);
+    border-radius: var(--r-md);
+    padding: 14px 16px;
+    margin-bottom: 16px;
+  }
+
+  .vd-intent-label {
+    font-size: 10.5px;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+
+  .vd-intent-value {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+    transition: color 0.3s ease;
+  }
+
+  .vd-ai-actions {
+    flex: 1;
+    min-height: 220px;
+    max-height: 320px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-right: 4px;
+  }
+
+  .vd-actions-empty {
+    font-size: 13px;
+    color: var(--text-tertiary);
+    text-align: center;
+    padding: 60px 20px;
+    line-height: 1.5;
+  }
+
+  .vd-action {
+    display: flex;
+    gap: 12px;
+    padding: 12px 14px;
+    background: var(--surface-alt);
+    border: 1px solid var(--border);
+    border-radius: var(--r-md);
+    opacity: 0;
+    transform: translateY(6px);
+    animation: vd-action-in 0.4s ease-out forwards;
+  }
+
+  @keyframes vd-action-in {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .vd-action-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: var(--r-sm);
+    background: var(--accent-dim);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .vd-action-icon svg { width: 14px; height: 14px; }
+
+  .vd-action-body { flex: 1; min-width: 0; }
+
+  .vd-action-type {
+    font-size: 10.5px;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.9px;
+    font-weight: 500;
+    display: block;
+    margin-bottom: 3px;
+  }
+
+  .vd-action-value {
+    font-size: 13.5px;
+    color: var(--text-primary);
+    line-height: 1.4;
+  }
+
+  .vd-action-value code {
+    font-family: 'SF Mono', Menlo, monospace;
+    font-size: 12.5px;
+    padding: 1px 6px;
+    background: rgba(205, 220, 57, 0.12);
+    color: var(--accent);
+    border-radius: 4px;
+  }
+
+  /* Outcome card */
+  .vd-outcome {
+    margin-top: 14px;
+    padding: 18px;
+    background: linear-gradient(180deg, rgba(139, 195, 74, 0.1) 0%, var(--surface-alt) 100%);
+    border: 1px solid rgba(139, 195, 74, 0.28);
+    border-radius: var(--r-md);
+    animation: vd-action-in 0.5s ease-out forwards;
+  }
+
+  .vd-outcome[hidden] { display: none; }
+
+  .vd-outcome-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+
+  .vd-outcome-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 10.5px;
+    font-weight: 600;
+    color: var(--success-text);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .vd-outcome-tag::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--success-text);
+  }
+
+  .vd-outcome-time {
+    font-size: 11.5px;
+    color: var(--text-tertiary);
+    font-family: 'SF Mono', Menlo, monospace;
+  }
+
+  .vd-outcome-summary {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 14px;
+    letter-spacing: -0.01em;
+  }
+
+  .vd-outcome-metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+
+  .vd-outcome-metric {
+    padding: 10px 12px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border);
+    border-radius: var(--r-sm);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .vd-metric-label {
+    font-size: 10.5px;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    line-height: 1.2;
+  }
+
+  .vd-metric-value {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.1;
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .vd-console { grid-template-columns: 1fr; }
+    .vd-scenarios { grid-template-columns: 1fr; max-width: 440px; }
+    .vd-outcome-metrics { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 640px) {
+    .vd-customer, .vd-ai { padding: 18px; }
+    .vd-visualizer { height: 52px; }
+    .vd-play { width: 44px; height: 44px; }
   }
 
   .transcript-label {
@@ -3770,66 +4181,162 @@
         </div>
     </section>
 
-<!-- SECTION 8: VOICE DEMO -->
+<!-- SECTION 8: VOICE DEMO — Call Console -->
 <section id="voice-demo" class="section-reveal">
   <div class="voice-demo-container">
-    <div class="badge">Experience Poocho AI</div>
-    <h2>Hear the Difference</h2>
-    <p>Listen to real AI conversations powered by Poocho AI. Select a scenario below.</p>
+    <div class="badge">Live Demo · Real Calls</div>
+    <h2>Watch Poocho AI handle a call in real time</h2>
+    <p>Every scenario below runs through the same models deployed at our customers. On the left: what the caller hears. On the right: what Poocho AI decides, extracts, and does — live.</p>
 
-    <div class="voice-player">
-      <div class="scenario-tabs">
-        <button class="scenario-tab active" data-scenario="complaint">Customer Complaint</button>
-        <button class="scenario-tab" data-scenario="tracking">Order Tracking</button>
-        <button class="scenario-tab" data-scenario="appointment">Appointment Booking</button>
-      </div>
-
-      <div class="waveform" id="waveform">
-        <div class="waveform-bar"></div>
-        <div class="waveform-bar" style="animation-delay: 0.1s;"></div>
-        <div class="waveform-bar" style="animation-delay: 0.2s;"></div>
-        <div class="waveform-bar" style="animation-delay: 0.3s;"></div>
-        <div class="waveform-bar" style="animation-delay: 0.4s;"></div>
-        <div class="waveform-bar" style="animation-delay: 0.5s;"></div>
-        <div class="waveform-bar" style="animation-delay: 0.6s;"></div>
-        <div class="waveform-bar" style="animation-delay: 0.7s;"></div>
-        <div class="waveform-bar" style="animation-delay: 0.8s;"></div>
-        <div class="waveform-bar" style="animation-delay: 0.9s;"></div>
-        <div class="waveform-bar" style="animation-delay: 1s;"></div>
-        <div class="waveform-bar" style="animation-delay: 1.1s;"></div>
-        <div class="waveform-bar" style="animation-delay: 1.2s;"></div>
-        <div class="waveform-bar" style="animation-delay: 1.3s;"></div>
-        <div class="waveform-bar" style="animation-delay: 1.4s;"></div>
-        <div class="waveform-bar" style="animation-delay: 1.5s;"></div>
-        <div class="waveform-bar" style="animation-delay: 1.6s;"></div>
-        <div class="waveform-bar" style="animation-delay: 1.7s;"></div>
-        <div class="waveform-bar" style="animation-delay: 1.8s;"></div>
-        <div class="waveform-bar" style="animation-delay: 1.9s;"></div>
-      </div>
-
-      <div class="controls">
-        <button class="play-btn" id="play-btn" aria-label="Play">
-          <svg class="play-btn-icon play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
-          <svg class="play-btn-icon pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="display:none"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
-        </button>
-        <div class="progress-container">
-          <div class="progress-bar">
-            <div class="progress-fill" id="progress-fill"></div>
+    <!-- Scenario selector cards -->
+    <div class="vd-scenarios" role="tablist" aria-label="Demo scenarios">
+      <button class="vd-scenario active" role="tab" aria-selected="true" data-scenario="complaint">
+        <div class="vd-scenario-avatar">AK</div>
+        <div class="vd-scenario-body">
+          <div class="vd-scenario-name">Asad Khan</div>
+          <div class="vd-scenario-title">Food quality complaint</div>
+          <div class="vd-scenario-meta">
+            <span class="vd-tag">Urdu</span>
+            <span class="vd-dot-sep">·</span>
+            <span class="vd-tag-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              Voice
+            </span>
           </div>
-          <div class="progress-meta">
-            <div class="time-display"><span id="current-time">0:00</span> / <span id="total-time">1:24</span></div>
-            <div class="language-badge" id="lang-badge">Urdu</div>
+        </div>
+      </button>
+      <button class="vd-scenario" role="tab" aria-selected="false" data-scenario="tracking">
+        <div class="vd-scenario-avatar">SM</div>
+        <div class="vd-scenario-body">
+          <div class="vd-scenario-name">Sarah Mitchell</div>
+          <div class="vd-scenario-title">Order tracking query</div>
+          <div class="vd-scenario-meta">
+            <span class="vd-tag">English</span>
+            <span class="vd-dot-sep">·</span>
+            <span class="vd-tag-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              Voice
+            </span>
           </div>
+        </div>
+      </button>
+      <button class="vd-scenario" role="tab" aria-selected="false" data-scenario="appointment">
+        <div class="vd-scenario-avatar">OH</div>
+        <div class="vd-scenario-body">
+          <div class="vd-scenario-name">Omar Haddad</div>
+          <div class="vd-scenario-title">Clinic appointment booking</div>
+          <div class="vd-scenario-meta">
+            <span class="vd-tag">Arabic</span>
+            <span class="vd-dot-sep">·</span>
+            <span class="vd-tag-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              Voice
+            </span>
+          </div>
+        </div>
+      </button>
+    </div>
+
+    <!-- Split console: caller view + AI supervisor view -->
+    <div class="vd-console">
+
+      <!-- LEFT: Customer view -->
+      <div class="vd-customer">
+        <div class="vd-panel-header">
+          <div class="vd-panel-tag">Customer</div>
+          <div class="vd-live-indicator" id="vd-live" data-state="idle">
+            <span class="vd-live-dot"></span>
+            <span class="vd-live-label">Ready to call</span>
+          </div>
+        </div>
+
+        <div class="vd-caller">
+          <div class="vd-caller-avatar" id="vd-caller-avatar">AK</div>
+          <div class="vd-caller-info">
+            <div class="vd-caller-name" id="vd-caller-name">Asad Khan</div>
+            <div class="vd-caller-phone" id="vd-caller-phone">+92 321 555 0134</div>
+          </div>
+          <div class="vd-caller-lang" id="vd-caller-lang">Urdu</div>
+        </div>
+
+        <div class="vd-visualizer" id="vd-visualizer" aria-hidden="true">
+          <!-- 48 bars, generated by JS for reactivity -->
+        </div>
+
+        <div class="vd-controls">
+          <button class="vd-play" id="play-btn" aria-label="Play call">
+            <svg class="play-btn-icon play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+            <svg class="play-btn-icon pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="display:none"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+          </button>
+          <div class="vd-progress-group">
+            <div class="vd-progress-bar">
+              <div class="vd-progress-fill" id="progress-fill"></div>
+            </div>
+            <div class="vd-progress-meta">
+              <span class="vd-time"><span id="current-time">0:00</span> / <span id="total-time">1:24</span></span>
+              <span class="language-badge" id="lang-badge">Urdu</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="vd-transcript" id="transcript" dir="auto">
+          <div class="vd-transcript-empty">Press play to start the call. Transcript appears here in the caller's original language.</div>
         </div>
       </div>
 
-      <div class="transcript" id="transcript" dir="auto">
-        <!-- Filled by JS -->
+      <!-- RIGHT: AI supervisor view -->
+      <div class="vd-ai">
+        <div class="vd-panel-header">
+          <div class="vd-panel-tag vd-panel-tag-ai">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l2 2"/></svg>
+            Poocho AI · Live reasoning
+          </div>
+          <div class="vd-ai-confidence" id="vd-confidence">
+            <span>Confidence</span>
+            <strong id="vd-conf-value">—</strong>
+          </div>
+        </div>
+
+        <div class="vd-ai-intent" id="vd-intent">
+          <div class="vd-intent-label">Detected intent</div>
+          <div class="vd-intent-value" id="vd-intent-value">Waiting for call...</div>
+        </div>
+
+        <div class="vd-ai-actions" id="vd-actions" aria-live="polite">
+          <div class="vd-actions-empty">Actions will stream here as the AI processes the call.</div>
+        </div>
+
+        <div class="vd-outcome" id="vd-outcome" hidden>
+          <div class="vd-outcome-header">
+            <span class="vd-outcome-tag">Call resolved</span>
+            <span class="vd-outcome-time" id="vd-outcome-time">in 1m 24s</span>
+          </div>
+          <div class="vd-outcome-summary" id="vd-outcome-summary">Ticket #4821 filed · 2h resolution ETA</div>
+          <div class="vd-outcome-metrics">
+            <div class="vd-outcome-metric">
+              <span class="vd-metric-label">Human agent needed</span>
+              <span class="vd-metric-value">No</span>
+            </div>
+            <div class="vd-outcome-metric">
+              <span class="vd-metric-label">Estimated time saved</span>
+              <span class="vd-metric-value" id="vd-time-saved">12 min</span>
+            </div>
+            <div class="vd-outcome-metric">
+              <span class="vd-metric-label">CSAT prediction</span>
+              <span class="vd-metric-value">94%</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="demo-note"><svg class="demo-note-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg><span>Audio plays in <strong>native Urdu, English &amp; Arabic</strong> — exactly how Poocho AI handles real customer conversations. Supports <strong>100+ languages</strong> including Bangla, Pashto &amp; regional dialects. <strong>Book a live demo</strong> to hear yours.</span></div>
-    <button class="cta-primary">Book a Live Demo →</button>
+    <div class="demo-note">
+      <svg class="demo-note-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+      <span>Audio plays in <strong>native Urdu, English &amp; Arabic</strong> — the AI reasoning panel always renders in English for your supervisors, regardless of the caller's language. Supports <strong>100+ languages</strong> including Bangla, Pashto &amp; regional dialects.</span>
+    </div>
+    <button class="cta-primary" data-cta="demo">Book a live demo with your data
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+    </button>
   </div>
 </section>
 
@@ -4615,11 +5122,16 @@
             });
         });
 
-  // ===== VOICE DEMO =====
-  // Each line has: text (displayed in transcript), speech (what TTS reads aloud), speechLang (TTS language code)
+  // ===== VOICE DEMO (Call Console) =====
+  // Each scenario now carries caller identity, detected intent, confidence,
+  // a timeline of AI actions, and an outcome summary — all revealed in sync
+  // with audio playback to make the section feel like a live supervisor view.
   const voiceDemoData = {
     complaint: {
       lang: 'Urdu',
+      caller: { name: 'Asad Khan', phone: '+92 321 555 0134', avatar: 'AK' },
+      intent: 'Complaint — food quality',
+      confidence: 96,
       duration: '1:24',
       lines: [
         { type: 'agent', text: 'السلام علیکم! پوچو اے آئی سے بات ہو رہی ہے۔ میں آپ کی کیا مدد کر سکتی ہوں؟', dir: 'rtl',
@@ -4632,10 +5144,27 @@
           speech: 'Order number G F 202647.', speechLang: 'en-US' },
         { type: 'agent', text: 'شکریہ۔ آپ کی شکایت درج ہو گئی ہے، ٹکٹ نمبر 4821۔ ہماری ٹیم 2 گھنٹے میں آپ سے رابطہ کرے گی۔ کیا میں آپ کی کوئی اور مدد کر سکتی ہوں؟', dir: 'rtl',
           speech: 'Thank you. Your complaint has been filed, ticket number 4821. Our team will contact you within 2 hours.', speechLang: 'en-US' }
-      ]
+      ],
+      actions: [
+        { at: 0.04, type: 'Listening',       value: 'Capturing audio · stream quality: clear',                icon: 'ear' },
+        { at: 0.12, type: 'Language',        value: 'Detected: <code>Urdu</code> · dialect: Punjabi',         icon: 'globe' },
+        { at: 0.30, type: 'Intent',          value: 'Classified as <code>complaint.food_quality</code>',     icon: 'brain' },
+        { at: 0.48, type: 'Sentiment',       value: 'Frustrated · empathetic response required',              icon: 'heart' },
+        { at: 0.62, type: 'Entity extracted', value: 'Order ID: <code>GF202647</code>',                       icon: 'tag' },
+        { at: 0.78, type: 'System action',   value: 'Querying CRM for order history...',                      icon: 'db' },
+        { at: 0.88, type: 'System action',   value: 'Filed ticket <code>#4821</code> · priority: high · SLA 2h', icon: 'check' }
+      ],
+      outcome: {
+        summary: 'Ticket #4821 filed · 2h resolution ETA',
+        timeSaved: '12 min',
+        csat: '94%'
+      }
     },
     tracking: {
       lang: 'English',
+      caller: { name: 'Sarah Mitchell', phone: '+44 20 7946 0823', avatar: 'SM' },
+      intent: 'Order tracking — late delivery',
+      confidence: 99,
       duration: '1:24',
       lines: [
         { type: 'agent', text: 'Welcome to Poocho AI! How can I help you today?',
@@ -4648,10 +5177,26 @@
           speech: 'O R D 2026 5523.', speechLang: 'en-US' },
         { type: 'agent', text: 'Your order is currently at the distribution center in Lahore. Expected delivery: Today by 6 PM. I\'ll send you a tracking link on WhatsApp.',
           speech: 'Your order is currently at the distribution center in Lahore. Expected delivery today by 6 PM. I will send you a tracking link on WhatsApp.', speechLang: 'en-US' }
-      ]
+      ],
+      actions: [
+        { at: 0.04, type: 'Listening',        value: 'Capturing audio · stream quality: clear',                icon: 'ear' },
+        { at: 0.12, type: 'Language',         value: 'Detected: <code>English (UK)</code>',                   icon: 'globe' },
+        { at: 0.28, type: 'Intent',           value: 'Classified as <code>order.tracking.delayed</code>',     icon: 'brain' },
+        { at: 0.50, type: 'Entity extracted',  value: 'Order ID: <code>ORD-2026-5523</code>',                 icon: 'tag' },
+        { at: 0.64, type: 'System action',    value: 'Queried logistics API · DC: Lahore · ETA: today 6 PM',  icon: 'db' },
+        { at: 0.82, type: 'System action',    value: 'Queued WhatsApp tracking link to +44...0823',           icon: 'check' }
+      ],
+      outcome: {
+        summary: 'Order tracked · WhatsApp link sent · No ticket needed',
+        timeSaved: '7 min',
+        csat: '97%'
+      }
     },
     appointment: {
       lang: 'Arabic',
+      caller: { name: 'Omar Haddad', phone: '+971 4 555 0198', avatar: 'OH' },
+      intent: 'Appointment booking — outpatient',
+      confidence: 98,
       duration: '1:24',
       lines: [
         { type: 'agent', text: 'مرحباً! معك بوتشو إيه آي. كيف يمكنني مساعدتك اليوم؟', dir: 'rtl',
@@ -4664,16 +5209,64 @@
           speech: '10 AM please.', speechLang: 'en-US' },
         { type: 'agent', text: 'تم الحجز! سأرسل لك تأكيد على الواتساب. شكراً لك!', dir: 'rtl',
           speech: 'Booking confirmed! I will send you a confirmation on WhatsApp. Thank you!', speechLang: 'en-US' }
-      ]
+      ],
+      actions: [
+        { at: 0.04, type: 'Listening',        value: 'Capturing audio · stream quality: clear',                icon: 'ear' },
+        { at: 0.14, type: 'Language',         value: 'Detected: <code>Arabic</code> · Gulf dialect',          icon: 'globe' },
+        { at: 0.32, type: 'Intent',           value: 'Classified as <code>appointment.book</code>',           icon: 'brain' },
+        { at: 0.48, type: 'Entity extracted',  value: 'Provider: <code>Dr. Ahmed</code>',                     icon: 'tag' },
+        { at: 0.62, type: 'System action',    value: 'Queried calendar · 2 slots offered',                    icon: 'db' },
+        { at: 0.82, type: 'Entity extracted',  value: 'Slot chosen: <code>Thu 10:00 AM</code>',               icon: 'tag' },
+        { at: 0.92, type: 'System action',    value: 'Booked in EHR · WhatsApp confirmation queued',          icon: 'check' }
+      ],
+      outcome: {
+        summary: 'Appointment booked · Thu 10:00 AM with Dr. Ahmed',
+        timeSaved: '9 min',
+        csat: '96%'
+      }
     }
   };
 
   const playBtn = document.getElementById('play-btn');
   const progressFill = document.getElementById('progress-fill');
-  const waveform = document.getElementById('waveform');
   const transcript = document.getElementById('transcript');
   const langBadge = document.getElementById('lang-badge');
-  const scenarioTabs = document.querySelectorAll('.scenario-tab');
+  const scenarioTabs = document.querySelectorAll('.vd-scenario');
+  const visualizer = document.getElementById('vd-visualizer');
+  const liveIndicator = document.getElementById('vd-live');
+  const callerAvatar = document.getElementById('vd-caller-avatar');
+  const callerName = document.getElementById('vd-caller-name');
+  const callerPhone = document.getElementById('vd-caller-phone');
+  const callerLang = document.getElementById('vd-caller-lang');
+  const aiIntent = document.getElementById('vd-intent-value');
+  const aiConfidence = document.getElementById('vd-conf-value');
+  const aiActions = document.getElementById('vd-actions');
+  const outcomeEl = document.getElementById('vd-outcome');
+  const outcomeSummary = document.getElementById('vd-outcome-summary');
+  const outcomeTime = document.getElementById('vd-outcome-time');
+  const outcomeTimeSaved = document.getElementById('vd-time-saved');
+
+  // Build 48 visualizer bars once
+  (function buildVisualizer() {
+    if (!visualizer) return;
+    visualizer.innerHTML = '';
+    for (let i = 0; i < 48; i++) {
+      const bar = document.createElement('div');
+      bar.className = 'vd-bar';
+      visualizer.appendChild(bar);
+    }
+  })();
+
+  // Action icons (Lucide-style, stroke)
+  const actionIcons = {
+    ear:   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8.5a6.5 6.5 0 1 1 13 0c0 6-6 6-6 10a3.5 3.5 0 1 1-7 0"/><path d="M15 8.5a2.5 2.5 0 0 0-5 0v1a2 2 0 1 1 0 4"/></svg>',
+    globe: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>',
+    brain: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z"/><path d="M14.5 2a2.5 2.5 0 0 0-2.5 2.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z"/></svg>',
+    heart: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>',
+    tag:   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>',
+    db:    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>',
+    check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>'
+  };
 
   let isPlaying = false;
   let currentScenario = 'complaint';
@@ -4728,16 +5321,32 @@
   scenarioTabs.forEach(tab => {
     tab.addEventListener('click', () => {
       if (isPlaying) stopPlayback();
-      scenarioTabs.forEach(t => t.classList.remove('active'));
+      scenarioTabs.forEach(t => {
+        t.classList.remove('active');
+        t.setAttribute('aria-selected', 'false');
+      });
       tab.classList.add('active');
+      tab.setAttribute('aria-selected', 'true');
       currentScenario = tab.dataset.scenario;
-      updateTranscript();
+      resetConsole();
     });
   });
 
-  function updateTranscript() {
+  // Reset console to "before call" state for current scenario
+  function resetConsole() {
     const data = voiceDemoData[currentScenario];
-    langBadge.textContent = data.lang;
+
+    // Caller card
+    if (callerAvatar)  callerAvatar.textContent = data.caller.avatar;
+    if (callerName)    callerName.textContent   = data.caller.name;
+    if (callerPhone)   callerPhone.textContent  = data.caller.phone;
+    if (callerLang)    callerLang.textContent   = data.lang;
+    if (langBadge)     langBadge.textContent    = data.lang;
+
+    // Live indicator
+    setLiveState('idle', 'Ready to call');
+
+    // Transcript — render lines hidden (class 'show' added during playback)
     transcript.innerHTML = '';
     data.lines.forEach(line => {
       const div = document.createElement('div');
@@ -4746,6 +5355,131 @@
       div.innerHTML = `<div class="transcript-label">${line.type === 'agent' ? 'Agent' : 'Customer'}</div><div class="transcript-text">${line.text}</div>`;
       transcript.appendChild(div);
     });
+
+    // AI panel — reset intent/confidence/actions/outcome
+    aiIntent.textContent = 'Waiting for call...';
+    aiIntent.style.color = 'var(--text-tertiary)';
+    aiConfidence.textContent = '—';
+    aiConfidence.style.color = 'var(--text-tertiary)';
+    aiActions.innerHTML = '<div class="vd-actions-empty">Actions will stream here as the AI processes the call.</div>';
+    outcomeEl.hidden = true;
+
+    // Progress + time
+    progressFill.style.width = '0%';
+    document.getElementById('current-time').textContent = '0:00';
+    document.getElementById('total-time').textContent = data.duration;
+
+    // Visualizer idle
+    visualizer.classList.remove('playing');
+    visualizer.querySelectorAll('.vd-bar').forEach(b => b.style.height = '4px');
+  }
+  // Initial state
+  resetConsole();
+
+  function setLiveState(state, label) {
+    if (!liveIndicator) return;
+    liveIndicator.setAttribute('data-state', state);
+    const lbl = liveIndicator.querySelector('.vd-live-label');
+    if (lbl) lbl.textContent = label;
+  }
+
+  // Reveal AI actions timed to audio progress
+  let actionsRevealed = 0;
+  function revealActionsForProgress(pct) {
+    const data = voiceDemoData[currentScenario];
+    if (!data.actions) return;
+
+    // On first reveal, clear placeholder + set intent + confidence
+    if (actionsRevealed === 0 && pct > 0.02) {
+      aiActions.innerHTML = '';
+      aiIntent.textContent = data.intent;
+      aiIntent.style.color = 'var(--text-primary)';
+      aiConfidence.textContent = data.confidence + '%';
+      aiConfidence.style.color = 'var(--success-text)';
+    }
+
+    for (let i = actionsRevealed; i < data.actions.length; i++) {
+      if (pct >= data.actions[i].at) {
+        const action = data.actions[i];
+        const el = document.createElement('div');
+        el.className = 'vd-action';
+        el.innerHTML =
+          '<div class="vd-action-icon">' + (actionIcons[action.icon] || actionIcons.check) + '</div>' +
+          '<div class="vd-action-body">' +
+            '<span class="vd-action-type">' + action.type + '</span>' +
+            '<span class="vd-action-value">' + action.value + '</span>' +
+          '</div>';
+        aiActions.appendChild(el);
+        aiActions.scrollTop = aiActions.scrollHeight;
+        actionsRevealed++;
+      } else {
+        break;
+      }
+    }
+  }
+
+  function showOutcome() {
+    const data = voiceDemoData[currentScenario];
+    outcomeSummary.textContent = data.outcome.summary;
+    outcomeTime.textContent = 'in ' + (data.duration || '1:24');
+    outcomeTimeSaved.textContent = data.outcome.timeSaved;
+    // Update CSAT inside metric if present
+    const csatEl = outcomeEl.querySelector('.vd-outcome-metric:nth-child(3) .vd-metric-value');
+    if (csatEl) csatEl.textContent = data.outcome.csat;
+    outcomeEl.hidden = false;
+  }
+
+  // Audio-reactive visualizer using AudioContext (falls back to pseudo-random on failure)
+  let audioCtx = null, analyser = null, freqData = null, sourceNode = null;
+  function ensureAudioAnalysis() {
+    if (audioCtx) return true;
+    try {
+      const AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC) return false;
+      audioCtx = new AC();
+      analyser = audioCtx.createAnalyser();
+      analyser.fftSize = 128;
+      analyser.smoothingTimeConstant = 0.75;
+      sourceNode = audioCtx.createMediaElementSource(audioPlayer);
+      sourceNode.connect(analyser);
+      analyser.connect(audioCtx.destination);
+      freqData = new Uint8Array(analyser.frequencyBinCount);
+      return true;
+    } catch (e) {
+      audioCtx = null;
+      return false;
+    }
+  }
+
+  let visRafId = null;
+  function animateVisualizer() {
+    if (!isPlaying) return;
+    const bars = visualizer.querySelectorAll('.vd-bar');
+    if (analyser && freqData) {
+      analyser.getByteFrequencyData(freqData);
+      const binsPerBar = Math.max(1, Math.floor(freqData.length / bars.length));
+      bars.forEach((bar, i) => {
+        let sum = 0;
+        for (let j = 0; j < binsPerBar; j++) sum += freqData[i * binsPerBar + j] || 0;
+        const avg = sum / binsPerBar;
+        const h = Math.max(4, (avg / 255) * 52);
+        bar.style.height = h + 'px';
+      });
+    } else {
+      // Fallback: pseudo-audio visualization
+      bars.forEach((bar, i) => {
+        const base = Math.sin((Date.now() / 160) + i * 0.4) * 12 + 20;
+        const jitter = Math.random() * 18;
+        bar.style.height = Math.max(4, base + jitter) + 'px';
+      });
+    }
+    visRafId = requestAnimationFrame(animateVisualizer);
+  }
+  function stopVisualizer() {
+    if (visRafId) cancelAnimationFrame(visRafId);
+    visRafId = null;
+    visualizer.classList.remove('playing');
+    visualizer.querySelectorAll('.vd-bar').forEach(b => b.style.height = '4px');
   }
 
   // ===== AUDIO PLAYER ENGINE =====
@@ -4771,78 +5505,91 @@
   async function startPlayback() {
     isPlaying = true;
     togglePlayBtnIcon(true);
-    waveform.classList.add('playing');
+    visualizer.classList.add('playing');
+    setLiveState('live', 'Live · on call');
 
     const data = voiceDemoData[currentScenario];
-    const transcriptLines = document.querySelectorAll('.transcript-line');
+    // Reset transcript visibility + AI actions + outcome
+    const transcriptLines = transcript.querySelectorAll('.transcript-line');
     transcriptLines.forEach(l => l.classList.remove('show'));
+    actionsRevealed = 0;
+    outcomeEl.hidden = true;
+    aiActions.innerHTML = '<div class="vd-actions-empty">Analyzing audio...</div>';
+    aiIntent.textContent = 'Analyzing...';
+    aiIntent.style.color = 'var(--text-secondary)';
+    aiConfidence.textContent = '—';
+    aiConfidence.style.color = 'var(--text-tertiary)';
 
-    // ── MP3 PLAYBACK (primary) ──
-    // Directly load and play the MP3. No HEAD check — works on file:// and http://
+    // Load MP3
     audioPlayer.src = `audio/${currentScenario}_full.mp3`;
     audioPlayer.currentTime = 0;
+    progressFill.style.width = '0%';
 
-    // Reset progress bar
-    progressFill.style.animation = 'none';
-    void progressFill.offsetWidth;
-
+    // Kick off AudioContext + visualizer (once audio begins)
     audioPlayer.onloadedmetadata = () => {
       const dur = audioPlayer.duration;
       document.getElementById('total-time').textContent = formatTime(dur);
-      progressFill.style.animation = `progress ${dur}s linear forwards`;
     };
 
-    // Show transcript lines synced to audio progress
     audioPlayer.ontimeupdate = () => {
       if (!isPlaying) return;
       const pct = audioPlayer.currentTime / audioPlayer.duration;
+      progressFill.style.width = (pct * 100) + '%';
       document.getElementById('current-time').textContent = formatTime(audioPlayer.currentTime);
 
+      // Reveal transcript lines in sync
       const lineCount = transcriptLines.length;
       const currentLineIdx = Math.floor(pct * lineCount);
       for (let i = 0; i <= currentLineIdx && i < lineCount; i++) {
         if (!transcriptLines[i].classList.contains('show')) {
           transcriptLines[i].classList.add('show');
-          transcriptLines[i].scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
       }
+      // Reveal AI actions timed to percentage
+      revealActionsForProgress(pct);
     };
 
     audioPlayer.onended = () => {
       transcriptLines.forEach(l => l.classList.add('show'));
-      stopPlayback();
+      revealActionsForProgress(1.0);
+      setLiveState('done', 'Call completed');
+      showOutcome();
+      stopPlayback(/* preserveConsole */ true);
     };
 
-    // If MP3 fails to load (file missing), fall back to browser TTS
+    // Fallback to TTS if MP3 fails
     audioPlayer.onerror = () => {
-      console.log('MP3 not found, falling back to browser TTS');
       startTTSPlayback(data, transcriptLines);
     };
 
     try {
+      // Resume AudioContext if needed (required on some browsers after user gesture)
+      if (ensureAudioAnalysis() && audioCtx.state === 'suspended') {
+        await audioCtx.resume();
+      }
       await audioPlayer.play();
+      animateVisualizer();
     } catch (e) {
-      console.log('MP3 playback failed:', e);
       startTTSPlayback(data, transcriptLines);
     }
   }
 
   async function startTTSPlayback(data, transcriptLines) {
-    // Reset progress
-    progressFill.style.animation = 'none';
-    void progressFill.offsetWidth;
-    const estimatedDuration = data.lines.length * 4;
-    progressFill.style.animation = `progress ${estimatedDuration}s linear forwards`;
-
     synth.cancel();
     speechQueue = [];
+    animateVisualizer();
 
-    for (let i = 0; i < data.lines.length; i++) {
+    const totalLines = data.lines.length;
+    for (let i = 0; i < totalLines; i++) {
       if (!isPlaying) break;
 
       const line = data.lines[i];
       transcriptLines[i].classList.add('show');
-      transcriptLines[i].scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+      // Estimate fake progress + reveal AI actions timed to line index
+      const pct = (i + 0.5) / totalLines;
+      progressFill.style.width = (pct * 100) + '%';
+      revealActionsForProgress(pct);
 
       const style = voiceStyle[line.type] || voiceStyle.agent;
       const speechText = line.speech || line.text;
@@ -4850,7 +5597,7 @@
 
       await speakLine(speechText, speechLang, style.rate, style.pitch);
 
-      if (isPlaying && i < data.lines.length - 1) {
+      if (isPlaying && i < totalLines - 1) {
         await new Promise(r => {
           const t = setTimeout(r, 600);
           playTimeouts.push(t);
@@ -4858,7 +5605,12 @@
       }
     }
 
-    if (isPlaying) stopPlayback();
+    if (isPlaying) {
+      revealActionsForProgress(1.0);
+      setLiveState('done', 'Call completed');
+      showOutcome();
+      stopPlayback(true);
+    }
   }
 
   function formatTime(sec) {
@@ -4867,24 +5619,26 @@
     return `${m}:${s.toString().padStart(2, '0')}`;
   }
 
-  function stopPlayback() {
+  function stopPlayback(preserveConsole) {
     isPlaying = false;
     togglePlayBtnIcon(false);
-    waveform.classList.remove('playing');
-    progressFill.style.animation = 'none';
+    stopVisualizer();
 
     // Stop MP3
     audioPlayer.pause();
-    audioPlayer.currentTime = 0;
+    if (!preserveConsole) audioPlayer.currentTime = 0;
 
     // Stop TTS
     synth.cancel();
     speechQueue = [];
     playTimeouts.forEach(t => clearTimeout(t));
     playTimeouts = [];
-  }
 
-  updateTranscript();
+    // If user paused/switched mid-call, reset the live indicator
+    if (!preserveConsole && liveIndicator.getAttribute('data-state') === 'live') {
+      setLiveState('idle', 'Ready to call');
+    }
+  }
 
   // ===== CHAT SIMULATOR =====
   const quickReplies = document.querySelectorAll('.quick-reply');
