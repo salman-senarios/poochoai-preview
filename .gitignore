@@ -1,0 +1,20 @@
+# macOS
+.DS_Store
+
+# Claude preview config (local-only)
+.claude/
+
+# SECRETS — this file contains a hardcoded OpenAI API key. NEVER commit.
+generate_audio.py
+
+# Intermediate / scratch HTML files not used by the deployed site
+FINAL-Website-Top.html
+FINAL-Website-Bottom.html
+Website-Redesign-*.html
+Website-UX-Audit-Report.html
+
+# JSX component scratches (separate React project, not served)
+*.jsx
+
+# Internal docs (safe to remove from ignore if you want them public)
+DEPLOY.md

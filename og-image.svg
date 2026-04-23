@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <radialGradient id="glow" cx="75%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="#CDDC39" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#CDDC39" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#CDDC39"/>
+      <stop offset="100%" stop-color="#E8F38A"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="#0A0A0F"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+
+  <!-- Grid lines for subtle depth -->
+  <g stroke="rgba(255,255,255,0.04)" stroke-width="1">
+    <line x1="0" y1="100" x2="1200" y2="100"/>
+    <line x1="0" y1="200" x2="1200" y2="200"/>
+    <line x1="0" y1="300" x2="1200" y2="300"/>
+    <line x1="0" y1="400" x2="1200" y2="400"/>
+    <line x1="0" y1="500" x2="1200" y2="500"/>
+  </g>
+
+  <!-- Accent pill -->
+  <rect x="80" y="170" width="290" height="38" rx="19" fill="rgba(205,220,57,0.12)" stroke="rgba(205,220,57,0.28)" stroke-width="1"/>
+  <circle cx="106" cy="189" r="4" fill="#CDDC39"/>
+  <text x="120" y="195" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="500" fill="#CDDC39" letter-spacing="1.5">BUILT IN PAKISTAN, TRUSTED GLOBALLY</text>
+
+  <!-- Headline -->
+  <text x="80" y="290" font-family="Space Grotesk, Inter, sans-serif" font-size="72" font-weight="700" fill="#FFFFFF" letter-spacing="-3">AI that speaks</text>
+  <text x="80" y="370" font-family="Space Grotesk, Inter, sans-serif" font-size="72" font-weight="700" fill="#FFFFFF" letter-spacing="-3">your language.</text>
+  <text x="80" y="450" font-family="Space Grotesk, Inter, sans-serif" font-size="72" font-weight="700" fill="url(#grad)" letter-spacing="-3">Runs your conversations.</text>
+
+  <!-- Subline -->
+  <text x="80" y="515" font-family="Inter, system-ui, sans-serif" font-size="22" fill="rgba(255,255,255,0.64)">Enterprise voice &amp; chat AI in Urdu, Arabic, and English.</text>
+
+  <!-- Wordmark (bottom-left) -->
+  <text x="80" y="580" font-family="Space Grotesk, Inter, sans-serif" font-size="24" font-weight="700" fill="#FFFFFF" letter-spacing="-0.5">POOCHO AI</text>
+</svg>

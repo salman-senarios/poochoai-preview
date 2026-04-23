@@ -1,0 +1,186 @@
+/* Shared styles for legal / standalone pages */
+:root {
+    --base: #0A0A0F;
+    --surface: #12121A;
+    --surface-alt: #0D0D14;
+    --surface-card: #15151E;
+    --border: rgba(255, 255, 255, 0.08);
+    --border-strong: rgba(255, 255, 255, 0.14);
+    --text-primary: #FFFFFF;
+    --text-secondary: rgba(255, 255, 255, 0.64);
+    --text-tertiary: rgba(255, 255, 255, 0.44);
+    --accent: #CDDC39;
+    --accent-hover: #D4E157;
+    --accent-dim: rgba(205, 220, 57, 0.12);
+    --r-md: 10px;
+    --r-lg: 16px;
+    --r-pill: 999px;
+    --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-display: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: var(--font-body);
+    background: var(--base);
+    color: var(--text-primary);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.page-nav {
+    background: rgba(10, 10, 15, 0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    padding: 18px 40px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.page-nav-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.page-nav a.home {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.page-nav a.home img {
+    height: 28px;
+    width: auto;
+    display: block;
+}
+
+.page-nav a.back {
+    font-size: 13px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s ease;
+}
+
+.page-nav a.back:hover { color: var(--accent); }
+
+.legal-wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 64px 32px 120px;
+}
+
+.legal-wrap .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    background: var(--accent-dim);
+    border: 1px solid rgba(205, 220, 57, 0.28);
+    color: var(--accent);
+    padding: 5px 12px;
+    border-radius: var(--r-pill);
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    margin-bottom: 20px;
+}
+
+.legal-wrap h1 {
+    font-family: var(--font-display);
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 16px;
+}
+
+.legal-wrap .updated {
+    color: var(--text-tertiary);
+    font-size: 13.5px;
+    margin-bottom: 56px;
+}
+
+.legal-wrap h2 {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    color: var(--text-primary);
+    margin: 48px 0 14px;
+}
+
+.legal-wrap h3 {
+    font-family: var(--font-display);
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 32px 0 10px;
+}
+
+.legal-wrap p,
+.legal-wrap li {
+    font-size: 15.5px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 14px;
+}
+
+.legal-wrap ul,
+.legal-wrap ol {
+    padding-left: 22px;
+    margin-bottom: 18px;
+}
+
+.legal-wrap li::marker { color: var(--text-tertiary); }
+
+.legal-wrap a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(205, 220, 57, 0.3);
+    transition: border-color 0.2s ease;
+}
+
+.legal-wrap a:hover { border-bottom-color: var(--accent); }
+
+.legal-wrap strong { color: var(--text-primary); font-weight: 600; }
+
+.legal-wrap .note {
+    background: var(--surface-card);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    padding: 20px 22px;
+    margin: 32px 0;
+    font-size: 14.5px;
+}
+
+.legal-wrap hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 48px 0;
+}
+
+.page-footer {
+    border-top: 1px solid var(--border);
+    padding: 32px 32px;
+    text-align: center;
+    color: var(--text-tertiary);
+    font-size: 13px;
+}
+
+.page-footer a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.page-footer a:hover { color: var(--accent); }
