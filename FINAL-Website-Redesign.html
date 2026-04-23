@@ -4233,6 +4233,135 @@
             }, 2200);
         })();
 
+        // ============ PRODUCT PREVIEW LIVE MOTION ============
+        // Subtle "this is a running product" cues on the dashboard mockup.
+        // Only runs when the frame is in view. Respects prefers-reduced-motion.
+        (function () {
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+            const frame = document.querySelector('.product-preview-frame');
+            if (!frame) return;
+
+            let started = false;
+
+            function start() {
+                if (started) return;
+                started = true;
+
+                // --- Motion 1: "Open today" counter ticks up every 6s ---
+                const counter = frame.querySelector('.pp-metric-card:nth-child(1) .pp-metric-value');
+                if (counter) {
+                    let value = parseInt(counter.textContent, 10) || 247;
+                    counter.style.transition = 'opacity 0.22s ease';
+                    setInterval(() => {
+                        value += 1;
+                        if (value > 263) value = 247;
+                        counter.style.opacity = '0.35';
+                        setTimeout(() => {
+                            counter.textContent = value;
+                            counter.style.opacity = '1';
+                        }, 220);
+                    }, 6000);
+                }
+
+                // --- Motion 2: ticket #4819 status blips Open → In progress every 10s ---
+                const rows = frame.querySelectorAll('.pp-table-row:not(.header)');
+                let targetRow = null;
+                rows.forEach(r => {
+                    const id = r.querySelector('.pp-ticket-id');
+                    if (id && id.textContent.trim() === '#4819') targetRow = r;
+                });
+                if (targetRow) {
+                    const chip = targetRow.querySelector('.pp-status');
+                    if (chip) {
+                        chip.style.transition = 'opacity 0.25s ease';
+                        let isOpen = true;
+                        setInterval(() => {
+                            chip.style.opacity = '0';
+                            setTimeout(() => {
+                                if (isOpen) {
+                                    chip.classList.remove('open');
+                                    chip.classList.add('progress');
+                                    chip.textContent = 'In progress';
+                                } else {
+                                    chip.classList.remove('progress');
+                                    chip.classList.add('open');
+                                    chip.textContent = 'Open';
+                                }
+                                isOpen = !isOpen;
+                                chip.style.opacity = '1';
+                            }, 250);
+                        }, 10000);
+                    }
+                }
+
+                // --- Motion 3: new ticket row slides in every 20s, oldest fades out ---
+                const table = frame.querySelector('.pp-table');
+                if (table) {
+                    const pool = [
+                        { id: '#4822', title: 'Missing invoice — urgent', meta: 'Hira A. · Urdu · Voice',        status: 'open',      statusLabel: 'Open',        priority: 'med',  priorityLabel: 'Medium' },
+                        { id: '#4823', title: 'Refund status inquiry',     meta: 'Zain K. · English · WhatsApp', status: 'progress',  statusLabel: 'In progress', priority: 'low',  priorityLabel: 'Low'    },
+                        { id: '#4824', title: 'Unauthorized transaction',  meta: 'Fatima B. · Arabic · Voice',   status: 'escalated', statusLabel: 'Escalated',   priority: 'high', priorityLabel: 'High'   },
+                        { id: '#4825', title: 'Address change request',    meta: 'Ali R. · Urdu · Chat',         status: 'open',      statusLabel: 'Open',        priority: 'low',  priorityLabel: 'Low'    },
+                    ];
+                    let poolIdx = 0;
+                    setInterval(() => {
+                        const header = table.querySelector('.pp-table-row.header');
+                        const bodyRows = Array.from(table.querySelectorAll('.pp-table-row:not(.header)'));
+                        if (bodyRows.length === 0) return;
+                        const lastRow = bodyRows[bodyRows.length - 1];
+
+                        const data = pool[poolIdx % pool.length];
+                        poolIdx++;
+
+                        const newRow = document.createElement('div');
+                        newRow.className = 'pp-table-row';
+                        newRow.innerHTML =
+                            '<div class="pp-ticket-id">' + data.id + '</div>' +
+                            '<div class="pp-ticket-title">' + data.title + '<small>' + data.meta + '</small></div>' +
+                            '<div><span class="pp-status ' + data.status + '">' + data.statusLabel + '</span></div>' +
+                            '<div class="pp-priority-' + data.priority + '">' + data.priorityLabel + '</div>' +
+                            '<div class="pp-time">just now</div>';
+                        newRow.style.opacity = '0';
+                        newRow.style.transform = 'translateY(-6px)';
+                        newRow.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+
+                        if (header && header.nextSibling) {
+                            table.insertBefore(newRow, header.nextSibling);
+                        } else {
+                            table.insertBefore(newRow, table.firstChild);
+                        }
+
+                        requestAnimationFrame(() => {
+                            requestAnimationFrame(() => {
+                                newRow.style.opacity = '1';
+                                newRow.style.transform = 'translateY(0)';
+                            });
+                        });
+
+                        // Fade the oldest row out
+                        lastRow.style.transition = 'opacity 0.45s ease, transform 0.45s ease, max-height 0.45s ease, padding 0.45s ease';
+                        lastRow.style.opacity = '0';
+                        lastRow.style.transform = 'translateY(6px)';
+                        setTimeout(() => {
+                            if (lastRow.parentNode) lastRow.parentNode.removeChild(lastRow);
+                        }, 480);
+                    }, 20000);
+                }
+            }
+
+            // Kick off once, the first time the dashboard scrolls into view.
+            // Then stop observing — motion keeps running; overhead is trivial.
+            const io = new IntersectionObserver((entries, observer) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting && !started) {
+                        start();
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.2 });
+            io.observe(frame);
+        })();
+
         // ============ COOKIE CONSENT ============
         (function () {
             const KEY = 'poocho-cookie-consent';
