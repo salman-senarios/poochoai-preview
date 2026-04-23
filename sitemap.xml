@@ -1,32 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  sitemap.xml — currently deployed at GitHub Pages.
+  When you migrate to the production domain (e.g. https://poochoai.com/),
+  replace every <loc> with the new origin and resubmit to Google Search Console.
+-->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://poochoai.com/</loc>
-    <lastmod>2026-04-22</lastmod>
+    <loc>https://salman-senarios.github.io/poochoai-preview/</loc>
+    <lastmod>2026-04-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://poochoai.com/privacy.html</loc>
-    <lastmod>2026-04-22</lastmod>
+    <loc>https://salman-senarios.github.io/poochoai-preview/privacy.html</loc>
+    <lastmod>2026-04-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://poochoai.com/terms.html</loc>
-    <lastmod>2026-04-22</lastmod>
+    <loc>https://salman-senarios.github.io/poochoai-preview/terms.html</loc>
+    <lastmod>2026-04-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://poochoai.com/cookies.html</loc>
-    <lastmod>2026-04-22</lastmod>
+    <loc>https://salman-senarios.github.io/poochoai-preview/cookies.html</loc>
+    <lastmod>2026-04-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.2</priority>
   </url>
   <url>
-    <loc>https://poochoai.com/security.html</loc>
-    <lastmod>2026-04-22</lastmod>
+    <loc>https://salman-senarios.github.io/poochoai-preview/security.html</loc>
+    <lastmod>2026-04-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>

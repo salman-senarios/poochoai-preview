@@ -7,18 +7,23 @@
     <title>Poocho AI — Enterprise Voice & Chat AI for Urdu, Arabic & English</title>
     <meta name="description" content="Enterprise-grade voice and chat AI with native Urdu, Arabic, and English understanding. Deploy on your servers. Own your data.">
     <meta name="keywords" content="Urdu AI, Arabic AI, voice AI Pakistan, chatbot Urdu, enterprise AI, conversational AI MENA">
-    <link rel="canonical" href="https://poochoai.com/">
+    <!-- NOTE: When the site moves to the final custom domain (e.g. poochoai.com),
+         update canonical + og:url + og:image + twitter:image to the live origin. -->
+    <link rel="canonical" href="https://salman-senarios.github.io/poochoai-preview/">
 
     <!-- Open Graph / social -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://poochoai.com/">
+    <meta property="og:url" content="https://salman-senarios.github.io/poochoai-preview/">
     <meta property="og:title" content="Poocho AI — Enterprise Voice & Chat AI">
     <meta property="og:description" content="Native Urdu, Arabic, and English understanding. Deploy on your servers. Own your data.">
-    <meta property="og:image" content="https://poochoai.com/og-image.png">
+    <meta property="og:image" content="https://salman-senarios.github.io/poochoai-preview/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="Poocho AI">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Poocho AI — Enterprise Voice & Chat AI">
     <meta name="twitter:description" content="Native Urdu, Arabic, and English understanding. Deploy on your servers.">
-    <meta name="twitter:image" content="https://poochoai.com/og-image.png">
+    <meta name="twitter:image" content="https://salman-senarios.github.io/poochoai-preview/og-image.png">
 
     <!-- Icons -->
     <link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96">
@@ -28,13 +33,71 @@
     <meta name="apple-mobile-web-app-title" content="Poocho AI">
     <link rel="manifest" href="site.webmanifest">
 
-    <!-- Google Analytics 4 — replace G-XXXXXXXXXX with your measurement ID -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <!-- Google Analytics 4 (consent-gated)
+         - Set GA_MEASUREMENT_ID to your real ID (e.g. 'G-ABC1234567') to activate.
+         - Default is `analytics_storage=denied`. Analytics/ads only load after the
+           user grants consent via the cookie banner. -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
+      // Set Consent Mode defaults BEFORE anything else loads
+      gtag('consent', 'default', {
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'analytics_storage': 'denied',
+        'functionality_storage': 'granted',
+        'security_storage': 'granted',
+        'wait_for_update': 500
+      });
       gtag('js', new Date());
-      gtag('config', 'G-XXXXXXXXXX', { 'anonymize_ip': true });
+      // The real GA4 ID is injected at runtime only if (a) it's set and
+      // (b) the user has granted analytics consent. See cookie-banner JS.
+      window.GA_MEASUREMENT_ID = ''; // <-- put your 'G-XXXXXXXXXX' here
+    </script>
+
+    <!-- JSON-LD structured data: Organization + WebSite + SoftwareApplication -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://salman-senarios.github.io/poochoai-preview/#organization",
+          "name": "Poocho AI",
+          "url": "https://salman-senarios.github.io/poochoai-preview/",
+          "logo": "https://salman-senarios.github.io/poochoai-preview/logo-light.svg",
+          "description": "Enterprise voice and chat AI with native Urdu, Arabic, and English understanding. Deploy on your servers. Own your data.",
+          "areaServed": ["PK", "AE", "SA", "QA", "KW", "BH", "OM", "BD"],
+          "sameAs": [
+            "https://x.com/poochoai",
+            "https://linkedin.com/company/poochoai",
+            "https://facebook.com/poochoai"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://salman-senarios.github.io/poochoai-preview/#website",
+          "url": "https://salman-senarios.github.io/poochoai-preview/",
+          "name": "Poocho AI",
+          "publisher": { "@id": "https://salman-senarios.github.io/poochoai-preview/#organization" },
+          "inLanguage": "en"
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "Poocho AI",
+          "applicationCategory": "BusinessApplication",
+          "operatingSystem": "Web, On-premise, Private cloud",
+          "description": "Enterprise voice and chat AI built for regulated businesses across MENA and South Asia — native Urdu, Arabic, and English, with on-premise and air-gapped deployment options.",
+          "offers": {
+            "@type": "Offer",
+            "priceCurrency": "USD",
+            "price": "1499",
+            "priceValidUntil": "2027-04-24"
+          }
+        }
+      ]
+    }
     </script>
 
     <!-- Fonts -->
@@ -103,6 +166,27 @@
             font-family: var(--font-display);
             letter-spacing: -0.02em;
             line-height: 1.1;
+        }
+
+        /* Skip-to-content link for keyboard / screen-reader users */
+        .skip-link {
+            position: absolute;
+            top: -48px;
+            left: 12px;
+            background: var(--accent);
+            color: var(--base);
+            padding: 10px 18px;
+            border-radius: var(--r-md);
+            font-weight: 600;
+            font-size: 14px;
+            text-decoration: none;
+            z-index: 10000;
+            transition: top 0.15s ease-out;
+        }
+        .skip-link:focus {
+            top: 12px;
+            outline: 2px solid var(--accent);
+            outline-offset: 3px;
         }
 
         /* Accessibility — consistent focus ring for all interactive elements */
@@ -1736,7 +1820,6 @@
             #pricing,
             #faq,
             #why-poocho,
-            #chat-simulator,
             #final-cta,
             .section-testimonials,
             .section-product-preview {
@@ -1810,7 +1893,6 @@
             #pricing,
             #faq,
             #why-poocho,
-            #chat-simulator,
             #final-cta,
             .section-testimonials,
             .section-product-preview {
@@ -2609,326 +2691,6 @@
   }
 
   /* Section 9: Chat */
-  #chat-simulator {
-    background: var(--base);
-    padding: 120px 0;
-  }
-
-  .chat-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 72px;
-    align-items: center;
-  }
-
-  .chat-content h2 {
-    font-size: clamp(28px, 3.5vw, 44px);
-    margin-bottom: 18px;
-    color: #fff;
-    letter-spacing: -0.025em;
-  }
-
-  .chat-content p {
-    font-size: 17px;
-    color: var(--text-secondary);
-    margin-bottom: 32px;
-    line-height: 1.6;
-  }
-
-  .chat-pills {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-  }
-
-  .chat-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 8px 14px;
-    background: var(--surface-card);
-    border: 1px solid var(--border);
-    border-radius: var(--r-pill);
-    color: var(--text-secondary);
-    font-size: 13px;
-    font-weight: 500;
-  }
-
-  .chat-pill svg {
-    width: 13px;
-    height: 13px;
-    flex-shrink: 0;
-    color: var(--accent);
-  }
-
-  .chat-window {
-    background: var(--surface-card);
-    border-radius: var(--r-lg);
-    border: 1px solid var(--border);
-    width: 100%;
-    max-width: 440px;
-    height: 520px;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    box-shadow: var(--shadow-lg);
-  }
-
-  .chat-header {
-    background: var(--surface-alt);
-    padding: 14px 16px;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .chat-avatar {
-    width: 36px;
-    height: 36px;
-    background: var(--accent);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--base);
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: 16px;
-    flex-shrink: 0;
-  }
-
-  .chat-header-title {
-    flex: 1;
-    font-weight: 600;
-    font-size: 14px;
-    color: var(--text-primary);
-  }
-
-  .chat-status {
-    width: 8px;
-    height: 8px;
-    background: var(--success);
-    border-radius: 50%;
-    box-shadow: 0 0 8px rgba(76, 175, 80, 0.5);
-    flex-shrink: 0;
-  }
-
-  .chat-messages {
-    flex: 1;
-    padding: 24px;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  .message {
-    display: flex;
-    gap: 8px;
-    animation: fadeIn 0.3s ease-out;
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  .message.bot {
-    justify-content: flex-start;
-  }
-
-  .message.user {
-    justify-content: flex-end;
-  }
-
-  .message-bubble {
-    max-width: 75%;
-    padding: 10px 14px;
-    border-radius: var(--r-md);
-    font-size: 14px;
-    line-height: 1.45;
-    color: var(--text-primary);
-  }
-
-  .message.bot .message-bubble {
-    background: var(--surface-soft);
-    border: 1px solid var(--border);
-    border-top-left-radius: var(--r-sm);
-  }
-
-  .message.user .message-bubble {
-    background: var(--accent);
-    color: var(--base);
-    border-top-right-radius: var(--r-sm);
-    font-weight: 500;
-  }
-
-  .quick-replies {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-top: 16px;
-  }
-
-  .quick-reply {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 14px;
-    background: var(--surface-soft);
-    border: 1px solid var(--border);
-    border-radius: var(--r-md);
-    color: var(--text-primary);
-    cursor: pointer;
-    font-size: 13px;
-    text-align: left;
-    transition: all 0.2s ease;
-    font-family: inherit;
-  }
-
-  .quick-reply svg {
-    width: 14px;
-    height: 14px;
-    flex-shrink: 0;
-    color: var(--accent);
-  }
-
-  .quick-reply:hover {
-    background: var(--accent);
-    color: var(--base);
-    border-color: var(--accent);
-  }
-
-  .quick-reply:hover svg { color: var(--base); }
-
-  .typing-indicator {
-    display: flex;
-    gap: 4px;
-    padding: 12px 16px;
-    background: #1a1a24;
-    border-radius: 12px;
-    width: fit-content;
-  }
-
-  .typing-dot {
-    width: 6px;
-    height: 6px;
-    background: var(--accent);
-    border-radius: 50%;
-    animation: bounce 1.4s infinite;
-  }
-
-  .typing-dot:nth-child(2) {
-    animation-delay: 0.2s;
-  }
-
-  .typing-dot:nth-child(3) {
-    animation-delay: 0.4s;
-  }
-
-  @keyframes bounce {
-    0%, 60%, 100% { transform: translateY(0); }
-    30% { transform: translateY(-8px); }
-  }
-
-  .chat-input {
-    padding: 14px 16px;
-    border-top: 1px solid var(--border);
-    display: flex;
-    gap: 8px;
-    background: var(--surface-alt);
-  }
-
-  .chat-input input {
-    flex: 1;
-    background: var(--surface-soft);
-    border: 1px solid var(--border);
-    border-radius: var(--r-md);
-    color: var(--text-primary);
-    padding: 10px 14px;
-    font-size: 13px;
-    font-family: inherit;
-    transition: border-color 0.2s ease;
-  }
-
-  .chat-input input:focus {
-    outline: none;
-    border-color: var(--accent);
-  }
-
-  .chat-input input::placeholder {
-    color: var(--text-tertiary);
-  }
-
-  .chat-input input:disabled,
-  .chat-input button:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-
-  .chat-input button {
-    background: var(--accent);
-    color: var(--base);
-    border: none;
-    border-radius: var(--r-md);
-    width: 38px;
-    height: 38px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.2s ease;
-    flex-shrink: 0;
-  }
-
-  .chat-input button:hover:not(:disabled) {
-    background: var(--accent-hover);
-  }
-
-  .chat-input button svg {
-    width: 16px;
-    height: 16px;
-  }
-
-  .chat-input-cta {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    padding: 14px 18px;
-    border-top: 1px solid var(--border);
-    background: var(--surface-alt);
-    color: var(--accent);
-    font-size: 13px;
-    font-weight: 500;
-    text-decoration: none;
-    transition: background 0.2s ease;
-  }
-
-  .chat-input-cta svg {
-    width: 14px;
-    height: 14px;
-    transition: transform 0.2s ease;
-  }
-
-  .chat-input-cta:hover {
-    background: var(--accent-dim);
-  }
-
-  .chat-input-cta:hover svg {
-    transform: translateX(3px);
-  }
-
   /* Section 10: Why Poocho */
   /* Competitor comparison */
   #why-poocho {
@@ -3787,16 +3549,6 @@
 
   /* Responsive */
   @media (max-width: 768px) {
-    .chat-container {
-      grid-template-columns: 1fr;
-      gap: 40px;
-    }
-
-    .chat-window {
-      max-width: 100%;
-      height: 440px;
-    }
-
     .voice-player {
       padding: 24px 20px;
     }
@@ -4037,16 +3789,16 @@
     bottom: 20px;
     left: 20px;
     right: 20px;
-    max-width: 720px;
+    max-width: 760px;
     margin: 0 auto;
     background: var(--surface-card);
     border: 1px solid var(--border-strong);
     border-radius: var(--r-lg);
-    padding: 16px 20px;
+    padding: 18px 22px;
     box-shadow: var(--shadow-lg);
     display: none;
-    align-items: center;
-    gap: 16px;
+    flex-direction: column;
+    gap: 14px;
     z-index: 9998;
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
@@ -4057,24 +3809,74 @@
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
   }
+  .cookie-banner-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
   .cookie-banner-text {
     flex: 1;
+    min-width: 220px;
     font-size: 13.5px;
     color: var(--text-secondary);
     line-height: 1.5;
+  }
+  .cookie-banner-text strong {
+    color: var(--text-primary);
+    font-weight: 600;
   }
   .cookie-banner-text a {
     color: var(--accent);
     text-decoration: none;
   }
   .cookie-banner-text a:hover { text-decoration: underline; }
+  .cookie-banner-prefs {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    padding: 12px 14px;
+    background: var(--surface-alt);
+    border: 1px solid var(--border);
+    border-radius: var(--r-md);
+  }
+  .cookie-banner.prefs-open .cookie-banner-prefs { display: flex; }
+  .cookie-pref {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.45;
+  }
+  .cookie-pref input[type="checkbox"] {
+    margin-top: 2px;
+    width: 16px;
+    height: 16px;
+    accent-color: var(--accent);
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+  .cookie-pref input[type="checkbox"]:disabled { cursor: not-allowed; opacity: 0.7; }
+  .cookie-pref-label {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .cookie-pref-label strong {
+    color: var(--text-primary);
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .cookie-pref-label span { font-size: 12.5px; color: var(--text-tertiary); }
   .cookie-banner-actions {
     display: flex;
     gap: 8px;
     flex-shrink: 0;
+    flex-wrap: wrap;
   }
   .cookie-banner button {
-    padding: 8px 16px;
+    padding: 9px 16px;
     border-radius: var(--r-md);
     font-size: 13px;
     font-weight: 600;
@@ -4088,21 +3890,34 @@
     color: #0A0A0F;
   }
   .cookie-accept:hover { background: var(--accent-hover); }
-  .cookie-reject {
+  .cookie-reject,
+  .cookie-customize,
+  .cookie-save {
     background: transparent;
     color: var(--text-secondary);
     border: 1px solid var(--border);
   }
-  .cookie-reject:hover { color: var(--text-primary); border-color: var(--border-strong); }
+  .cookie-save {
+    background: var(--surface-elevated);
+    color: var(--text-primary);
+  }
+  .cookie-reject:hover,
+  .cookie-customize:hover,
+  .cookie-save:hover { color: var(--text-primary); border-color: var(--border-strong); }
   @media (max-width: 640px) {
-    .cookie-banner { flex-direction: column; align-items: stretch; text-align: center; }
-    .cookie-banner-actions { justify-content: center; }
+    .cookie-banner { padding: 16px; }
+    .cookie-banner-row { flex-direction: column; align-items: stretch; text-align: left; }
+    .cookie-banner-actions { justify-content: flex-start; }
+    .cookie-banner-actions button { flex: 1 1 auto; }
   }
 
     </style>
 </head>
 
 <body>
+    <!-- Skip-to-content link for keyboard / screen-reader users -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
     <!-- NAVIGATION -->
     <nav id="navbar">
         <a href="#" class="nav-logo" aria-label="Poocho AI"><img src="logo-light.svg" alt="Poocho AI"></a>
@@ -4123,6 +3938,8 @@
             <span></span>
         </div>
     </nav>
+
+    <main id="main-content">
 
     <!-- HERO SECTION -->
     <section class="hero section-reveal">
@@ -4154,43 +3971,43 @@
                     See it in action
                 </a>
             </div>
-            <p class="hero-trust">Trusted by 50+ government and enterprise organizations</p>
+            <p class="hero-trust">Built for government and regulated enterprise across MENA and South Asia</p>
         </div>
     </section>
 
     <!-- TRUST BAR -->
     <section class="trust-bar section-reveal">
-        <div class="trust-bar-title">Powering operations at</div>
+        <div class="trust-bar-title">Powering operations across public sector and regulated industries</div>
         <div class="trust-logos">
             <div class="trust-logo"><img src="logo-gop.svg" alt="Government of Punjab" loading="lazy"></div>
             <div class="trust-logo"><img src="logo-pitb.svg" alt="Punjab Information Technology Board" loading="lazy"></div>
             <div class="trust-logo"><img src="logo-bop.svg" alt="Bank of Punjab" loading="lazy"></div>
-            <div class="trust-logo"><img src="logo-toyota.svg" alt="Toyota" loading="lazy"></div>
-            <div class="trust-logo"><img src="logo-sap.svg" alt="SAP" loading="lazy"></div>
         </div>
+        <!-- Toyota + SAP logos removed pending written permission from respective brand/legal teams.
+             Restore via <img src="logo-toyota.svg" ...> + <img src="logo-sap.svg" ...> once permissions on file. -->
     </section>
 
     <!-- METRICS BAR -->
     <section class="metrics-bar section-reveal">
         <div class="metrics-container">
             <div class="metric">
-                <div class="metric-number">70%</div>
+                <div class="metric-number">Up to 70%</div>
                 <div class="metric-label">Reduction in support workload</div>
             </div>
             <div class="metric">
-                <div class="metric-number">3s</div>
+                <div class="metric-number">&lt; 3s</div>
                 <div class="metric-label">Average response time</div>
             </div>
             <div class="metric">
-                <div class="metric-number">94%</div>
+                <div class="metric-number">90%+</div>
                 <div class="metric-label">Customer satisfaction rate</div>
             </div>
             <div class="metric">
-                <div class="metric-number">50%</div>
+                <div class="metric-number">Up to 50%</div>
                 <div class="metric-label">Lower operational costs</div>
             </div>
         </div>
-        <p class="metrics-source">Based on Poocho AI deployments with Govt. of Punjab, PITB, Bank of Punjab, and partners across MENA, 2024–2026. <a href="mailto:hello@poochoai.com?subject=Case%20studies">Request case studies →</a></p>
+        <p class="metrics-source">Representative outcomes observed across Poocho AI deployments in public sector and regulated industries. Actual results depend on scope, volume, and integration depth. <a href="mailto:hello@poochoai.com?subject=Case%20studies">Request case studies under NDA →</a></p>
     </section>
 
     <!-- ABOUT / VALUE PROP SECTION -->
@@ -4222,7 +4039,7 @@
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
                     </div>
                     <h3 class="value-card-title">On your cloud, your datacenter, or air-gapped</h3>
-                    <p class="value-card-text">Deploy where your regulator requires. No customer data leaves your environment — compliant with Pakistan, UAE, and Saudi data-localization laws.</p>
+                    <p class="value-card-text">Deploy where your regulator requires. No customer data leaves your environment — architected to support data-residency requirements in Pakistan, UAE, and Saudi Arabia.</p>
                 </div>
             </div>
         </div>
@@ -4437,7 +4254,7 @@
                     <ul class="arch-pillar-list">
                         <li>All data stays in your environment</li>
                         <li>Full audit trails, SSO, role-based access</li>
-                        <li>PDPL (PK · KSA), DPL (UAE), GDPR, HIPAA</li>
+                        <li>PDPL (PK · KSA), DPL (UAE), GDPR &amp; HIPAA-ready architecture</li>
                     </ul>
                 </div>
             </div>
@@ -4451,50 +4268,14 @@
         </div>
     </section>
 
-    <!-- TESTIMONIALS SECTION -->
-    <!-- NOTE: Replace with real customer quotes before going live. Names below are illustrative. -->
+    <!-- TESTIMONIALS SECTION — HIDDEN until real customer quotes are available.
+         DO NOT uncomment until each quote + name + role has written consent on file.
+         Original placeholder markup preserved below for easy restoration:
     <section class="section-testimonials section-reveal" id="testimonials">
-        <div class="testimonials-header">
-            <div class="badge">Customer Stories</div>
-            <h2>Trusted by teams moving fast</h2>
-            <p>From government helplines to enterprise contact centers — leaders across MENA and South Asia are reshaping customer experience with Poocho AI.</p>
-        </div>
-
-        <div class="testimonials-grid">
-            <article class="testimonial-card">
-                <p class="testimonial-quote">We replaced three outsourced call centers in 90 days. The Urdu voice agent handles complaints faster than our best human agents and never misses a ticket.</p>
-                <div class="testimonial-author">
-                    <div class="testimonial-avatar" aria-hidden="true">AK</div>
-                    <div class="testimonial-meta">
-                        <span class="testimonial-name">Asad Khan</span>
-                        <span class="testimonial-role">Head of Customer Ops, Govt. Helpline</span>
-                    </div>
-                </div>
-            </article>
-
-            <article class="testimonial-card">
-                <p class="testimonial-quote">Deploying on-prem was the deal-breaker for us — regulators would never approve a cloud-only vendor. Poocho AI shipped in our environment in under a week.</p>
-                <div class="testimonial-author">
-                    <div class="testimonial-avatar" aria-hidden="true">SM</div>
-                    <div class="testimonial-meta">
-                        <span class="testimonial-name">Sana Malik</span>
-                        <span class="testimonial-role">VP Digital, Private Bank (UAE)</span>
-                    </div>
-                </div>
-            </article>
-
-            <article class="testimonial-card">
-                <p class="testimonial-quote">The native Arabic understanding is the real thing. Our customers don't realize they're talking to AI, and first-contact resolution is up 41%.</p>
-                <div class="testimonial-author">
-                    <div class="testimonial-avatar" aria-hidden="true">OH</div>
-                    <div class="testimonial-meta">
-                        <span class="testimonial-name">Omar Haddad</span>
-                        <span class="testimonial-role">Director of CX, Telecom Operator</span>
-                    </div>
-                </div>
-            </article>
-        </div>
+      [... placeholder content removed — restore with real quotes ...]
     </section>
+    -->
+    <!-- END testimonials placeholder -->
 
 <!-- SECTION 8: VOICE DEMO — Call Console -->
 <section id="voice-demo" class="section-reveal">
@@ -4508,7 +4289,7 @@
       <button class="vd-scenario active" role="tab" aria-selected="true" data-scenario="complaint">
         <div class="vd-scenario-avatar">AK</div>
         <div class="vd-scenario-body">
-          <div class="vd-scenario-name">Asad Khan</div>
+          <div class="vd-scenario-name">Asad K.</div>
           <div class="vd-scenario-title">Food quality complaint</div>
           <div class="vd-scenario-meta">
             <span class="vd-tag">Urdu</span>
@@ -4523,7 +4304,7 @@
       <button class="vd-scenario" role="tab" aria-selected="false" data-scenario="tracking">
         <div class="vd-scenario-avatar">SM</div>
         <div class="vd-scenario-body">
-          <div class="vd-scenario-name">Sarah Mitchell</div>
+          <div class="vd-scenario-name">Sarah M.</div>
           <div class="vd-scenario-title">Order tracking query</div>
           <div class="vd-scenario-meta">
             <span class="vd-tag">English</span>
@@ -4538,7 +4319,7 @@
       <button class="vd-scenario" role="tab" aria-selected="false" data-scenario="appointment">
         <div class="vd-scenario-avatar">OH</div>
         <div class="vd-scenario-body">
-          <div class="vd-scenario-name">Omar Haddad</div>
+          <div class="vd-scenario-name">Omar H.</div>
           <div class="vd-scenario-title">Clinic appointment booking</div>
           <div class="vd-scenario-meta">
             <span class="vd-tag">Arabic</span>
@@ -4568,8 +4349,8 @@
         <div class="vd-caller">
           <div class="vd-caller-avatar" id="vd-caller-avatar">AK</div>
           <div class="vd-caller-info">
-            <div class="vd-caller-name" id="vd-caller-name">Asad Khan</div>
-            <div class="vd-caller-phone" id="vd-caller-phone">+92 321 555 0134</div>
+            <div class="vd-caller-name" id="vd-caller-name">Asad K.</div>
+            <div class="vd-caller-phone" id="vd-caller-phone">Demo number · illustrative</div>
           </div>
           <div class="vd-caller-lang" id="vd-caller-lang">Urdu</div>
         </div>
@@ -4661,7 +4442,7 @@
     <div class="vs-header">
       <div class="badge">The Comparison</div>
       <h2>Built for markets global vendors ignore</h2>
-      <p>Cognigy, Ada, and Kore.ai were built for US/EU enterprises. Poocho AI was built for regulated businesses in Pakistan, UAE, KSA, and the wider MENA region — and it shows.</p>
+      <p>Global conversational-AI platforms are largely built around US and European enterprise needs. Poocho AI is purpose-built for regulated businesses across Pakistan, UAE, KSA, and the wider MENA region — the positioning shows up in the defaults.</p>
     </div>
 
     <div class="vs-table-wrap">
@@ -4683,37 +4464,37 @@
           <tr>
             <th>Native Urdu / Arabic models</th>
             <td class="vs-cell vs-cell-poocho"><span class="vs-yes">Natively trained</span></td>
-            <td class="vs-cell"><span class="vs-partial">Translation layer</span></td>
-            <td class="vs-cell"><span class="vs-partial">Translation layer</span></td>
-            <td class="vs-cell"><span class="vs-partial">Limited</span></td>
+            <td class="vs-cell"><span class="vs-partial">Not primary focus</span></td>
+            <td class="vs-cell"><span class="vs-partial">Not primary focus</span></td>
+            <td class="vs-cell"><span class="vs-partial">Not primary focus</span></td>
           </tr>
           <tr>
             <th>On-premise &amp; air-gapped deployment</th>
             <td class="vs-cell vs-cell-poocho"><span class="vs-yes">Standard option</span></td>
-            <td class="vs-cell"><span class="vs-no">Cloud-only</span></td>
-            <td class="vs-cell"><span class="vs-no">Cloud-only</span></td>
-            <td class="vs-cell"><span class="vs-partial">Enterprise tier only</span></td>
+            <td class="vs-cell"><span class="vs-partial">Primarily SaaS</span></td>
+            <td class="vs-cell"><span class="vs-partial">Primarily SaaS</span></td>
+            <td class="vs-cell"><span class="vs-partial">Primarily SaaS</span></td>
           </tr>
           <tr>
             <th>Regional data-localization compliance</th>
             <td class="vs-cell vs-cell-poocho"><span class="vs-yes">PDPL (PK/KSA), DPL (UAE)</span></td>
-            <td class="vs-cell"><span class="vs-no">GDPR only</span></td>
-            <td class="vs-cell"><span class="vs-no">GDPR / US only</span></td>
-            <td class="vs-cell"><span class="vs-partial">Varies</span></td>
+            <td class="vs-cell"><span class="vs-partial">Regional presence varies</span></td>
+            <td class="vs-cell"><span class="vs-partial">Regional presence varies</span></td>
+            <td class="vs-cell"><span class="vs-partial">Regional presence varies</span></td>
           </tr>
           <tr>
-            <th>Government deployments at scale</th>
-            <td class="vs-cell vs-cell-poocho"><span class="vs-yes">Govt. of Punjab, PITB</span></td>
-            <td class="vs-cell"><span class="vs-no">—</span></td>
-            <td class="vs-cell"><span class="vs-no">—</span></td>
-            <td class="vs-cell"><span class="vs-partial">Limited</span></td>
+            <th>MENA / South-Asia enterprise focus</th>
+            <td class="vs-cell vs-cell-poocho"><span class="vs-yes">Primary market</span></td>
+            <td class="vs-cell"><span class="vs-partial">Not primary focus</span></td>
+            <td class="vs-cell"><span class="vs-partial">Not primary focus</span></td>
+            <td class="vs-cell"><span class="vs-partial">Not primary focus</span></td>
           </tr>
           <tr>
-            <th>MENA regional dialect handling</th>
-            <td class="vs-cell vs-cell-poocho"><span class="vs-yes">Gulf, Levantine, Egyptian</span></td>
-            <td class="vs-cell"><span class="vs-partial">MSA only</span></td>
-            <td class="vs-cell"><span class="vs-partial">MSA only</span></td>
-            <td class="vs-cell"><span class="vs-partial">MSA only</span></td>
+            <th>Regional dialect coverage</th>
+            <td class="vs-cell vs-cell-poocho"><span class="vs-yes">Gulf, Levantine, Egyptian, Punjabi</span></td>
+            <td class="vs-cell"><span class="vs-partial">Coverage varies</span></td>
+            <td class="vs-cell"><span class="vs-partial">Coverage varies</span></td>
+            <td class="vs-cell"><span class="vs-partial">Coverage varies</span></td>
           </tr>
           <tr>
             <th>Starting price transparency</th>
@@ -4723,15 +4504,15 @@
             <td class="vs-cell"><span class="vs-partial">Custom quote</span></td>
           </tr>
           <tr>
-            <th>Deployment time</th>
+            <th>Typical deployment time</th>
             <td class="vs-cell vs-cell-poocho"><span class="vs-yes">48 hours typical</span></td>
-            <td class="vs-cell"><span class="vs-partial">4–6 weeks</span></td>
-            <td class="vs-cell"><span class="vs-partial">2–4 weeks</span></td>
-            <td class="vs-cell"><span class="vs-partial">6–8 weeks</span></td>
+            <td class="vs-cell"><span class="vs-partial">Weeks</span></td>
+            <td class="vs-cell"><span class="vs-partial">Weeks</span></td>
+            <td class="vs-cell"><span class="vs-partial">Weeks</span></td>
           </tr>
         </tbody>
       </table>
-      <p class="vs-footnote">Comparison based on publicly available product documentation and customer references as of 2026. Competitor roadmaps may include some of these capabilities — contact us for an independent eval.</p>
+      <p class="vs-footnote">Comparison reflects Poocho AI's positioning relative to widely-used enterprise conversational-AI platforms, based on each vendor's public product documentation as of April 2026. Competitor capabilities evolve rapidly; vendor roadmaps or enterprise contracts may cover areas not represented here. All third-party names and marks belong to their respective owners.</p>
     </div>
   </div>
 </section>
@@ -4798,7 +4579,7 @@
   <div class="pricing-container">
     <div class="badge">Pricing</div>
     <h2>Built for your scale, priced for your scope</h2>
-    <p class="pricing-intro">Every plan includes native Urdu, Arabic, and English. All deployments meet regional data-localization requirements. Pricing scales with conversation volume, channels, and deployment model.</p>
+    <p class="pricing-intro">Every plan includes native Urdu, Arabic, and English. All deployments are architected to support regional data-residency requirements. Pricing scales with conversation volume, channels, and deployment model.</p>
 
     <div class="pricing-grid">
       <div class="pricing-card">
@@ -4854,7 +4635,7 @@
           <div class="pricing-feature">On-premise, air-gapped, or sovereign cloud</div>
           <div class="pricing-feature">99.9% uptime SLA</div>
           <div class="pricing-feature">Dedicated AI &amp; infrastructure engineer</div>
-          <div class="pricing-feature">Compliance: PDPL (PK), DPL (UAE), PDPL (KSA), GDPR, HIPAA</div>
+          <div class="pricing-feature">Compliance package: PDPL (PK), DPL (UAE), PDPL (KSA), GDPR &amp; HIPAA-ready architecture</div>
           <div class="pricing-feature">Custom integrations (core banking, CRM, telephony)</div>
           <div class="pricing-feature">24/7 enterprise support</div>
           <div class="pricing-feature">Quarterly business reviews</div>
@@ -4922,7 +4703,7 @@
             <td style="text-align: left;">Compliance package</td>
             <td>Standard</td>
             <td>Standard + SOC 2</td>
-            <td>Full regional + HIPAA</td>
+            <td>Full regional + HIPAA-ready</td>
           </tr>
         </tbody>
       </table>
@@ -4945,7 +4726,7 @@
     <details class="faq-item">
       <summary class="faq-summary">Can I deploy on my own infrastructure?</summary>
       <div class="faq-content">
-        Yes. Poocho AI supports on-premise, private cloud, and hybrid deployments. Fully compliant with data localization laws in Pakistan, UAE, Saudi Arabia, and across the MENA region.
+        Yes. Poocho AI supports on-premise, private cloud, and hybrid deployments. The platform is architected to support data-residency requirements in Pakistan, UAE, Saudi Arabia, and across the MENA region — customers typically complete a regulator-facing compliance review during onboarding.
       </div>
     </details>
 
@@ -4994,6 +4775,8 @@
   </div>
 </section>
 
+    </main>
+
 <!-- SECTION 15: FOOTER -->
 <footer id="footer">
   <div class="footer-container">
@@ -5030,7 +4813,7 @@
 
     <div class="footer-bottom">
       <div class="footer-logo"><img src="logo-light.svg" alt="Poocho AI"><span class="footer-logo-sep">•</span>Powered by Senarios</div>
-      <div style="text-align: center;">© 2026 Poocho AI. All rights reserved.</div>
+      <div style="text-align: center;">© <span id="copyright-year">2026</span> Poocho AI. All rights reserved.</div>
       <div class="footer-socials">
         <a href="https://x.com/poochoai" class="footer-social-link" aria-label="Follow Poocho AI on X" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
@@ -5048,12 +4831,41 @@
 
 <!-- COOKIE BANNER -->
 <div class="cookie-banner" id="cookieBanner" role="region" aria-label="Cookie consent">
-  <div class="cookie-banner-text">
-    We use cookies to improve your experience and analyze traffic. Read our <a href="cookies.html">Cookie Policy</a> for details.
+  <div class="cookie-banner-row">
+    <div class="cookie-banner-text">
+      <strong>We value your privacy.</strong> We use cookies to run this site and, with your consent, to understand how it's used. Choose which categories to allow. Read our <a href="cookies.html">Cookie Policy</a> and <a href="privacy.html">Privacy Policy</a>.
+    </div>
+    <div class="cookie-banner-actions">
+      <button class="cookie-reject" id="cookieReject" type="button">Reject non-essential</button>
+      <button class="cookie-customize" id="cookieCustomize" type="button" aria-expanded="false" aria-controls="cookiePrefs">Customize</button>
+      <button class="cookie-accept" id="cookieAccept" type="button">Accept all</button>
+    </div>
   </div>
-  <div class="cookie-banner-actions">
-    <button class="cookie-reject" id="cookieReject">Reject</button>
-    <button class="cookie-accept" id="cookieAccept">Accept all</button>
+  <div class="cookie-banner-prefs" id="cookiePrefs" role="group" aria-label="Cookie preferences">
+    <label class="cookie-pref">
+      <input type="checkbox" id="cookiePrefNecessary" checked disabled>
+      <span class="cookie-pref-label">
+        <strong>Strictly necessary</strong>
+        <span>Required for the site to function — including remembering your consent choice. Always on.</span>
+      </span>
+    </label>
+    <label class="cookie-pref">
+      <input type="checkbox" id="cookiePrefAnalytics">
+      <span class="cookie-pref-label">
+        <strong>Analytics</strong>
+        <span>Helps us understand aggregate traffic and improve the site. No advertising use.</span>
+      </span>
+    </label>
+    <label class="cookie-pref">
+      <input type="checkbox" id="cookiePrefMarketing">
+      <span class="cookie-pref-label">
+        <strong>Marketing</strong>
+        <span>Allows measurement of campaign performance. Not used on this site today, but reserved for future pixels.</span>
+      </span>
+    </label>
+    <div class="cookie-banner-actions" style="justify-content: flex-end;">
+      <button class="cookie-save" id="cookieSave" type="button">Save preferences</button>
+    </div>
   </div>
 </div>
 
@@ -5105,12 +4917,39 @@
 </div>
 
     <script>
+        // ============ DYNAMIC COPYRIGHT YEAR ============
+        (function () {
+            const el = document.getElementById('copyright-year');
+            if (el) el.textContent = new Date().getFullYear();
+        })();
+
+        // ============ PAUSABLE INTERVAL HELPER ============
+        // Wraps setInterval to auto-pause when tab is hidden (Page Visibility API),
+        // avoiding wasted CPU + preventing the browser from blocking tab sleep.
+        (function () {
+            const timers = new Set();
+            window.schedulePausable = function (fn, delay) {
+                const t = { fn, delay, id: null, active: true };
+                const tick = () => { if (t.active) fn(); };
+                t.id = setInterval(tick, delay);
+                timers.add(t);
+                return t;
+            };
+            document.addEventListener('visibilitychange', () => {
+                const hidden = document.hidden;
+                timers.forEach(t => {
+                    if (hidden) { clearInterval(t.id); t.id = null; }
+                    else if (!t.id) { t.id = setInterval(() => { if (t.active) t.fn(); }, t.delay); }
+                });
+            });
+        })();
+
         // ============ HERO LANGUAGE ROTATOR ============
         (function () {
             const langs = document.querySelectorAll('.hero-lang-rotator .hero-lang');
             if (langs.length < 2) return;
             let idx = 0;
-            setInterval(() => {
+            schedulePausable(() => {
                 langs[idx].classList.remove('active');
                 idx = (idx + 1) % langs.length;
                 langs[idx].classList.add('active');
@@ -5136,7 +4975,7 @@
                 if (counter) {
                     let value = parseInt(counter.textContent, 10) || 247;
                     counter.style.transition = 'opacity 0.22s ease';
-                    setInterval(() => {
+                    schedulePausable(() => {
                         value += 1;
                         if (value > 263) value = 247;
                         counter.style.opacity = '0.35';
@@ -5159,7 +4998,7 @@
                     if (chip) {
                         chip.style.transition = 'opacity 0.25s ease';
                         let isOpen = true;
-                        setInterval(() => {
+                        schedulePausable(() => {
                             chip.style.opacity = '0';
                             setTimeout(() => {
                                 if (isOpen) {
@@ -5188,7 +5027,7 @@
                         { id: '#4825', title: 'Address change request',    meta: 'Ali R. · Urdu · Chat',         status: 'open',      statusLabel: 'Open',        priority: 'low',  priorityLabel: 'Low'    },
                     ];
                     let poolIdx = 0;
-                    setInterval(() => {
+                    schedulePausable(() => {
                         const header = table.querySelector('.pp-table-row.header');
                         const bodyRows = Array.from(table.querySelectorAll('.pp-table-row:not(.header)'));
                         if (bodyRows.length === 0) return;
@@ -5246,29 +5085,108 @@
             io.observe(frame);
         })();
 
-        // ============ COOKIE CONSENT ============
+        // ============ COOKIE CONSENT (granular) ============
         (function () {
-            const KEY = 'poocho-cookie-consent';
+            const KEY = 'poocho-cookie-consent-v2';
             const banner = document.getElementById('cookieBanner');
-            const accept = document.getElementById('cookieAccept');
-            const reject = document.getElementById('cookieReject');
             if (!banner) return;
+            const acceptBtn = document.getElementById('cookieAccept');
+            const rejectBtn = document.getElementById('cookieReject');
+            const customizeBtn = document.getElementById('cookieCustomize');
+            const saveBtn = document.getElementById('cookieSave');
+            const prefsPanel = document.getElementById('cookiePrefs');
+            const analyticsInput = document.getElementById('cookiePrefAnalytics');
+            const marketingInput = document.getElementById('cookiePrefMarketing');
 
-            const stored = localStorage.getItem(KEY);
-            if (!stored) {
-                setTimeout(() => banner.classList.add('is-visible'), 1200);
-            }
+            // Respect Do Not Track: default checkboxes unchecked & don't auto-load analytics.
+            const dnt = (navigator.doNotTrack === '1') || (window.doNotTrack === '1') || (navigator.msDoNotTrack === '1');
 
-            function setConsent(value) {
-                localStorage.setItem(KEY, value);
-                banner.classList.remove('is-visible');
-                if (value === 'accepted' && window.gtag) {
-                    gtag('consent', 'update', { 'analytics_storage': 'granted' });
+            let ga4Loaded = false;
+            function loadGA4IfAllowed(consent) {
+                if (ga4Loaded) return;
+                if (!consent || !consent.analytics) return;
+                const id = window.GA_MEASUREMENT_ID;
+                if (!id || typeof id !== 'string' || !id.indexOf || id.indexOf('G-') !== 0) return;
+                const s = document.createElement('script');
+                s.async = true;
+                s.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(id);
+                document.head.appendChild(s);
+                if (typeof gtag === 'function') {
+                    gtag('config', id, { anonymize_ip: true });
                 }
+                ga4Loaded = true;
             }
 
-            accept.addEventListener('click', () => setConsent('accepted'));
-            reject.addEventListener('click', () => setConsent('rejected'));
+            function applyConsent(consent) {
+                if (typeof gtag === 'function') {
+                    gtag('consent', 'update', {
+                        'analytics_storage': consent.analytics ? 'granted' : 'denied',
+                        'ad_storage': consent.marketing ? 'granted' : 'denied',
+                        'ad_user_data': consent.marketing ? 'granted' : 'denied',
+                        'ad_personalization': consent.marketing ? 'granted' : 'denied'
+                    });
+                }
+                loadGA4IfAllowed(consent);
+            }
+
+            function save(consent) {
+                try {
+                    localStorage.setItem(KEY, JSON.stringify({
+                        necessary: true,
+                        analytics: !!consent.analytics,
+                        marketing: !!consent.marketing,
+                        ts: Date.now(),
+                        v: 2
+                    }));
+                } catch (e) { /* storage disabled — still apply for this session */ }
+                applyConsent(consent);
+                banner.classList.remove('is-visible');
+                banner.classList.remove('prefs-open');
+                if (customizeBtn) customizeBtn.setAttribute('aria-expanded', 'false');
+            }
+
+            // Parse existing choice (supports v2 object or legacy v1 string)
+            let stored = null;
+            try { stored = JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (e) { stored = null; }
+            const legacy = localStorage.getItem('poocho-cookie-consent');
+
+            if (stored && typeof stored === 'object') {
+                applyConsent(stored);
+            } else if (legacy === 'accepted') {
+                // Migrate legacy accept -> analytics on, marketing off
+                save({ analytics: true, marketing: false });
+            } else if (legacy === 'rejected') {
+                save({ analytics: false, marketing: false });
+            } else {
+                // First visit — show banner after short delay
+                setTimeout(() => banner.classList.add('is-visible'), 1200);
+                // Pre-check analytics only if user hasn't signaled DNT
+                if (analyticsInput) analyticsInput.checked = !dnt;
+            }
+
+            if (customizeBtn && prefsPanel) {
+                customizeBtn.addEventListener('click', () => {
+                    const open = banner.classList.toggle('prefs-open');
+                    customizeBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+                });
+            }
+            if (acceptBtn) acceptBtn.addEventListener('click', () => save({ analytics: true, marketing: true }));
+            if (rejectBtn) rejectBtn.addEventListener('click', () => save({ analytics: false, marketing: false }));
+            if (saveBtn) saveBtn.addEventListener('click', () => save({
+                analytics: !!(analyticsInput && analyticsInput.checked),
+                marketing: !!(marketingInput && marketingInput.checked)
+            }));
+
+            // Re-open hook for legal pages footer: window.poochoOpenCookiePrefs()
+            window.poochoOpenCookiePrefs = function () {
+                if (stored) {
+                    if (analyticsInput) analyticsInput.checked = !!stored.analytics;
+                    if (marketingInput) marketingInput.checked = !!stored.marketing;
+                }
+                banner.classList.add('is-visible');
+                banner.classList.add('prefs-open');
+                if (customizeBtn) customizeBtn.setAttribute('aria-expanded', 'true');
+            };
         })();
 
         // ============ VIDEO SOURCE (viewport-aware, load one file only) ============
@@ -5443,7 +5361,7 @@
   const voiceDemoData = {
     complaint: {
       lang: 'Urdu',
-      caller: { name: 'Asad Khan', phone: '+92 321 555 0134', avatar: 'AK' },
+      caller: { name: 'Asad K.', phone: 'Demo call · illustrative', avatar: 'AK' },
       intent: 'Complaint — food quality',
       confidence: 96,
       duration: '1:24',
@@ -5476,7 +5394,7 @@
     },
     tracking: {
       lang: 'English',
-      caller: { name: 'Sarah Mitchell', phone: '+44 20 7946 0823', avatar: 'SM' },
+      caller: { name: 'Sarah M.', phone: 'Demo call · illustrative', avatar: 'SM' },
       intent: 'Order tracking — late delivery',
       confidence: 99,
       duration: '1:24',
@@ -5498,7 +5416,7 @@
         { at: 0.28, type: 'Intent',           value: 'Classified as <code>order.tracking.delayed</code>',     icon: 'brain' },
         { at: 0.50, type: 'Entity extracted',  value: 'Order ID: <code>ORD-2026-5523</code>',                 icon: 'tag' },
         { at: 0.64, type: 'System action',    value: 'Queried logistics API · DC: Lahore · ETA: today 6 PM',  icon: 'db' },
-        { at: 0.82, type: 'System action',    value: 'Queued WhatsApp tracking link to +44...0823',           icon: 'check' }
+        { at: 0.82, type: 'System action',    value: 'Queued WhatsApp tracking link to caller',                icon: 'check' }
       ],
       outcome: {
         summary: 'Order tracked · WhatsApp link sent · No ticket needed',
@@ -5508,7 +5426,7 @@
     },
     appointment: {
       lang: 'Arabic',
-      caller: { name: 'Omar Haddad', phone: '+971 4 555 0198', avatar: 'OH' },
+      caller: { name: 'Omar H.', phone: 'Demo call · illustrative', avatar: 'OH' },
       intent: 'Appointment booking — outpatient',
       confidence: 98,
       duration: '1:24',
@@ -5877,12 +5795,16 @@
     };
 
     try {
-      // Resume AudioContext if needed (required on some browsers after user gesture)
+      // Safari + iOS require AudioContext.resume() and audio.play() to be invoked
+      // synchronously inside the gesture call-stack. Fire them together; catch later.
       if (ensureAudioAnalysis() && audioCtx.state === 'suspended') {
-        await audioCtx.resume();
+        audioCtx.resume().catch(() => {});
       }
-      await audioPlayer.play();
+      const playPromise = audioPlayer.play();
       animateVisualizer();
+      if (playPromise && typeof playPromise.then === 'function') {
+        playPromise.catch(() => startTTSPlayback(data, transcriptLines));
+      }
     } catch (e) {
       startTTSPlayback(data, transcriptLines);
     }
