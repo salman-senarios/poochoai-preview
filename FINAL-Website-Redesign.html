@@ -919,81 +919,246 @@
             100% { background-position: -100% 0; }
         }
 
-        /* HOW IT WORKS SECTION */
-        .section-how {
-            background: var(--base);
+        /* ARCHITECTURE SECTION */
+        .section-arch {
+            background: var(--surface-alt);
             padding: 120px 40px;
+            position: relative;
+            overflow: hidden;
         }
 
-        .section-how-title {
-            font-size: clamp(28px, 3.5vw, 44px);
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 72px;
-            color: var(--text-primary);
-            letter-spacing: -0.025em;
-        }
-
-        .how-steps {
+        .arch-container {
             max-width: var(--max-width);
             margin: 0 auto;
-            position: relative;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
         }
 
-        .how-step {
-            text-align: left;
-            position: relative;
-            z-index: 2;
-            padding: 32px 28px;
+        .arch-header {
+            text-align: center;
+            max-width: 720px;
+            margin: 0 auto 64px;
+        }
+
+        .arch-header .badge { margin-bottom: 20px; }
+
+        .arch-header h2 {
+            font-size: clamp(28px, 3.5vw, 44px);
+            color: var(--text-primary);
+            letter-spacing: -0.025em;
+            margin-bottom: 14px;
+        }
+
+        .arch-header p {
+            font-size: 17px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .arch-flow {
+            display: grid;
+            grid-template-columns: 1fr auto 1.1fr auto 1fr;
+            align-items: stretch;
+            gap: 8px;
+            margin-bottom: 56px;
+        }
+
+        .arch-node {
             background: var(--surface-card);
             border: 1px solid var(--border);
             border-radius: var(--r-lg);
-            transition: all 0.3s ease;
+            padding: 24px 22px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            transition: border-color 0.2s ease;
         }
 
-        .how-step:hover {
-            border-color: var(--border-strong);
-            transform: translateY(-2px);
+        .arch-node:hover { border-color: var(--border-strong); }
+
+        .arch-node-label {
+            font-size: 10.5px;
+            color: var(--text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            font-weight: 500;
         }
 
-        .how-step-number {
-            font-family: var(--font-display);
-            font-size: 32px;
-            font-weight: 700;
+        .arch-node-poocho {
+            background: linear-gradient(180deg, rgba(205, 220, 57, 0.08) 0%, var(--surface-card) 60%);
+            border-color: rgba(205, 220, 57, 0.4);
+            box-shadow: 0 0 0 1px rgba(205, 220, 57, 0.25), 0 20px 50px rgba(205, 220, 57, 0.08);
+            align-items: center;
+            text-align: center;
+            justify-content: center;
+        }
+
+        .arch-node-badge {
+            display: inline-flex;
+            padding: 4px 10px;
+            font-size: 10.5px;
             color: var(--accent);
-            margin-bottom: 20px;
+            background: var(--accent-dim);
+            border: 1px solid rgba(205, 220, 57, 0.28);
+            border-radius: var(--r-pill);
+            letter-spacing: 0.6px;
+            font-weight: 500;
+            text-transform: uppercase;
+            width: fit-content;
+            margin-bottom: 4px;
+        }
+
+        .arch-node-title {
+            font-family: var(--font-display);
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-primary);
             letter-spacing: -0.02em;
             line-height: 1;
-            opacity: 0.9;
         }
 
-        .how-step-title {
-            font-size: 19px;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 10px;
-            letter-spacing: -0.01em;
-        }
-
-        .how-step-text {
-            font-size: 14.5px;
+        .arch-node-sub {
+            font-size: 12.5px;
             color: var(--text-secondary);
-            line-height: 1.65;
+            line-height: 1.5;
         }
 
-        .how-connecting-line {
-            display: none;
+        .arch-node-deployments {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 6px;
+            margin-top: 6px;
         }
 
-        .how-deployment-time {
+        .arch-deploy {
+            font-size: 11px;
+            padding: 4px 9px;
+            background: var(--surface-alt);
+            border: 1px solid var(--border);
+            border-radius: var(--r-sm);
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .arch-node-channels {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .arch-chip {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            margin: 56px auto 0;
-            padding: 10px 20px;
+            padding: 7px 11px;
+            background: var(--surface-alt);
+            border: 1px solid var(--border);
+            border-radius: var(--r-md);
+            font-size: 13px;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .arch-chip svg {
+            width: 14px;
+            height: 14px;
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .arch-connector {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            opacity: 0.55;
+            min-width: 40px;
+        }
+
+        .arch-connector svg {
+            width: 100%;
+            height: 20px;
+        }
+
+        /* Pillars below flow */
+        .arch-pillars {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .arch-pillar {
+            padding: 24px 22px;
+            background: var(--surface-card);
+            border: 1px solid var(--border);
+            border-radius: var(--r-lg);
+        }
+
+        .arch-pillar-highlight {
+            background: linear-gradient(180deg, rgba(205, 220, 57, 0.05) 0%, var(--surface-card) 100%);
+            border-color: rgba(205, 220, 57, 0.3);
+        }
+
+        .arch-pillar-label {
+            font-size: 10.5px;
+            color: var(--text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            font-weight: 600;
+            margin-bottom: 14px;
+        }
+
+        .arch-pillar-highlight .arch-pillar-label {
+            color: var(--accent);
+        }
+
+        .arch-pillar-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .arch-pillar-list li {
+            font-size: 13.5px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .arch-pillar-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 7px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--accent-dim);
+            border: 1px solid rgba(205, 220, 57, 0.4);
+        }
+
+        .arch-pillar-highlight .arch-pillar-list li::before {
+            background-color: var(--accent);
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230A0A0F' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+            background-size: 8px;
+            background-repeat: no-repeat;
+            background-position: center;
+            border-color: var(--accent);
+        }
+
+        .arch-footnote {
+            text-align: center;
+        }
+
+        .arch-footnote-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
             background: var(--accent-dim);
             border: 1px solid rgba(205, 220, 57, 0.28);
             border-radius: var(--r-pill);
@@ -1001,11 +1166,24 @@
             color: var(--accent);
             font-weight: 500;
             letter-spacing: 0.3px;
-            width: fit-content;
         }
 
-        .how-deployment-wrap {
-            text-align: center;
+        .arch-footnote-pill svg { width: 14px; height: 14px; }
+
+        /* Architecture responsive */
+        @media (max-width: 960px) {
+            .arch-flow {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            .arch-connector {
+                min-width: 0;
+                height: 30px;
+                transform: rotate(90deg);
+            }
+            .arch-pillars { grid-template-columns: 1fr; }
+            .arch-node-poocho { align-items: flex-start; text-align: left; }
+            .arch-node-poocho .arch-node-deployments { justify-content: flex-start; }
         }
 
         /* PRODUCT PREVIEW SECTION */
@@ -2752,74 +2930,191 @@
   }
 
   /* Section 10: Why Poocho */
+  /* Competitor comparison */
   #why-poocho {
     background: var(--base);
     padding: 120px 0;
   }
 
-  .why-poocho-container {
-    max-width: 1200px;
+  .vs-container {
+    max-width: 1100px;
     margin: 0 auto;
     padding: 0 20px;
+  }
+
+  .vs-header {
     text-align: center;
+    max-width: 720px;
+    margin: 0 auto 56px;
   }
 
-  .why-poocho-container h2 {
+  .vs-header .badge { margin-bottom: 20px; }
+
+  .vs-header h2 {
     font-size: clamp(28px, 3.5vw, 44px);
-    margin-bottom: 64px;
-    color: #fff;
+    color: var(--text-primary);
     letter-spacing: -0.025em;
+    margin-bottom: 14px;
   }
 
-  .why-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
+  .vs-header p {
+    font-size: 17px;
+    color: var(--text-secondary);
+    line-height: 1.6;
   }
 
-  .why-card {
+  .vs-table-wrap {
     background: var(--surface-card);
     border: 1px solid var(--border);
-    padding: 32px 28px;
     border-radius: var(--r-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .vs-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13.5px;
+  }
+
+  .vs-table th,
+  .vs-table td {
+    padding: 16px 20px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+  }
+
+  .vs-table thead {
+    background: var(--surface-alt);
+  }
+
+  .vs-table thead th {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    padding: 18px 20px;
+  }
+
+  .vs-table thead .vs-feature-col {
     text-align: left;
-    transition: all 0.3s ease;
+    color: var(--text-tertiary);
   }
 
-  .why-card:hover {
-    border-color: var(--border-strong);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
+  .vs-table thead .vs-poocho-col {
+    background: rgba(205, 220, 57, 0.08);
+    position: relative;
   }
 
-  .why-card-icon {
-    width: 48px;
-    height: 48px;
-    border-radius: var(--r-md);
-    background: var(--accent-dim);
-    color: var(--accent);
+  .vs-table thead .vs-poocho-col::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 2px;
+    background: var(--accent);
+  }
+
+  .vs-brand {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 24px;
   }
 
-  .why-card-icon svg {
-    width: 24px;
-    height: 24px;
+  .vs-brand img {
+    height: 22px;
+    width: auto;
+    display: block;
   }
 
-  .why-card h3 {
-    font-size: 18px;
-    margin-bottom: 10px;
+  .vs-table tbody th {
+    text-align: left;
+    font-weight: 500;
     color: var(--text-primary);
-    letter-spacing: -0.01em;
+    background: transparent;
+    font-size: 13.5px;
+    text-transform: none;
+    letter-spacing: 0;
+    padding: 16px 20px;
   }
 
-  .why-card p {
-    font-size: 14.5px;
-    color: var(--text-secondary);
-    line-height: 1.65;
+  .vs-cell-poocho {
+    background: rgba(205, 220, 57, 0.05);
+    border-left: 2px solid rgba(205, 220, 57, 0.35);
+    border-right: 2px solid rgba(205, 220, 57, 0.35);
+  }
+
+  .vs-table tbody tr:last-child .vs-cell-poocho {
+    border-bottom: 2px solid rgba(205, 220, 57, 0.35);
+  }
+
+  .vs-table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  .vs-table tbody tr:hover .vs-cell-poocho {
+    background: rgba(205, 220, 57, 0.08);
+  }
+
+  .vs-yes,
+  .vs-partial,
+  .vs-no {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12.5px;
+    font-weight: 500;
+    line-height: 1.35;
+  }
+
+  .vs-yes {
+    color: var(--success-text);
+  }
+
+  .vs-yes::before {
+    content: '';
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    background-color: var(--success-text);
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") no-repeat center / contain;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") no-repeat center / contain;
+  }
+
+  .vs-partial {
+    color: var(--text-tertiary);
+  }
+
+  .vs-partial::before {
+    content: '';
+    width: 14px;
+    height: 2px;
+    background: var(--text-tertiary);
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  .vs-no {
+    color: var(--text-tertiary);
+    opacity: 0.5;
+  }
+
+  .vs-footnote {
+    padding: 16px 20px;
+    background: var(--surface-alt);
+    border-top: 1px solid var(--border);
+    font-size: 12px;
+    color: var(--text-tertiary);
+    line-height: 1.5;
+    text-align: center;
+    margin: 0;
+  }
+
+  @media (max-width: 860px) {
+    .vs-table-wrap { overflow-x: auto; }
+    .vs-table { min-width: 720px; }
+    .vs-table th, .vs-table td { padding: 14px 16px; }
   }
 
   /* Section 11: Industries */
@@ -3812,7 +4107,8 @@
     <nav id="navbar">
         <a href="#" class="nav-logo" aria-label="Poocho AI"><img src="logo-light.svg" alt="Poocho AI"></a>
         <div class="nav-center">
-            <a href="#product">Product</a>
+            <a href="#platform">Platform</a>
+            <a href="#voice-demo">Live Demo</a>
             <a href="#industries">Industries</a>
             <a href="security.html">Security</a>
             <a href="#pricing">Pricing</a>
@@ -3932,65 +4228,6 @@
         </div>
     </section>
 
-    <!-- PRODUCT FEATURES SECTION -->
-    <section class="section-product section-reveal" id="product">
-        <div class="section-container">
-            <div class="section-badge">Product</div>
-            <h2 class="section-headline">One Platform. Every Channel.</h2>
-
-            <div class="feature-cards">
-                <div class="feature-card">
-                    <div class="feature-icon-circle">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
-                    </div>
-                    <h3 class="feature-card-title">AI Voice Agents</h3>
-                    <p class="feature-card-text">Handle thousands of calls simultaneously with human-like conversation. Inbound and outbound. Urdu, Arabic, and English — natively.</p>
-                    <div class="feature-illustration">
-                        <div class="waveform">
-                            <div class="wave-bar"></div>
-                            <div class="wave-bar"></div>
-                            <div class="wave-bar"></div>
-                            <div class="wave-bar"></div>
-                            <div class="wave-bar"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon-circle">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                    </div>
-                    <h3 class="feature-card-title">Smart Chat & Messaging</h3>
-                    <p class="feature-card-text">Deploy across WhatsApp, web chat, Facebook, and SMS. One AI brain across every messaging channel your customers use.</p>
-                    <div class="feature-illustration">
-                        <div class="chat-bubbles">
-                            <div class="bubble"></div>
-                            <div class="bubble"></div>
-                            <div class="bubble"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon-circle">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/><line x1="4" y1="4" x2="9" y2="9"/></svg>
-                    </div>
-                    <h3 class="feature-card-title">Intelligent Routing</h3>
-                    <p class="feature-card-text">AI decides in real-time: resolve automatically, route to the right human agent, or escalate. No more IVR mazes.</p>
-                    <div class="feature-illustration">
-                        <div class="flow-diagram">
-                            <div class="flow-dot"></div>
-                            <div class="flow-line"></div>
-                            <div class="flow-dot" style="background: var(--accent); width: 16px; height: 16px;"></div>
-                            <div class="flow-line"></div>
-                            <div class="flow-dot"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- PRODUCT PREVIEW SECTION -->
     <section class="section-product-preview section-reveal" id="platform">
         <div class="product-preview-header">
@@ -4103,35 +4340,113 @@
         </div>
     </section>
 
-    <!-- HOW IT WORKS SECTION -->
-    <section class="section-how section-reveal" id="how">
-        <div class="section-container">
-            <h2 class="section-how-title">How It Works</h2>
-
-            <div class="how-steps">
-                <div class="how-step">
-                    <div class="how-step-number">01</div>
-                    <h3 class="how-step-title">Connect</h3>
-                    <p class="how-step-text">Integrate with your CRM, telephony, and communication channels in hours, not months.</p>
-                </div>
-
-                <div class="how-step">
-                    <div class="how-step-number">02</div>
-                    <h3 class="how-step-title">Train</h3>
-                    <p class="how-step-text">Feed your knowledge base, industry vocabulary, and business rules. The AI learns your domain.</p>
-                </div>
-
-                <div class="how-step">
-                    <div class="how-step-number">03</div>
-                    <h3 class="how-step-title">Deploy — cloud or on-prem</h3>
-                    <p class="how-step-text">Ship to AWS, Azure, or your datacenter — air-gapped if your regulator demands it. Monitor in real-time. Go live in 48 hours.</p>
-                </div>
-
-                <div class="how-connecting-line"></div>
+    <!-- ARCHITECTURE SECTION — how Poocho plugs into your stack -->
+    <section class="section-arch section-reveal" id="how">
+        <div class="arch-container">
+            <div class="arch-header">
+                <div class="badge">Architecture</div>
+                <h2>How Poocho AI plugs into your stack</h2>
+                <p>No data leaves your environment. No rip-and-replace. Poocho deploys where your regulator says it can, and speaks only to systems you already own.</p>
             </div>
 
-            <div class="how-deployment-wrap">
-                <div class="how-deployment-time">Average deployment time: 48 hours</div>
+            <div class="arch-flow">
+                <div class="arch-node arch-node-customer">
+                    <div class="arch-node-label">Your customer</div>
+                    <div class="arch-node-channels">
+                        <span class="arch-chip">
+                            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.33 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                            Voice
+                        </span>
+                        <span class="arch-chip">
+                            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413"/></svg>
+                            WhatsApp
+                        </span>
+                        <span class="arch-chip">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                            Web chat
+                        </span>
+                        <span class="arch-chip">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                            SMS
+                        </span>
+                    </div>
+                </div>
+
+                <div class="arch-connector" aria-hidden="true">
+                    <svg viewBox="0 0 80 24" preserveAspectRatio="none"><path d="M0 12 L80 12" stroke="currentColor" stroke-width="1" stroke-dasharray="4 4" fill="none"/><path d="M72 6 L80 12 L72 18" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+
+                <div class="arch-node arch-node-poocho">
+                    <div class="arch-node-badge">Your infrastructure</div>
+                    <div class="arch-node-title">Poocho AI</div>
+                    <div class="arch-node-sub">On-premise · Private cloud · Air-gapped</div>
+                    <div class="arch-node-deployments">
+                        <span class="arch-deploy">AWS</span>
+                        <span class="arch-deploy">Azure</span>
+                        <span class="arch-deploy">GCP</span>
+                        <span class="arch-deploy">Bare-metal</span>
+                    </div>
+                </div>
+
+                <div class="arch-connector" aria-hidden="true">
+                    <svg viewBox="0 0 80 24" preserveAspectRatio="none"><path d="M0 12 L80 12" stroke="currentColor" stroke-width="1" stroke-dasharray="4 4" fill="none"/><path d="M72 6 L80 12 L72 18" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+
+                <div class="arch-node arch-node-systems">
+                    <div class="arch-node-label">Your systems</div>
+                    <div class="arch-node-channels">
+                        <span class="arch-chip">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                            CRM
+                        </span>
+                        <span class="arch-chip">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                            Ticketing
+                        </span>
+                        <span class="arch-chip">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                            Knowledge base
+                        </span>
+                        <span class="arch-chip">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+                            Core systems
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="arch-pillars">
+                <div class="arch-pillar">
+                    <div class="arch-pillar-label">You provide</div>
+                    <ul class="arch-pillar-list">
+                        <li>A phone number or messaging account</li>
+                        <li>Your knowledge base + business rules</li>
+                        <li>API access to systems you want automated</li>
+                    </ul>
+                </div>
+                <div class="arch-pillar arch-pillar-highlight">
+                    <div class="arch-pillar-label">Poocho deploys</div>
+                    <ul class="arch-pillar-list">
+                        <li>Native Urdu / Arabic / English AI models</li>
+                        <li>Live supervisor dashboard + analytics</li>
+                        <li>Integration adapters + SLA-backed uptime</li>
+                    </ul>
+                </div>
+                <div class="arch-pillar">
+                    <div class="arch-pillar-label">Your regulator gets</div>
+                    <ul class="arch-pillar-list">
+                        <li>All data stays in your environment</li>
+                        <li>Full audit trails, SSO, role-based access</li>
+                        <li>PDPL (PK · KSA), DPL (UAE), GDPR, HIPAA</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="arch-footnote">
+                <span class="arch-footnote-pill">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v6M12 16v6M4.93 4.93l4.24 4.24M14.83 14.83l4.24 4.24M2 12h6M16 12h6M4.93 19.07l4.24-4.24M14.83 9.17l4.24-4.24"/></svg>
+                    Live in 48 hours · typical enterprise rollout
+                </span>
             </div>
         </div>
     </section>
@@ -4340,84 +4655,83 @@
   </div>
 </section>
 
-<!-- SECTION 9: CHAT SIMULATOR -->
-<section id="chat-simulator" class="section-reveal">
-  <div class="chat-container">
-    <div class="chat-content">
-      <div class="badge">Live Preview</div>
-      <h2>Chat with Poocho AI</h2>
-      <p>Experience how Poocho AI handles real customer queries across multiple channels. Click any option to see the AI respond.</p>
-      <div class="chat-pills">
-        <div class="chat-pill"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413"/></svg>WhatsApp</div>
-        <div class="chat-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Web Chat</div>
-        <div class="chat-pill"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.373 0 0 5.373 0 12c0 6.016 4.432 10.984 10.206 11.852V15.18H7.237v-3.154h2.969V9.927c0-2.93 1.477-4.216 3.913-4.216 1.166 0 1.782.087 2.074.126v2.757h-1.97c-1.035 0-1.396.98-1.396 2.085v1.347h3.335l-.452 3.154h-2.883v8.704C19.562 23.012 24 18.04 24 12c0-6.627-5.373-12-12-12"/></svg>Facebook Messenger</div>
-      </div>
-    </div>
-
-    <div class="chat-window">
-      <div class="chat-header">
-        <div class="chat-avatar">P</div>
-        <div class="chat-header-title">Poocho AI</div>
-        <div class="chat-status"></div>
-      </div>
-
-      <div class="chat-messages" id="chat-messages">
-        <div class="message bot">
-          <div class="message-bubble">Hi there — I'm Poocho AI. How can I help?</div>
-        </div>
-        <div class="quick-replies">
-          <button class="quick-reply" data-action="track"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>Track my order</button>
-          <button class="quick-reply" data-action="complaint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/></svg>File a complaint</button>
-          <button class="quick-reply" data-action="human"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Talk to human</button>
-        </div>
-      </div>
-
-      <a href="#" class="chat-input-cta" data-cta="demo">
-        <span>Try it with your own questions in a live demo</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- SECTION 10: WHY POOCHO -->
+<!-- SECTION 10: COMPETITOR COMPARISON -->
 <section id="why-poocho" class="section-reveal">
-  <div class="why-poocho-container">
-    <div class="badge">Why Poocho AI</div>
-    <h2>Control. Privacy. Intelligence.</h2>
+  <div class="vs-container">
+    <div class="vs-header">
+      <div class="badge">The Comparison</div>
+      <h2>Built for markets global vendors ignore</h2>
+      <p>Cognigy, Ada, and Kore.ai were built for US/EU enterprises. Poocho AI was built for regulated businesses in Pakistan, UAE, KSA, and the wider MENA region — and it shows.</p>
+    </div>
 
-    <div class="why-grid">
-      <div class="why-card">
-        <div class="why-card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-        </div>
-        <h3>Your Data, Your Servers</h3>
-        <p>Deploy on-premise or in private cloud. Full data sovereignty compliant with Pakistan's, UAE's, and Saudi Arabia's data localization laws.</p>
-      </div>
-
-      <div class="why-card">
-        <div class="why-card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-        </div>
-        <h3>Your Language, Natively</h3>
-        <p>Not translated — natively trained. Urdu, Arabic, English, Bangla, and 100+ languages with cultural context understanding.</p>
-      </div>
-
-      <div class="why-card">
-        <div class="why-card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/></svg>
-        </div>
-        <h3>Your Rules, Enforced</h3>
-        <p>Built-in compliance with audit trails, data governance, and regulatory architecture for government and financial sectors.</p>
-      </div>
-
-      <div class="why-card">
-        <div class="why-card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-        </div>
-        <h3>Your Scale, Guaranteed</h3>
-        <p>Handle 10,000+ concurrent conversations. 99.9% uptime SLA. Proven at government-scale deployment.</p>
-      </div>
+    <div class="vs-table-wrap">
+      <table class="vs-table">
+        <thead>
+          <tr>
+            <th class="vs-feature-col">Capability</th>
+            <th class="vs-poocho-col">
+              <div class="vs-brand">
+                <img src="logo-light.svg" alt="Poocho AI">
+              </div>
+            </th>
+            <th>Cognigy</th>
+            <th>Ada</th>
+            <th>Kore.ai</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>Native Urdu / Arabic models</th>
+            <td class="vs-cell vs-cell-poocho"><span class="vs-yes">Natively trained</span></td>
+            <td class="vs-cell"><span class="vs-partial">Translation layer</span></td>
+            <td class="vs-cell"><span class="vs-partial">Translation layer</span></td>
+            <td class="vs-cell"><span class="vs-partial">Limited</span></td>
+          </tr>
+          <tr>
+            <th>On-premise &amp; air-gapped deployment</th>
+            <td class="vs-cell vs-cell-poocho"><span class="vs-yes">Standard option</span></td>
+            <td class="vs-cell"><span class="vs-no">Cloud-only</span></td>
+            <td class="vs-cell"><span class="vs-no">Cloud-only</span></td>
+            <td class="vs-cell"><span class="vs-partial">Enterprise tier only</span></td>
+          </tr>
+          <tr>
+            <th>Regional data-localization compliance</th>
+            <td class="vs-cell vs-cell-poocho"><span class="vs-yes">PDPL (PK/KSA), DPL (UAE)</span></td>
+            <td class="vs-cell"><span class="vs-no">GDPR only</span></td>
+            <td class="vs-cell"><span class="vs-no">GDPR / US only</span></td>
+            <td class="vs-cell"><span class="vs-partial">Varies</span></td>
+          </tr>
+          <tr>
+            <th>Government deployments at scale</th>
+            <td class="vs-cell vs-cell-poocho"><span class="vs-yes">Govt. of Punjab, PITB</span></td>
+            <td class="vs-cell"><span class="vs-no">—</span></td>
+            <td class="vs-cell"><span class="vs-no">—</span></td>
+            <td class="vs-cell"><span class="vs-partial">Limited</span></td>
+          </tr>
+          <tr>
+            <th>MENA regional dialect handling</th>
+            <td class="vs-cell vs-cell-poocho"><span class="vs-yes">Gulf, Levantine, Egyptian</span></td>
+            <td class="vs-cell"><span class="vs-partial">MSA only</span></td>
+            <td class="vs-cell"><span class="vs-partial">MSA only</span></td>
+            <td class="vs-cell"><span class="vs-partial">MSA only</span></td>
+          </tr>
+          <tr>
+            <th>Starting price transparency</th>
+            <td class="vs-cell vs-cell-poocho"><span class="vs-yes">From $1,499/mo</span></td>
+            <td class="vs-cell"><span class="vs-partial">Custom quote</span></td>
+            <td class="vs-cell"><span class="vs-partial">Custom quote</span></td>
+            <td class="vs-cell"><span class="vs-partial">Custom quote</span></td>
+          </tr>
+          <tr>
+            <th>Deployment time</th>
+            <td class="vs-cell vs-cell-poocho"><span class="vs-yes">48 hours typical</span></td>
+            <td class="vs-cell"><span class="vs-partial">4–6 weeks</span></td>
+            <td class="vs-cell"><span class="vs-partial">2–4 weeks</span></td>
+            <td class="vs-cell"><span class="vs-partial">6–8 weeks</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="vs-footnote">Comparison based on publicly available product documentation and customer references as of 2026. Competitor roadmaps may include some of these capabilities — contact us for an independent eval.</p>
     </div>
   </div>
 </section>
@@ -4688,8 +5002,8 @@
         <h4>Product</h4>
         <ul>
           <li><a href="#platform">Platform</a></li>
-          <li><a href="#voice-demo">Voice AI</a></li>
-          <li><a href="#chat-simulator">Chat AI</a></li>
+          <li><a href="#voice-demo">Voice &amp; Chat AI</a></li>
+          <li><a href="#how">Architecture</a></li>
           <li><a href="#pricing">Pricing</a></li>
         </ul>
       </div>
@@ -5639,50 +5953,6 @@
       setLiveState('idle', 'Ready to call');
     }
   }
-
-  // ===== CHAT SIMULATOR =====
-  const quickReplies = document.querySelectorAll('.quick-reply');
-  const chatMessages = document.getElementById('chat-messages');
-
-  quickReplies.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const action = btn.dataset.action;
-
-      const userMsg = document.createElement('div');
-      userMsg.className = 'message user';
-      userMsg.innerHTML = `<div class="message-bubble">${btn.textContent}</div>`;
-      chatMessages.appendChild(userMsg);
-
-      chatMessages.querySelector('.quick-replies').remove();
-
-      const typingDiv = document.createElement('div');
-      typingDiv.className = 'message bot';
-      typingDiv.innerHTML = `<div class="typing-indicator"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>`;
-      chatMessages.appendChild(typingDiv);
-
-      chatMessages.scrollTop = chatMessages.scrollHeight;
-
-      setTimeout(() => {
-        typingDiv.remove();
-
-        let response = '';
-        if (action === 'track') {
-          response = 'Great! Your order #ORD-2026-5523 is on its way. Delivery expected today by 6 PM. 📦';
-        } else if (action === 'complaint') {
-          response = 'I\'m sorry to hear that. I\'ll help you file a complaint. Could you tell me what went wrong? 💙';
-        } else if (action === 'human') {
-          response = 'Connecting you to Agent Fatima... Agent Fatima has joined the chat. 👋';
-        }
-
-        const botMsg = document.createElement('div');
-        botMsg.className = 'message bot';
-        botMsg.innerHTML = `<div class="message-bubble">${response}</div>`;
-        chatMessages.appendChild(botMsg);
-
-        chatMessages.scrollTop = chatMessages.scrollHeight;
-      }, 1500);
-    });
-  });
 
   // ===== FAQ ACCORDIONS =====
   const faqItems = document.querySelectorAll('.faq-item');
