@@ -2506,38 +2506,38 @@
 
   .pricing-container h2 {
     font-size: clamp(28px, 3.5vw, 44px);
-    margin-bottom: 36px;
+    margin-bottom: 18px;
     color: var(--text-primary);
     letter-spacing: -0.025em;
   }
 
-  .pricing-toggle {
-    display: inline-flex;
-    justify-content: center;
-    gap: 4px;
-    margin-bottom: 64px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    padding: 4px;
-    border-radius: var(--r-pill);
-  }
-
-  .toggle-btn {
-    padding: 8px 20px;
-    background: transparent;
-    border: none;
+  .pricing-intro {
+    max-width: 620px;
+    margin: 0 auto 56px;
+    font-size: 16px;
+    line-height: 1.6;
     color: var(--text-secondary);
-    cursor: pointer;
-    font-weight: 500;
-    font-size: 13px;
-    transition: all 0.2s ease;
-    border-radius: var(--r-pill);
-    font-family: inherit;
   }
 
-  .toggle-btn.active {
-    background: var(--accent);
-    color: #0A0A0F;
+  .pricing-footnote {
+    max-width: var(--max-width);
+    margin: 32px auto 0;
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--text-tertiary);
+    text-align: center;
+  }
+
+  .pricing-footnote a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .pricing-footnote a:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
   }
 
   .pricing-grid {
@@ -2614,21 +2614,47 @@
   }
 
   .pricing-price {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    margin-bottom: 16px;
+    line-height: 1;
+  }
+
+  .pricing-price-prefix {
+    font-family: var(--font-body);
+    font-size: 11.5px;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 500;
+  }
+
+  .pricing-price-amount {
     font-family: var(--font-display);
-    font-size: 44px;
+    font-size: 42px;
     font-weight: 700;
     color: var(--text-primary);
-    margin-bottom: 8px;
     letter-spacing: -0.02em;
     line-height: 1;
   }
 
-  .pricing-price span {
+  .pricing-price-period {
     font-family: var(--font-body);
-    font-size: 15px;
+    font-size: 14px;
     color: var(--text-secondary);
     font-weight: 500;
     letter-spacing: 0;
+  }
+
+  .pricing-subcopy {
+    font-size: 13.5px;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
   }
 
   .pricing-features {
@@ -2670,6 +2696,10 @@
     margin-top: 16px;
     transition: all 0.2s ease;
     font-family: inherit;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+    box-sizing: border-box;
   }
 
   .pricing-btn:hover {
@@ -3946,99 +3976,132 @@
 <section id="pricing" class="section-reveal">
   <div class="pricing-container">
     <div class="badge">Pricing</div>
-    <h2>Simple, Transparent Pricing</h2>
-
-    <div class="pricing-toggle">
-      <button class="toggle-btn active" data-period="monthly">Monthly</button>
-      <button class="toggle-btn" data-period="annual">Annual <span style="margin-left: 8px; color: #CDDC39; font-weight: 700;">Save 20%</span></button>
-    </div>
+    <h2>Built for your scale, priced for your scope</h2>
+    <p class="pricing-intro">Every plan includes native Urdu, Arabic, and English. All deployments meet regional data-localization requirements. Pricing scales with conversation volume, channels, and deployment model.</p>
 
     <div class="pricing-grid">
       <div class="pricing-card">
-        <div class="pricing-name">Starter</div>
-        <div class="pricing-price">$10<span>/mo</span></div>
-        <div class="pricing-features">
-          <div class="pricing-feature">1 AI Agent</div>
-          <div class="pricing-feature">1 Channel (Chat, WhatsApp, etc)</div>
-          <div class="pricing-feature">Basic Analytics</div>
+        <div class="pricing-name">Professional</div>
+        <div class="pricing-price">
+          <span class="pricing-price-prefix">Starting at</span>
+          <span class="pricing-price-amount">$1,499</span>
+          <span class="pricing-price-period">/mo</span>
         </div>
-        <button class="pricing-btn">Start Free Trial</button>
+        <div class="pricing-subcopy">For growing teams moving to AI-first customer operations.</div>
+        <div class="pricing-features">
+          <div class="pricing-feature">Up to 10,000 conversations/mo</div>
+          <div class="pricing-feature">5 AI agents</div>
+          <div class="pricing-feature">2 channels (voice, chat, or WhatsApp)</div>
+          <div class="pricing-feature">Cloud-hosted, shared tenant</div>
+          <div class="pricing-feature">Standard analytics &amp; audit logs</div>
+          <div class="pricing-feature">Email support (24-hour response)</div>
+        </div>
+        <button class="pricing-btn" data-cta="demo">Book a Demo</button>
       </div>
 
       <div class="pricing-card featured">
         <div class="pricing-badge">Most Popular</div>
-        <div class="pricing-name">Growth</div>
-        <div class="pricing-price">$20<span>/mo</span></div>
-        <div class="pricing-features">
-          <div class="pricing-feature">3 AI Agents</div>
-          <div class="pricing-feature">3 Channels</div>
-          <div class="pricing-feature">Advanced Analytics</div>
-          <div class="pricing-feature">Custom Training</div>
+        <div class="pricing-name">Business</div>
+        <div class="pricing-price">
+          <span class="pricing-price-prefix">Starting at</span>
+          <span class="pricing-price-amount">$4,999</span>
+          <span class="pricing-price-period">/mo</span>
         </div>
-        <button class="pricing-btn">Start Free Trial</button>
+        <div class="pricing-subcopy">For mid-market and regional enterprise ops teams.</div>
+        <div class="pricing-features">
+          <div class="pricing-feature">Up to 50,000 conversations/mo</div>
+          <div class="pricing-feature">Unlimited AI agents</div>
+          <div class="pricing-feature">All channels (voice, chat, WhatsApp, social)</div>
+          <div class="pricing-feature">Private cloud (AWS / Azure / GCP)</div>
+          <div class="pricing-feature">Custom model training on your data</div>
+          <div class="pricing-feature">Advanced analytics + live dashboards</div>
+          <div class="pricing-feature">Dedicated customer success manager</div>
+          <div class="pricing-feature">99% uptime SLA</div>
+        </div>
+        <button class="pricing-btn" data-cta="demo">Book a Demo</button>
       </div>
 
       <div class="pricing-card">
         <div class="pricing-name">Enterprise</div>
-        <div class="pricing-price">Custom<span>Let's talk</span></div>
-        <div class="pricing-features">
-          <div class="pricing-feature">Unlimited AI Agents</div>
-          <div class="pricing-feature">All Channels</div>
-          <div class="pricing-feature">Real-time Analytics</div>
-          <div class="pricing-feature">Dedicated Support</div>
-          <div class="pricing-feature">On-Premise Deployment</div>
-          <div class="pricing-feature">SLA Guarantee</div>
+        <div class="pricing-price">
+          <span class="pricing-price-amount">Custom</span>
+          <span class="pricing-price-period">Let's talk</span>
         </div>
-        <button class="pricing-btn">Contact Sales</button>
+        <div class="pricing-subcopy">For regulated industries, government, and global scale.</div>
+        <div class="pricing-features">
+          <div class="pricing-feature">Unlimited conversation volume</div>
+          <div class="pricing-feature">On-premise, air-gapped, or sovereign cloud</div>
+          <div class="pricing-feature">99.9% uptime SLA</div>
+          <div class="pricing-feature">Dedicated AI &amp; infrastructure engineer</div>
+          <div class="pricing-feature">Compliance: PDPL (PK), DPL (UAE), PDPL (KSA), GDPR, HIPAA</div>
+          <div class="pricing-feature">Custom integrations (core banking, CRM, telephony)</div>
+          <div class="pricing-feature">24/7 enterprise support</div>
+          <div class="pricing-feature">Quarterly business reviews</div>
+        </div>
+        <a href="mailto:sales@poochoai.com?subject=Enterprise%20pricing%20inquiry" class="pricing-btn">Contact Sales</a>
       </div>
     </div>
+
+    <p class="pricing-footnote">All tiers include native Urdu, Arabic, and English · Annual commitments receive a 15% discount · Government tenders processed separately — <a href="mailto:sales@poochoai.com?subject=Government%20pricing">contact sales</a></p>
 
     <div class="pricing-comparison">
       <table class="pricing-table">
         <thead>
           <tr>
             <th>Feature</th>
-            <th>Starter</th>
-            <th>Growth</th>
+            <th>Professional</th>
+            <th>Business</th>
             <th>Enterprise</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td style="text-align: left;">AI Agents</td>
-            <td>1</td>
-            <td>3</td>
+            <td style="text-align: left;">Conversations / month</td>
+            <td>10,000</td>
+            <td>50,000</td>
+            <td>Unlimited</td>
+          </tr>
+          <tr>
+            <td style="text-align: left;">AI agents</td>
+            <td>5</td>
+            <td>Unlimited</td>
             <td>Unlimited</td>
           </tr>
           <tr>
             <td style="text-align: left;">Channels</td>
-            <td>1</td>
-            <td>3</td>
+            <td>2</td>
+            <td>All</td>
             <td>All</td>
           </tr>
           <tr>
-            <td style="text-align: left;">Analytics</td>
-            <td>Basic</td>
-            <td>Advanced</td>
-            <td>Real-time</td>
+            <td style="text-align: left;">Deployment</td>
+            <td>Shared cloud</td>
+            <td>Private cloud</td>
+            <td>On-prem / air-gapped</td>
           </tr>
           <tr>
-            <td style="text-align: left;">Deployment</td>
-            <td>Cloud</td>
-            <td>Cloud</td>
-            <td>On-Premise</td>
+            <td style="text-align: left;">Custom training</td>
+            <td>—</td>
+            <td>✓</td>
+            <td>✓</td>
           </tr>
           <tr>
             <td style="text-align: left;">Support</td>
-            <td>Email</td>
-            <td>Priority</td>
-            <td>24/7 Dedicated</td>
+            <td>Email, 24h</td>
+            <td>CSM + priority</td>
+            <td>24/7 dedicated</td>
           </tr>
           <tr>
             <td style="text-align: left;">SLA</td>
             <td>—</td>
             <td>99%</td>
             <td>99.9%</td>
+          </tr>
+          <tr>
+            <td style="text-align: left;">Compliance package</td>
+            <td>Standard</td>
+            <td>Standard + SOC 2</td>
+            <td>Full regional + HIPAA</td>
           </tr>
         </tbody>
       </table>
@@ -4864,17 +4927,6 @@
 
         chatMessages.scrollTop = chatMessages.scrollHeight;
       }, 1500);
-    });
-  });
-
-  // ===== PRICING TOGGLE =====
-  const toggleBtns = document.querySelectorAll('.toggle-btn');
-  toggleBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      toggleBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const period = btn.dataset.period;
-      console.log('Pricing period:', period);
     });
   });
 
