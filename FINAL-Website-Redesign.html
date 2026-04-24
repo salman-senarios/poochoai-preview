@@ -759,13 +759,15 @@
         }
 
         .section-headline {
-            font-size: clamp(28px, 3.5vw, 44px);
+            font-size: clamp(26px, 3.5vw, 44px);
             font-weight: 700;
             color: var(--text-primary);
             margin-bottom: 18px;
             line-height: 1.1;
             letter-spacing: -0.025em;
             max-width: 760px;
+            text-wrap: balance;
+            overflow-wrap: break-word;
         }
 
         .section-subline {
@@ -774,6 +776,7 @@
             margin-bottom: 72px;
             line-height: 1.6;
             max-width: 680px;
+            text-wrap: pretty;
         }
 
         .value-cards {
@@ -1780,6 +1783,24 @@
             .metrics-container {
                 grid-template-columns: 1fr 1fr;
                 gap: 32px 20px;
+            }
+        }
+
+        /* Metrics: restore single column at narrower widths
+           (prevents cramped 2-col at 480–560px) */
+        @media (max-width: 640px) {
+            .metrics-container {
+                grid-template-columns: 1fr !important;
+                gap: 0 !important;
+            }
+            .metric {
+                padding: 22px 16px;
+                border-bottom: 1px solid var(--border);
+            }
+            .metric:last-child { border-bottom: none; }
+            .metrics-source {
+                margin-top: 24px;
+                padding: 0 12px;
             }
         }
 
@@ -3928,6 +3949,10 @@
   /* Global: kill any accidental horizontal scroll */
   html, body { overflow-x: hidden; }
   img, svg, video { max-width: 100%; }
+  /* Anchor scroll-margin so sticky nav doesn't clip section badges */
+  #about, #platform, #how, #voice-demo, #why-poocho,
+  #industries, #pricing, #faq, #final-cta,
+  #testimonials, #main-content { scroll-margin-top: 80px; }
 
   @media (max-width: 480px) {
     /* Nav */
@@ -4064,7 +4089,7 @@
     .trust-logos { gap: 16px; }
     .trust-logo img { height: 20px; max-height: 20px; }
 
-    .metrics-container { grid-template-columns: 1fr 1fr; gap: 16px 12px; }
+    .metrics-container { grid-template-columns: 1fr; gap: 0; }
     .metric-number { font-size: 22px; }
 
     .pp-metrics { grid-template-columns: 1fr 1fr; }
@@ -4076,6 +4101,76 @@
 
     /* FAQ + Industries + Footer content should never force horizontal scroll */
     .faq-summary, .industry-card h3, .footer-col a { word-break: break-word; overflow-wrap: anywhere; }
+  }
+
+  /* =================================================================
+     TABLET / SMALL-TABLET (481–768px) — close the gap where content
+     previously used desktop padding and caused cramped layouts.
+     ================================================================= */
+  @media (min-width: 481px) and (max-width: 768px) {
+    /* Section padding harmonization */
+    .section-about,
+    .section-product,
+    .section-how,
+    #industries,
+    #pricing,
+    #faq,
+    #why-poocho,
+    #final-cta,
+    .section-testimonials,
+    .section-product-preview,
+    .section-arch,
+    #voice-demo { padding: 72px 24px; }
+
+    /* About / Features (value cards) */
+    .section-headline { font-size: clamp(26px, 5.2vw, 36px); }
+    .section-subline { font-size: 15.5px; margin-bottom: 40px; }
+    .section-badge { margin-bottom: 18px; }
+    .value-cards { gap: 16px; }
+    .value-card { padding: 26px 24px; }
+    .value-card-title { font-size: 17px; }
+    .value-card-text { font-size: 14px; }
+
+    /* Product preview — squeeze nicely */
+    .product-preview-frame { margin: 0 auto; }
+    .pp-sidebar { display: none; }
+    .pp-main { padding: 20px 18px; }
+    .pp-metrics { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .pp-metric-value { font-size: 22px; }
+    .product-preview-chrome-url { font-size: 11.5px; }
+
+    /* Architecture */
+    .arch-container { padding: 0 24px; }
+    .arch-node { padding: 22px 22px; }
+    .arch-pillars { gap: 16px; }
+
+    /* Call Console */
+    .voice-demo-container { padding: 0 24px; }
+    .vd-scenarios { grid-template-columns: 1fr; max-width: 520px; margin: 0 auto 24px; }
+
+    /* Competitor table — reduce padding so more fits */
+    .vs-container { padding: 0 24px; }
+    .vs-table th, .vs-table td { padding: 12px 14px; font-size: 12.5px; }
+
+    /* Industries */
+    .industries-container { padding: 0 24px; }
+
+    /* Pricing */
+    .pricing-grid { grid-template-columns: 1fr; max-width: 520px; margin-left: auto; margin-right: auto; gap: 16px; }
+
+    /* FAQ */
+    .faq-container { padding: 0 24px; }
+
+    /* Footer */
+    .footer-container { padding: 0 24px; }
+    .footer-grid { gap: 28px 20px; }
+
+    /* All major h2s get a responsive fallback */
+    .industries-title,
+    .vs-header h2,
+    .arch-header h2,
+    .product-preview-header h2,
+    .voice-demo-container h2 { font-size: clamp(26px, 5.2vw, 36px); }
   }
     </style>
 </head>
