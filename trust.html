@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trust Center — Poocho AI</title>
+    <meta name="description" content="Poocho AI Trust Center — security posture, compliance roadmap, data-processing commitments, subprocessors, and uptime.">
+    <meta name="robots" content="index, follow">
+    <link rel="icon" href="logo-light.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@500;600;700&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="legal.css">
+    <style>
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin: 32px 0 48px;
+        }
+        @media (max-width: 640px) { .trust-grid { grid-template-columns: 1fr; } }
+        .trust-card {
+            background: var(--surface-card);
+            border: 1px solid var(--border);
+            border-radius: var(--r-lg);
+            padding: 22px 22px;
+            transition: border-color .2s ease;
+        }
+        .trust-card:hover { border-color: var(--border-strong); }
+        .trust-card-top {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .trust-status {
+            font-size: 10.5px;
+            font-weight: 600;
+            padding: 3px 10px;
+            border-radius: var(--r-pill);
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+        }
+        .trust-status.live { background: rgba(76,175,80,0.14); color: #8BC34A; }
+        .trust-status.progress { background: rgba(205,220,57,0.14); color: var(--accent); }
+        .trust-status.roadmap { background: rgba(255,255,255,0.06); color: var(--text-tertiary); }
+        .trust-card h3 { font-size: 17px; margin: 0; font-family: var(--font-display); font-weight: 600; letter-spacing: -0.01em; color: var(--text-primary); }
+        .trust-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.6; margin: 0; }
+        .trust-subprocessors {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0 40px;
+            font-size: 14px;
+        }
+        .trust-subprocessors th, .trust-subprocessors td {
+            padding: 12px 14px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        .trust-subprocessors thead th {
+            font-size: 11.5px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: var(--text-tertiary);
+            font-weight: 600;
+        }
+        .trust-subprocessors tbody th {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        .trust-subprocessors tbody td { color: var(--text-secondary); }
+        @media (max-width: 640px) {
+            .trust-subprocessors, .trust-subprocessors thead, .trust-subprocessors tbody,
+            .trust-subprocessors tr, .trust-subprocessors th, .trust-subprocessors td { display: block; }
+            .trust-subprocessors thead { display: none; }
+            .trust-subprocessors tr { padding: 14px 0; border-bottom: 1px solid var(--border); }
+            .trust-subprocessors td, .trust-subprocessors th { padding: 4px 0; border: 0; }
+            .trust-subprocessors tbody th { font-size: 15px; }
+            .trust-subprocessors td::before { content: attr(data-label) ": "; color: var(--text-tertiary); font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.7px; font-weight: 500; }
+        }
+        .trust-cta {
+            background: var(--surface-card);
+            border: 1px solid rgba(205,220,57,0.28);
+            border-radius: var(--r-lg);
+            padding: 28px 28px;
+            margin: 40px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .trust-cta-text { flex: 1; min-width: 220px; }
+        .trust-cta strong { color: var(--text-primary); display: block; font-size: 17px; font-family: var(--font-display); font-weight: 600; margin-bottom: 4px; }
+        .trust-cta p { margin: 0; font-size: 14px; color: var(--text-secondary); }
+        .trust-btn {
+            background: var(--accent);
+            color: #0A0A0F;
+            padding: 11px 22px;
+            border-radius: var(--r-md);
+            font-weight: 600;
+            font-size: 14px;
+            text-decoration: none;
+            border: none;
+            transition: background .2s ease;
+        }
+        .trust-btn:hover { background: var(--accent-hover); border-bottom: 0; }
+    </style>
+</head>
+<body>
+    <nav class="page-nav">
+        <div class="page-nav-inner">
+            <a href="index.html" class="home" aria-label="Poocho AI home"><img src="logo-light.svg" alt="Poocho AI"></a>
+            <a href="index.html" class="back">← Back to home</a>
+        </div>
+    </nav>
+
+    <main class="legal-wrap">
+        <div class="eyebrow">Trust Center</div>
+        <h1>Everything your security team needs.</h1>
+        <p class="updated">Last updated: April 24, 2026</p>
+
+        <p>Poocho AI is designed for organizations that cannot afford data exposure or service disruption — regulators, banks, telecoms, and healthcare providers. This page consolidates our security, privacy, and reliability commitments in one place. For items under NDA (SOC 2 report, pen-test results, architecture deep-dives), reach out to <a href="mailto:security@poochoai.com">security@poochoai.com</a>.</p>
+
+        <h2>Security &amp; compliance posture</h2>
+        <div class="trust-grid">
+            <div class="trust-card">
+                <div class="trust-card-top"><span class="trust-status live">Live</span><h3>Encryption</h3></div>
+                <p>TLS 1.3 in transit, AES-256 at rest. Customer-managed keys (HSM/KMS) for enterprise deployments.</p>
+            </div>
+            <div class="trust-card">
+                <div class="trust-card-top"><span class="trust-status live">Live</span><h3>Access control</h3></div>
+                <p>SSO (SAML 2.0, OIDC), role-based access control, audit trail on every admin and agent action.</p>
+            </div>
+            <div class="trust-card">
+                <div class="trust-card-top"><span class="trust-status live">Live</span><h3>Data residency</h3></div>
+                <p>On-premise, private cloud (AWS/Azure/GCP), or sovereign cloud in PK, UAE, KSA. No cross-border transfer without consent.</p>
+            </div>
+            <div class="trust-card">
+                <div class="trust-card-top"><span class="trust-status live">Live</span><h3>PII handling</h3></div>
+                <p>Automatic detection and redaction of PII in transcripts. Configurable retention. Right-to-erasure workflows.</p>
+            </div>
+            <div class="trust-card">
+                <div class="trust-card-top"><span class="trust-status progress">In progress</span><h3>SOC 2 Type II</h3></div>
+                <p>Readiness assessment complete; Type II audit underway. Gap-analysis report available under NDA.</p>
+            </div>
+            <div class="trust-card">
+                <div class="trust-card-top"><span class="trust-status progress">In progress</span><h3>ISO 27001</h3></div>
+                <p>Controls mapping complete. Formal certification planned alongside SOC 2.</p>
+            </div>
+            <div class="trust-card">
+                <div class="trust-card-top"><span class="trust-status live">Ready</span><h3>HIPAA alignment</h3></div>
+                <p>Architecture supports HIPAA technical safeguards for healthcare deployments. BAA available on request.</p>
+            </div>
+            <div class="trust-card">
+                <div class="trust-card-top"><span class="trust-status live">Ready</span><h3>Regional data-protection law</h3></div>
+                <p>Designed for PDPL (Pakistan), UAE Federal Decree-Law 45/2021, KSA PDPL, and GDPR / UK DPA.</p>
+            </div>
+            <div class="trust-card">
+                <div class="trust-card-top"><span class="trust-status roadmap">Roadmap</span><h3>PCI-DSS SAQ D</h3></div>
+                <p>Platform architecture supports PCI scope isolation. Formal SAQ D attestation on the 2026 roadmap.</p>
+            </div>
+            <div class="trust-card">
+                <div class="trust-card-top"><span class="trust-status roadmap">Roadmap</span><h3>CSA STAR</h3></div>
+                <p>Cloud Security Alliance STAR Level 2 submission planned following SOC 2 completion.</p>
+            </div>
+        </div>
+
+        <h2>Uptime commitment</h2>
+        <p>Enterprise deployments include a documented SLA in your Master Services Agreement (MSA):</p>
+        <ul>
+            <li><strong>Business tier</strong>: 99.0% monthly uptime, credit on breach.</li>
+            <li><strong>Enterprise tier</strong>: 99.9% monthly uptime, RTO 4 hours, RPO 15 minutes.</li>
+            <li><strong>Mission-critical (custom)</strong>: Active-active multi-region, 99.99% uptime target, executive-notified incident response.</li>
+        </ul>
+        <p>Status and historical uptime are reported monthly to customers. Incidents affecting customer data are reported within 24 hours per the MSA.</p>
+
+        <h2>Subprocessors</h2>
+        <p>For website and marketing operations we rely on a short list of vendors. For enterprise platform deployments, the subprocessor list is defined in your deployment agreement — customer-hosted deployments have zero subprocessors.</p>
+        <table class="trust-subprocessors">
+            <thead>
+                <tr>
+                    <th>Subprocessor</th>
+                    <th>Purpose</th>
+                    <th>Data processed</th>
+                    <th>Region</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th data-label="Subprocessor">GitHub Pages</th>
+                    <td data-label="Purpose">Website hosting</td>
+                    <td data-label="Data processed">None (static site)</td>
+                    <td data-label="Region">Global CDN</td>
+                </tr>
+                <tr>
+                    <th data-label="Subprocessor">Formspree</th>
+                    <td data-label="Purpose">Contact form delivery</td>
+                    <td data-label="Data processed">Name, email, company, message</td>
+                    <td data-label="Region">United States</td>
+                </tr>
+                <tr>
+                    <th data-label="Subprocessor">Google Fonts</th>
+                    <td data-label="Purpose">Typography</td>
+                    <td data-label="Data processed">IP (for CDN)</td>
+                    <td data-label="Region">Global CDN</td>
+                </tr>
+                <tr>
+                    <th data-label="Subprocessor">Google Analytics 4</th>
+                    <td data-label="Purpose">Aggregate traffic analytics (consent-gated)</td>
+                    <td data-label="Data processed">Anonymized usage, loaded only after consent</td>
+                    <td data-label="Region">Global</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Responsible disclosure</h2>
+        <p>We welcome security research. Report vulnerabilities to <a href="mailto:security@poochoai.com">security@poochoai.com</a>. Machine-readable contact details follow RFC 9116 at <a href="/.well-known/security.txt">/.well-known/security.txt</a>. We ask for 30 days to triage and remediate before public disclosure.</p>
+
+        <h2>Due-diligence documentation</h2>
+        <p>Available under a mutual NDA:</p>
+        <ul>
+            <li>Data Processing Addendum (DPA) and Standard Contractual Clauses</li>
+            <li>Security whitepaper and architecture diagrams</li>
+            <li>Penetration test summary (most recent, annually refreshed)</li>
+            <li>SOC 2 Type II readiness report</li>
+            <li>BAA for HIPAA-scoped engagements</li>
+            <li>Business Impact Analysis (BIA) and disaster-recovery runbook</li>
+            <li>Employee security-awareness training records</li>
+        </ul>
+
+        <div class="trust-cta">
+            <div class="trust-cta-text">
+                <strong>Running a procurement review?</strong>
+                <p>We'll turn around due-diligence packets, RFP/RFI responses, and security questionnaires within 2 business days.</p>
+            </div>
+            <a class="trust-btn" href="mailto:security@poochoai.com?subject=Security%20review%20request">Request documents</a>
+        </div>
+    </main>
+
+    <footer class="page-footer">
+        <a href="privacy.html">Privacy</a> <a href="terms.html">Terms</a> <a href="cookies.html">Cookies</a> <a href="security.html">Security</a> <a href="accessibility.html">Accessibility</a>
+        <div style="margin-top: 12px;">© <span id="copyright-year">2026</span> Poocho AI. All rights reserved.</div>
+    </footer>
+<script>(function(){var e=document.getElementById("copyright-year");if(e)e.textContent=new Date().getFullYear()})();</script></body>
+</html>

@@ -3003,12 +3003,30 @@
     text-align: left;
     transition: all 0.3s ease;
     border: 1px solid var(--border);
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    position: relative;
   }
 
   .industry-card:hover {
-    border-color: var(--border-strong);
-    transform: translateY(-2px);
+    border-color: rgba(205, 220, 57, 0.28);
+    transform: translateY(-3px);
     box-shadow: var(--shadow-md);
+  }
+  .industry-card:hover .industry-card-more { color: var(--accent); }
+  .industry-card:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+  .industry-card-more {
+    display: inline-block;
+    margin-top: auto;
+    padding-top: 16px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-tertiary);
+    letter-spacing: 0.2px;
+    transition: color .2s ease;
   }
 
   .industry-card-icon {
@@ -3576,8 +3594,8 @@
 
   .footer-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 48px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
     margin-bottom: 48px;
   }
 
@@ -4073,6 +4091,152 @@
      and oversized typography on small devices.
      ================================================================= */
 
+  /* =================================================================
+     ROI CALCULATOR SECTION
+     ================================================================= */
+  #roi {
+    background: var(--surface-alt);
+    padding: 100px 0;
+  }
+  .roi-container {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  .roi-header {
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto 48px;
+  }
+  .roi-header .badge { margin-bottom: 20px; }
+  .roi-header h2 {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 3.4vw, 40px);
+    letter-spacing: -0.028em;
+    margin-bottom: 14px;
+    color: var(--text-primary);
+    text-wrap: balance;
+  }
+  .roi-header p {
+    font-size: 16px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+  .roi-card {
+    background: var(--surface-card);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    padding: 32px 36px;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 36px 44px;
+    align-items: stretch;
+    box-shadow: var(--shadow-md);
+  }
+  .roi-inputs { display: flex; flex-direction: column; gap: 22px; }
+  .roi-input label {
+    display: block;
+    font-size: 13px;
+    color: var(--text-secondary);
+    font-weight: 500;
+    margin-bottom: 10px;
+    line-height: 1.4;
+  }
+  .roi-input-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .roi-input input[type="range"] {
+    flex: 1;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 4px;
+    background: var(--border-strong);
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+  }
+  .roi-input input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--accent);
+    cursor: pointer;
+    box-shadow: 0 0 0 4px rgba(205,220,57,0.15);
+    transition: transform .15s ease;
+  }
+  .roi-input input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.1); }
+  .roi-input input[type="range"]::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--accent);
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 0 0 4px rgba(205,220,57,0.15);
+  }
+  .roi-input input[type="range"]:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+  .roi-output {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--text-primary);
+    min-width: 78px;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+  .roi-results {
+    background: var(--surface-alt);
+    border: 1px solid var(--border);
+    border-radius: var(--r-md);
+    padding: 24px 26px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 14px;
+  }
+  .roi-metric {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .roi-metric:last-child { border-bottom: none; padding-bottom: 0; }
+  .roi-metric-label {
+    font-size: 12.5px;
+    color: var(--text-secondary);
+    line-height: 1.45;
+    flex: 1;
+  }
+  .roi-metric-value {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--text-primary);
+    letter-spacing: -0.015em;
+    font-variant-numeric: tabular-nums;
+    transition: color .2s ease;
+  }
+  .roi-metric-value.roi-accent { color: var(--accent); font-size: 26px; }
+  .roi-footnote {
+    font-size: 12.5px;
+    color: var(--text-tertiary);
+    text-align: center;
+    max-width: 760px;
+    margin: 24px auto 0;
+    line-height: 1.55;
+  }
+  @media (max-width: 860px) {
+    #roi { padding: 72px 0; }
+    .roi-card { grid-template-columns: 1fr; padding: 26px 22px; gap: 28px; }
+    .roi-metric-value { font-size: 20px; }
+    .roi-metric-value.roi-accent { font-size: 22px; }
+  }
+
   /* WhatsApp floating chat button (MENA / South Asia) */
   .wa-float {
     position: fixed;
@@ -4142,8 +4306,21 @@
   }
   /* Anchor scroll-margin so sticky nav doesn't clip section badges */
   #about, #platform, #how, #voice-demo, #why-poocho,
-  #industries, #pricing, #faq, #final-cta,
+  #industries, #roi, #pricing, #faq, #final-cta,
   #testimonials, #main-content { scroll-margin-top: 80px; }
+
+  /* Subtle pulse highlight when metric numbers enter viewport */
+  @keyframes metricReveal {
+    0%   { opacity: 0; transform: translateY(8px); }
+    60%  { opacity: 1; transform: translateY(0); text-shadow: 0 0 24px rgba(205, 220, 57, 0.45); }
+    100% { opacity: 1; transform: translateY(0); text-shadow: none; }
+  }
+  .metric-number.in-view {
+    animation: metricReveal 0.8s cubic-bezier(0.2, 0.9, 0.3, 1) both;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .metric-number.in-view { animation: none !important; }
+  }
 
   @media (max-width: 480px) {
     /* Nav */
@@ -4377,7 +4554,8 @@
             <a href="#platform">Platform</a>
             <a href="#voice-demo">Live Demo</a>
             <a href="#industries">Industries</a>
-            <a href="security.html">Security</a>
+            <a href="trust.html">Trust</a>
+            <a href="#roi">ROI</a>
             <a href="#pricing">Pricing</a>
         </div>
         <div class="nav-right">
@@ -4975,37 +5153,41 @@
     <h2 class="industries-title">Trusted Across Sectors</h2>
 
     <div class="industries-grid">
-      <div class="industry-card">
+      <a href="government.html" class="industry-card">
         <div class="industry-card-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V10l7-5 7 5v11"/><path d="M9 21v-6h6v6"/></svg>
         </div>
         <h3>Government</h3>
         <p>Citizen helplines, complaint portals, public service automation</p>
-      </div>
+        <span class="industry-card-more">Learn more →</span>
+      </a>
 
-      <div class="industry-card">
+      <a href="telecom.html" class="industry-card">
         <div class="industry-card-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
         </div>
         <h3>Telecom</h3>
         <p>Customer support, billing, plan management at scale</p>
-      </div>
+        <span class="industry-card-more">Learn more →</span>
+      </a>
 
-      <div class="industry-card">
+      <a href="banking.html" class="industry-card">
         <div class="industry-card-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2" ry="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
         </div>
         <h3>Banking & Finance</h3>
         <p>Fraud alerts, account services, loan processing</p>
-      </div>
+        <span class="industry-card-more">Learn more →</span>
+      </a>
 
-      <div class="industry-card">
+      <a href="healthcare.html" class="industry-card">
         <div class="industry-card-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3"/><path d="M8 15v1a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6v-4"/><circle cx="20" cy="10" r="2"/></svg>
         </div>
         <h3>Healthcare</h3>
         <p>Appointment booking, patient follow-ups, lab results</p>
-      </div>
+        <span class="industry-card-more">Learn more →</span>
+      </a>
 
       <div class="industry-card">
         <div class="industry-card-icon">
@@ -5023,6 +5205,61 @@
         <p>Enrollment, fee management, student support</p>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- SECTION 11B: ROI CALCULATOR -->
+<section id="roi" class="section-reveal">
+  <div class="roi-container">
+    <div class="roi-header">
+      <div class="badge">ROI Calculator</div>
+      <h2>See what Poocho AI saves your operations team.</h2>
+      <p>A back-of-envelope model for your monthly voice and chat volume. Adjust the sliders to match your environment.</p>
+    </div>
+    <div class="roi-card">
+      <div class="roi-inputs">
+        <div class="roi-input">
+          <label for="roi-calls">Monthly conversations</label>
+          <div class="roi-input-row">
+            <input type="range" id="roi-calls" min="1000" max="200000" step="1000" value="25000" aria-describedby="roi-calls-value">
+            <output id="roi-calls-value" class="roi-output">25,000</output>
+          </div>
+        </div>
+        <div class="roi-input">
+          <label for="roi-cost">Fully-loaded cost per human-handled conversation (USD)</label>
+          <div class="roi-input-row">
+            <input type="range" id="roi-cost" min="0.5" max="8" step="0.1" value="2.5" aria-describedby="roi-cost-value">
+            <output id="roi-cost-value" class="roi-output">$2.50</output>
+          </div>
+        </div>
+        <div class="roi-input">
+          <label for="roi-auto">Automation coverage (share handled end-to-end by AI)</label>
+          <div class="roi-input-row">
+            <input type="range" id="roi-auto" min="30" max="85" step="1" value="60" aria-describedby="roi-auto-value">
+            <output id="roi-auto-value" class="roi-output">60%</output>
+          </div>
+        </div>
+      </div>
+      <div class="roi-results">
+        <div class="roi-metric">
+          <div class="roi-metric-label">Conversations AI handles / month</div>
+          <div class="roi-metric-value" id="roi-handled">15,000</div>
+        </div>
+        <div class="roi-metric">
+          <div class="roi-metric-label">Estimated monthly savings</div>
+          <div class="roi-metric-value roi-accent" id="roi-monthly">$37,500</div>
+        </div>
+        <div class="roi-metric">
+          <div class="roi-metric-label">Estimated annual savings</div>
+          <div class="roi-metric-value roi-accent" id="roi-annual">$450,000</div>
+        </div>
+        <div class="roi-metric">
+          <div class="roi-metric-label">Engineering headcount equivalent</div>
+          <div class="roi-metric-value" id="roi-fte">~6 FTE</div>
+        </div>
+      </div>
+    </div>
+    <p class="roi-footnote">Model assumes Poocho AI handles the coverage share end-to-end; human agents still handle the remainder with AI-assisted context. Actual savings depend on your current contact-centre cost structure, channel mix, call complexity, and the integration scope of your deployment. This calculator is illustrative — we'll model your real numbers on a 30-minute scoping call.</p>
   </div>
 </section>
 
@@ -5239,7 +5476,18 @@
           <li><a href="#platform">Platform</a></li>
           <li><a href="#voice-demo">Voice &amp; Chat AI</a></li>
           <li><a href="#how">Architecture</a></li>
+          <li><a href="#roi">ROI Calculator</a></li>
           <li><a href="#pricing">Pricing</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Solutions</h4>
+        <ul>
+          <li><a href="banking.html">Banking &amp; Finance</a></li>
+          <li><a href="government.html">Government</a></li>
+          <li><a href="telecom.html">Telecom</a></li>
+          <li><a href="healthcare.html">Healthcare</a></li>
         </ul>
       </div>
 
@@ -5247,6 +5495,7 @@
         <h4>Company</h4>
         <ul>
           <li><a href="#about">About</a></li>
+          <li><a href="trust.html">Trust Center</a></li>
           <li><a href="mailto:hello@poochoai.com">Contact</a></li>
           <li><a href="#" class="nav-demo-link">Book a Demo</a></li>
         </ul>
@@ -5259,6 +5508,7 @@
           <li><a href="terms.html">Terms of Service</a></li>
           <li><a href="security.html">Security</a></li>
           <li><a href="cookies.html">Cookie Policy</a></li>
+          <li><a href="accessibility.html">Accessibility</a></li>
         </ul>
       </div>
     </div>
@@ -5656,6 +5906,67 @@
                 banner.classList.add('prefs-open');
                 if (customizeBtn) customizeBtn.setAttribute('aria-expanded', 'true');
             };
+        })();
+
+        // ============ ROI CALCULATOR ============
+        (function () {
+            const callsEl = document.getElementById('roi-calls');
+            const costEl = document.getElementById('roi-cost');
+            const autoEl = document.getElementById('roi-auto');
+            if (!callsEl || !costEl || !autoEl) return;
+
+            const callsValEl = document.getElementById('roi-calls-value');
+            const costValEl = document.getElementById('roi-cost-value');
+            const autoValEl = document.getElementById('roi-auto-value');
+            const handledEl = document.getElementById('roi-handled');
+            const monthlyEl = document.getElementById('roi-monthly');
+            const annualEl = document.getElementById('roi-annual');
+            const fteEl = document.getElementById('roi-fte');
+
+            const fmt = new Intl.NumberFormat('en-US');
+            const money = (n) => '$' + fmt.format(Math.round(n));
+            // An agent handles roughly 2,500 conversations / month (8 hrs/day × 22 days × ~15/hr)
+            const CONV_PER_FTE = 2500;
+
+            function recalc() {
+                const calls = +callsEl.value;
+                const cost = +costEl.value;
+                const auto = +autoEl.value / 100;
+                const handled = calls * auto;
+                const monthly = handled * cost;
+                const annual = monthly * 12;
+                const fte = handled / CONV_PER_FTE;
+
+                callsValEl.textContent = fmt.format(calls);
+                costValEl.textContent = '$' + cost.toFixed(2);
+                autoValEl.textContent = Math.round(auto * 100) + '%';
+                handledEl.textContent = fmt.format(Math.round(handled));
+                monthlyEl.textContent = money(monthly);
+                annualEl.textContent = money(annual);
+                fteEl.textContent = '~' + (fte < 1 ? fte.toFixed(1) : Math.round(fte)) + ' FTE';
+            }
+
+            ['input', 'change'].forEach(ev => {
+                callsEl.addEventListener(ev, recalc);
+                costEl.addEventListener(ev, recalc);
+                autoEl.addEventListener(ev, recalc);
+            });
+            recalc();
+        })();
+
+        // ============ METRIC REVEAL (subtle pulse when in view) ============
+        (function () {
+            const metrics = document.querySelectorAll('.metric-number');
+            if (!metrics.length || !('IntersectionObserver' in window)) return;
+            const io = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in-view');
+                        io.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.4 });
+            metrics.forEach((m) => io.observe(m));
         })();
 
         // ============ VIDEO SOURCE (viewport-aware, load one file only) ============
