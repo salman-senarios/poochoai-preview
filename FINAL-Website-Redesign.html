@@ -3249,6 +3249,67 @@
     color: var(--text-primary);
   }
 
+  /* ===== Pricing comparison: stacked card layout on mobile =====
+     Transforms the 4-col table into a vertical list of mini-cards.
+     Each row = one feature card with plan label prefixes.
+     No horizontal scroll, no truncation. */
+  @media (max-width: 768px) {
+    .pricing-comparison { margin-top: 40px; border-radius: var(--r-lg); overflow: hidden; }
+    .pricing-table,
+    .pricing-table thead,
+    .pricing-table tbody,
+    .pricing-table tr,
+    .pricing-table th,
+    .pricing-table td { display: block; width: auto; text-align: left; }
+    .pricing-table thead { display: none; }
+    .pricing-table tr {
+      padding: 18px 18px;
+      border-bottom: 1px solid var(--border);
+      background: transparent;
+    }
+    .pricing-table tr:hover { background: transparent; }
+    .pricing-table tr:last-child { border-bottom: none; }
+    .pricing-table td {
+      padding: 8px 0 0;
+      font-size: 13.5px;
+      line-height: 1.5;
+      color: var(--text-primary);
+      border-bottom: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+    }
+    /* First cell = feature name, full-width banner */
+    .pricing-table td:first-child {
+      padding: 0 0 10px 0 !important;
+      margin-bottom: 4px;
+      font-weight: 600;
+      color: var(--text-primary);
+      font-size: 14px;
+      text-align: left !important;
+      border-bottom: 1px solid var(--border);
+      display: block;
+    }
+    /* Plan label prefix for cells 2/3/4 */
+    .pricing-table td:nth-child(2)::before { content: "Professional"; }
+    .pricing-table td:nth-child(3)::before { content: "Business"; }
+    .pricing-table td:nth-child(4)::before { content: "Enterprise"; }
+    .pricing-table td:not(:first-child)::before {
+      flex-shrink: 0;
+      font-size: 11.5px;
+      font-weight: 500;
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+      min-width: 92px;
+    }
+    .pricing-table td:not(:first-child) {
+      text-align: right;
+      word-break: break-word;
+    }
+  }
+
   /* Section 13: FAQ */
   #faq {
     background: var(--surface-alt);
