@@ -103,7 +103,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Inter+Tight:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&display=swap" rel="stylesheet">
 
     <style>
         :root {
@@ -134,6 +134,8 @@
             /* Font stacks */
             --font-body: 'Inter', system-ui, -apple-system, sans-serif;
             --font-display: 'Bricolage Grotesque', 'Inter', system-ui, sans-serif;
+            --font-hero: 'Inter Tight', 'Inter', system-ui, sans-serif;
+            --font-serif: 'Instrument Serif', 'Iowan Old Style', 'Palatino', Georgia, serif;
             /* Shadows */
             --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
             --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.35);
@@ -430,21 +432,27 @@
         }
 
         .hero-headline {
-            font-size: clamp(40px, 6vw, 72px);
-            font-weight: 700;
+            font-family: var(--font-hero);
+            font-size: clamp(40px, 6.4vw, 78px);
+            font-weight: 500;
             line-height: 1.02;
-            letter-spacing: -0.035em;
+            letter-spacing: -0.045em;
             color: var(--text-primary);
-            max-width: 680px;
+            max-width: 780px;
+            text-wrap: balance;
         }
 
         .hero-headline em {
-            font-style: normal;
-            background: linear-gradient(90deg, var(--accent) 0%, #E8F38A 100%);
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-weight: 400;
+            letter-spacing: -0.015em;
+            background: linear-gradient(95deg, var(--accent) 0%, #E8F38A 55%, #F4F9B8 100%);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
             color: transparent;
+            padding-right: 0.04em; /* prevent italic clipping */
         }
 
         .hero-subline {
@@ -477,7 +485,7 @@
         .hero-lang-rotator {
             position: relative;
             height: 22px;
-            min-width: 80px;
+            min-width: clamp(60px, 22vw, 90px);
             display: flex;
             align-items: center;
         }
@@ -3911,6 +3919,164 @@
     .cookie-banner-actions button { flex: 1 1 auto; }
   }
 
+  /* =================================================================
+     FINAL MOBILE HARDENING — narrow phones (≤480px and ≤380px)
+     Consolidated pass to eliminate horizontal scroll, cramped spacing,
+     and oversized typography on small devices.
+     ================================================================= */
+
+  /* Global: kill any accidental horizontal scroll */
+  html, body { overflow-x: hidden; }
+  img, svg, video { max-width: 100%; }
+
+  @media (max-width: 480px) {
+    /* Nav */
+    nav { padding: 0 16px; }
+    .nav-logo img { height: 22px; }
+
+    /* Hero — tighter spacing, crisper type */
+    .hero { padding: 24px 16px 48px !important; gap: 20px; }
+    .hero-badge { font-size: 10.5px; padding: 5px 12px; }
+    .hero-headline { font-size: clamp(32px, 10vw, 44px); letter-spacing: -0.035em; line-height: 1.06; }
+    .hero-subline { font-size: 15px; line-height: 1.55; }
+    .hero-languages { padding: 6px 12px 6px 10px; gap: 10px; }
+    .hero-lang-label { font-size: 10.5px; letter-spacing: 1px; }
+    .hero-lang { font-size: 15px; }
+    .hero-lang[dir="rtl"] { font-size: 17px; }
+    .hero-lang-rotator { min-width: 70px; }
+
+    /* Trust bar — 3 logos, keep on one row */
+    .trust-bar { padding: 28px 16px; }
+    .trust-logos { gap: 20px; flex-wrap: wrap; justify-content: center; }
+    .trust-logo img { height: 22px; max-height: 22px; }
+
+    /* Metrics bar */
+    .metrics-bar { padding: 28px 16px; }
+    .metrics-container { gap: 20px 16px; }
+    .metric-number { font-size: 26px; }
+    .metric-label { font-size: 12px; }
+    .metric { padding: 8px 6px; border-right: none; }
+
+    /* Value cards */
+    .value-card { padding: 22px 20px; }
+
+    /* Product preview dashboard */
+    .product-preview-body { padding: 0; }
+    .pp-sidebar { display: none; }
+    .pp-main { padding: 18px 14px; }
+    .pp-metrics { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+    .pp-metric-card { padding: 12px 12px; }
+    .pp-metric-value { font-size: 20px; }
+    .pp-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+    .pp-header-title { white-space: normal; font-size: 14px; }
+    .pp-header-actions { width: 100%; }
+    .pp-header-actions .pp-btn { flex: 1; text-align: center; }
+    .product-preview-chrome { padding: 10px 12px; }
+    .product-preview-chrome-url { font-size: 10.5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+    /* Architecture */
+    .arch-container { padding: 0 16px; }
+    .arch-node { padding: 20px 18px; }
+    .arch-node-title { font-size: 17px; }
+    .arch-node-channels { gap: 6px; }
+    .arch-chip { font-size: 11px; padding: 5px 9px; }
+    .arch-pillar { padding: 18px 16px; }
+
+    /* Call Console (voice demo) */
+    .voice-demo-container { padding: 0 16px; }
+    .vd-scenarios { gap: 8px; }
+    .vd-scenario { padding: 14px 14px; gap: 12px; }
+    .vd-scenario-avatar { width: 36px; height: 36px; font-size: 13px; }
+    .vd-scenario-name { font-size: 13.5px; }
+    .vd-scenario-title { font-size: 11.5px; }
+    .vd-customer, .vd-ai { padding: 16px; }
+    .vd-caller-name { font-size: 14px; }
+    .vd-caller-phone { font-size: 11.5px; }
+    .vd-progress-meta { flex-wrap: wrap; gap: 6px; }
+    .vd-transcript { min-height: 180px; max-height: 260px; padding: 12px; }
+    .vd-outcome { padding: 16px; }
+    .vd-outcome-metric { padding: 10px 12px; }
+
+    /* Competitor comparison — table stays scrollable, tighten */
+    .vs-container { padding: 0 16px; }
+    .vs-table thead th,
+    .vs-table th,
+    .vs-table td { padding: 11px 12px; font-size: 12px; }
+    .vs-brand img { height: 18px; }
+    .vs-yes, .vs-partial, .vs-no { font-size: 11.5px; }
+
+    /* Industries */
+    .industries-container { padding: 0 16px; }
+    .industry-card { padding: 24px 20px; }
+
+    /* Pricing */
+    .pricing-grid { max-width: 100%; margin-left: auto; margin-right: auto; gap: 16px; }
+    .pricing-card { padding: 28px 22px; }
+    .pricing-price-amount { font-size: 36px; }
+    .pricing-name { font-size: 13px; }
+    .pricing-feature { font-size: 13px; }
+
+    /* FAQ */
+    .faq-container { padding: 0 16px; }
+    .faq-summary { font-size: 15px; padding: 18px 18px; }
+    .faq-answer { font-size: 14px; padding: 0 18px 18px; }
+
+    /* Final CTA */
+    .final-cta-content h2 { font-size: clamp(26px, 8vw, 34px); }
+    .final-cta-content p { font-size: 14.5px; }
+    .final-cta-buttons { flex-direction: column; gap: 10px; align-items: stretch; }
+    .final-cta-buttons > * { width: 100%; justify-content: center; text-align: center; }
+
+    /* Footer */
+    .footer-container { padding: 0 16px; }
+    .footer-bottom { padding-top: 24px; }
+    .footer-logo { font-size: 12.5px; justify-content: center; }
+
+    /* Cookie banner — already responsive, tighten at 380 via next block */
+    .cookie-banner { bottom: 12px; left: 12px; right: 12px; padding: 14px; }
+    .cookie-pref { font-size: 12.5px; }
+    .cookie-banner-actions button { font-size: 12.5px; padding: 10px 14px; }
+
+    /* Demo modal */
+    .demo-modal { padding: 28px 22px 24px; border-radius: 14px; }
+    .demo-modal-title { font-size: 22px; }
+
+    /* Section titles */
+    .section-title,
+    .industries-title,
+    .vs-header h2,
+    .arch-header h2,
+    .product-preview-header h2,
+    .voice-demo-container h2 { font-size: clamp(24px, 7.2vw, 34px); letter-spacing: -0.02em; }
+  }
+
+  @media (max-width: 380px) {
+    /* Very narrow phones — one more pass */
+    nav { padding: 0 12px; }
+    .hero { padding: 20px 14px 40px !important; }
+    .hero-badge { font-size: 10px; }
+    .hero-headline { font-size: 30px; line-height: 1.08; }
+    .hero-subline { font-size: 14px; }
+    .hero-languages { flex-wrap: wrap; gap: 8px; padding: 6px 10px; }
+    .hero-lang { font-size: 14px; }
+    .hero-lang[dir="rtl"] { font-size: 16px; }
+
+    .trust-logos { gap: 16px; }
+    .trust-logo img { height: 20px; max-height: 20px; }
+
+    .metrics-container { grid-template-columns: 1fr 1fr; gap: 16px 12px; }
+    .metric-number { font-size: 22px; }
+
+    .pp-metrics { grid-template-columns: 1fr 1fr; }
+    .pp-metric-value { font-size: 18px; }
+    .product-preview-chrome span { width: 9px; height: 9px; }
+
+    .pricing-card { padding: 24px 18px; }
+    .pricing-price-amount { font-size: 32px; }
+
+    /* FAQ + Industries + Footer content should never force horizontal scroll */
+    .faq-summary, .industry-card h3, .footer-col a { word-break: break-word; overflow-wrap: anywhere; }
+  }
     </style>
 </head>
 
