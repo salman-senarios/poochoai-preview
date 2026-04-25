@@ -4,4 +4,4 @@ Disallow: /audio/
 Disallow: /*.mp4$
 
 # Update this URL when migrating to the production domain.
-Sitemap: https://salman-senarios.github.io/poochoai-preview/sitemap.xml
+Sitemap: https://poochoai.com/sitemap.xml

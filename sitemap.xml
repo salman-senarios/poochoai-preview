@@ -1,72 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  sitemap.xml — currently deployed at GitHub Pages.
-  When you migrate to the production domain (e.g. https://poochoai.com/),
-  replace every <loc> with the new origin and resubmit to Google Search Console.
+  sitemap.xml — production site at https://poochoai.com/
+  Update <lastmod> when significant content changes ship.
 -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://salman-senarios.github.io/poochoai-preview/</loc>
+    <loc>https://poochoai.com/</loc>
     <lastmod>2026-04-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://salman-senarios.github.io/poochoai-preview/banking.html</loc>
+    <loc>https://poochoai.com/banking.html</loc>
     <lastmod>2026-04-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://salman-senarios.github.io/poochoai-preview/government.html</loc>
+    <loc>https://poochoai.com/government.html</loc>
     <lastmod>2026-04-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://salman-senarios.github.io/poochoai-preview/telecom.html</loc>
+    <loc>https://poochoai.com/telecom.html</loc>
     <lastmod>2026-04-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://salman-senarios.github.io/poochoai-preview/healthcare.html</loc>
+    <loc>https://poochoai.com/healthcare.html</loc>
     <lastmod>2026-04-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://salman-senarios.github.io/poochoai-preview/trust.html</loc>
+    <loc>https://poochoai.com/trust.html</loc>
     <lastmod>2026-04-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://salman-senarios.github.io/poochoai-preview/security.html</loc>
+    <loc>https://poochoai.com/security.html</loc>
     <lastmod>2026-04-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://salman-senarios.github.io/poochoai-preview/accessibility.html</loc>
+    <loc>https://poochoai.com/accessibility.html</loc>
     <lastmod>2026-04-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://salman-senarios.github.io/poochoai-preview/privacy.html</loc>
+    <loc>https://poochoai.com/privacy.html</loc>
     <lastmod>2026-04-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://salman-senarios.github.io/poochoai-preview/terms.html</loc>
+    <loc>https://poochoai.com/terms.html</loc>
     <lastmod>2026-04-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://salman-senarios.github.io/poochoai-preview/cookies.html</loc>
+    <loc>https://poochoai.com/cookies.html</loc>
     <lastmod>2026-04-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.2</priority>

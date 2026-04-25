@@ -4,8 +4,8 @@
 Contact: mailto:security@poochoai.com
 Expires: 2027-04-24T00:00:00.000Z
 Preferred-Languages: en, ur, ar
-Canonical: https://salman-senarios.github.io/poochoai-preview/.well-known/security.txt
-Policy: https://salman-senarios.github.io/poochoai-preview/security.html
+Canonical: https://poochoai.com/.well-known/security.txt
+Policy: https://poochoai.com/security.html
 
 # Thank you for helping keep Poocho AI and its customers secure.
 # We ask for 30 days to triage and remediate before public disclosure.
