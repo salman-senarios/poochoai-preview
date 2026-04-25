@@ -1855,6 +1855,14 @@
                 display: flex;
             }
 
+            /* Pull demo button flush right next to hamburger
+               (default space-between leaves it stranded mid-bar) */
+            .nav-right {
+                margin-left: auto;
+                margin-right: 14px;
+                gap: 0;
+            }
+
             .value-cards,
             .feature-cards,
             .how-steps {
@@ -4473,6 +4481,8 @@
   @media (max-width: 380px) {
     /* Very narrow phones — one more pass */
     nav { padding: 0 12px; }
+    .nav-right { margin-right: 10px; }
+    .nav-demo { padding: 9px 13px; font-size: 12.5px; }
     .hero { padding: 20px 14px 40px !important; }
     .hero-badge { font-size: 10px; }
     .hero-headline { font-size: 30px; line-height: 1.08; }
