@@ -1,0 +1,59 @@
+name: Deploy to Namecrane
+
+# Triggers on every push to main, or on manual run from Actions tab.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  # If a new push lands while a deploy is in flight, cancel the old one.
+  group: namecrane-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    name: Sync to Namecrane via FTPS
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Sync files to Namecrane
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          # ── Connection ────────────────────────────────────────────────
+          server: ${{ secrets.NAMECRANE_FTP_HOST }}
+          username: ${{ secrets.NAMECRANE_FTP_USER }}
+          password: ${{ secrets.NAMECRANE_FTP_PASSWORD }}
+          # FTPS over port 21 (explicit TLS) — Namecrane / cPanel supports this.
+          # If your account is SFTP-only (port 22 / SSH), change protocol to "sftp".
+          protocol: ftps
+          port: 21
+          # ── Paths ─────────────────────────────────────────────────────
+          local-dir: ./
+          # cPanel default web root. Override the secret if your account uses a
+          # different directory (e.g. public_html/poochoai/ for an addon domain).
+          server-dir: ${{ secrets.NAMECRANE_REMOTE_DIR || 'public_html/' }}
+          # ── Behavior ──────────────────────────────────────────────────
+          # Incremental sync: only changed files upload. Force-deletes remote
+          # files that were removed from the repo since the last deploy.
+          dangerous-clean-slate: false
+          dry-run: false
+          log-level: standard
+          # ── What to skip ──────────────────────────────────────────────
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/.github/**
+            **/.claude/**
+            **/.DS_Store
+            **/node_modules/**
+            **/*.md
+            **/generate_audio.py
+            **/Website-Redesign-*.html
+            **/Website-UX-Audit-Report.html
+            **/FINAL-Website-Bottom.html
+            **/FINAL-Website-Top.html
+            **/og-image.svg
+            **/.ftpignore
