@@ -1322,12 +1322,41 @@
         @media (max-width: 960px) {
             .arch-flow {
                 grid-template-columns: 1fr;
-                gap: 12px;
+                gap: 0;
             }
+            /* Replace the horizontal arrow SVG with a vertical dashed
+               line + down chevron drawn via CSS — cleaner than rotating
+               a horizontal SVG, which rendered offset. */
             .arch-connector {
                 min-width: 0;
-                height: 30px;
-                transform: rotate(90deg);
+                width: 100%;
+                height: 44px;
+                position: relative;
+                display: block;
+                opacity: 0.45;
+                transform: none;
+            }
+            .arch-connector svg { display: none; }
+            .arch-connector::before {
+                content: '';
+                position: absolute;
+                left: 50%;
+                top: 0;
+                bottom: 10px;
+                width: 0;
+                border-left: 1.5px dashed var(--accent);
+                transform: translateX(-50%);
+            }
+            .arch-connector::after {
+                content: '';
+                position: absolute;
+                left: 50%;
+                bottom: 2px;
+                width: 10px;
+                height: 10px;
+                border-right: 1.5px solid var(--accent);
+                border-bottom: 1.5px solid var(--accent);
+                transform: translateX(-50%) rotate(45deg);
             }
             .arch-pillars { grid-template-columns: 1fr; }
             .arch-node-poocho { align-items: flex-start; text-align: left; }
