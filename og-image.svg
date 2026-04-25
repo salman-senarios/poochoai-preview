@@ -1,40 +1,40 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
   <defs>
-    <radialGradient id="glow" cx="75%" cy="30%" r="60%">
-      <stop offset="0%" stop-color="#CDDC39" stop-opacity="0.18"/>
+    <radialGradient id="glow" cx="78%" cy="22%" r="65%">
+      <stop offset="0%" stop-color="#CDDC39" stop-opacity="0.22"/>
       <stop offset="100%" stop-color="#CDDC39" stop-opacity="0"/>
     </radialGradient>
-    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
+    <linearGradient id="lime" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="#CDDC39"/>
       <stop offset="100%" stop-color="#E8F38A"/>
     </linearGradient>
   </defs>
 
+  <!-- Background -->
   <rect width="1200" height="630" fill="#0A0A0F"/>
   <rect width="1200" height="630" fill="url(#glow)"/>
 
-  <!-- Grid lines for subtle depth -->
+  <!-- Subtle grid for depth -->
   <g stroke="rgba(255,255,255,0.04)" stroke-width="1">
-    <line x1="0" y1="100" x2="1200" y2="100"/>
-    <line x1="0" y1="200" x2="1200" y2="200"/>
-    <line x1="0" y1="300" x2="1200" y2="300"/>
-    <line x1="0" y1="400" x2="1200" y2="400"/>
-    <line x1="0" y1="500" x2="1200" y2="500"/>
+    <line x1="0" y1="120" x2="1200" y2="120"/>
+    <line x1="0" y1="240" x2="1200" y2="240"/>
+    <line x1="0" y1="360" x2="1200" y2="360"/>
+    <line x1="0" y1="480" x2="1200" y2="480"/>
   </g>
 
-  <!-- Accent pill -->
-  <rect x="80" y="170" width="290" height="38" rx="19" fill="rgba(205,220,57,0.12)" stroke="rgba(205,220,57,0.28)" stroke-width="1"/>
-  <circle cx="106" cy="189" r="4" fill="#CDDC39"/>
-  <text x="120" y="195" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="500" fill="#CDDC39" letter-spacing="1.5">BUILT IN PAKISTAN, TRUSTED GLOBALLY</text>
+  <!-- Trust pill (top) -->
+  <rect x="80" y="80" width="378" height="42" rx="21" fill="rgba(205,220,57,0.12)" stroke="rgba(205,220,57,0.32)" stroke-width="1"/>
+  <circle cx="108" cy="101" r="4.5" fill="#CDDC39"/>
+  <text x="124" y="107" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#CDDC39" letter-spacing="1.6">BUILT IN PAKISTAN, TRUSTED GLOBALLY</text>
 
-  <!-- Headline -->
-  <text x="80" y="290" font-family="Space Grotesk, Inter, sans-serif" font-size="72" font-weight="700" fill="#FFFFFF" letter-spacing="-3">AI that speaks</text>
-  <text x="80" y="370" font-family="Space Grotesk, Inter, sans-serif" font-size="72" font-weight="700" fill="#FFFFFF" letter-spacing="-3">your language.</text>
-  <text x="80" y="450" font-family="Space Grotesk, Inter, sans-serif" font-size="72" font-weight="700" fill="url(#grad)" letter-spacing="-3">Runs your conversations.</text>
+  <!-- Headline: complete first line, lime accent on the differentiator -->
+  <text x="80" y="240" font-family="Inter, system-ui, sans-serif" font-size="84" font-weight="600" fill="#FFFFFF" letter-spacing="-3.5">Voice AI that speaks</text>
+  <text x="80" y="332" font-family="Inter, system-ui, sans-serif" font-size="84" font-weight="600" fill="url(#lime)" letter-spacing="-3.5">Urdu, Arabic, English.</text>
 
   <!-- Subline -->
-  <text x="80" y="515" font-family="Inter, system-ui, sans-serif" font-size="22" fill="rgba(255,255,255,0.64)">Enterprise voice &amp; chat AI in Urdu, Arabic, and English.</text>
+  <text x="80" y="400" font-family="Inter, system-ui, sans-serif" font-size="26" font-weight="400" fill="rgba(255,255,255,0.7)" letter-spacing="-0.2">Enterprise voice &amp; chat AI. Deploy on your servers. Own your data.</text>
 
-  <!-- Wordmark (bottom-left) -->
-  <text x="80" y="580" font-family="Space Grotesk, Inter, sans-serif" font-size="24" font-weight="700" fill="#FFFFFF" letter-spacing="-0.5">POOCHO AI</text>
+  <!-- Bottom row: wordmark + url -->
+  <text x="80" y="552" font-family="Inter, system-ui, sans-serif" font-size="32" font-weight="700" fill="#FFFFFF" letter-spacing="-0.8">POOCHO AI</text>
+  <text x="1120" y="552" font-family="Inter, system-ui, sans-serif" font-size="22" font-weight="500" fill="rgba(255,255,255,0.55)" letter-spacing="0" text-anchor="end">poochoai.com</text>
 </svg>
