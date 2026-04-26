@@ -356,6 +356,11 @@
         .nav-demo:hover {
             background: var(--accent-hover);
         }
+        .nav-demo:focus-visible,
+        .nav-login:focus-visible {
+            outline: 3px solid rgba(255, 255, 255, 0.85);
+            outline-offset: 3px;
+        }
 
         .hamburger {
             display: none;
@@ -584,7 +589,7 @@
             font-weight: 600;
             font-size: 15px;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
             box-shadow: var(--shadow-accent);
             text-decoration: none;
             display: inline-flex;
@@ -598,6 +603,10 @@
             box-shadow: 0 16px 40px rgba(205, 220, 57, 0.28);
             transform: translateY(-2px);
         }
+        .btn-primary:focus-visible {
+            outline: 3px solid rgba(255, 255, 255, 0.85);
+            outline-offset: 3px;
+        }
 
         .btn-secondary {
             background: transparent;
@@ -608,7 +617,7 @@
             font-weight: 500;
             font-size: 15px;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: color 0.2s ease;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
@@ -617,6 +626,11 @@
 
         .btn-secondary:hover {
             color: var(--accent);
+        }
+        .btn-secondary:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 3px;
+            border-radius: var(--r-md);
         }
 
         .btn-secondary .play-icon {
@@ -628,7 +642,7 @@
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.08);
             border: 1px solid rgba(255, 255, 255, 0.14);
-            transition: all 0.2s ease;
+            transition: background 0.2s ease, border-color 0.2s ease;
         }
 
         .btn-secondary:hover .play-icon {
@@ -844,7 +858,7 @@
             border-radius: var(--r-lg);
             padding: 32px;
             position: relative;
-            transition: all 0.3s ease;
+            transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .value-card:hover {
@@ -3049,7 +3063,7 @@
     border-radius: var(--r-lg);
     padding: 32px 28px;
     text-align: left;
-    transition: all 0.3s ease;
+    transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
     border: 1px solid var(--border);
     text-decoration: none;
     color: inherit;
@@ -3312,12 +3326,16 @@
     font-size: 14px;
     width: 100%;
     margin-top: 16px;
-    transition: all 0.2s ease;
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
     font-family: inherit;
     text-decoration: none;
     display: block;
     text-align: center;
     box-sizing: border-box;
+  }
+  .pricing-btn:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
   }
 
   .pricing-btn:hover {
@@ -3585,7 +3603,7 @@
     cursor: pointer;
     font-size: 15px;
     font-weight: 600;
-    transition: all 0.2s ease;
+    transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
     text-decoration: none;
     display: inline-flex;
     align-items: center;
@@ -3599,6 +3617,10 @@
     box-shadow: 0 16px 40px rgba(205, 220, 57, 0.28);
     transform: translateY(-2px);
   }
+  .btn-lime:focus-visible {
+    outline: 3px solid rgba(255, 255, 255, 0.85);
+    outline-offset: 3px;
+  }
 
   .btn-outline {
     background: transparent;
@@ -3609,12 +3631,16 @@
     cursor: pointer;
     font-size: 15px;
     font-weight: 500;
-    transition: all 0.2s ease;
+    transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
     text-decoration: none;
     display: inline-flex;
     align-items: center;
     gap: 8px;
     font-family: inherit;
+  }
+  .btn-outline:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
   }
 
   .btn-outline:hover {
@@ -4085,12 +4111,13 @@
     line-height: 1.45;
   }
   .cookie-pref input[type="checkbox"] {
-    margin-top: 2px;
     width: 16px;
     height: 16px;
     accent-color: var(--accent);
     cursor: pointer;
     flex-shrink: 0;
+    /* Aligns visual centre with the label's first line cap-height */
+    margin-top: 1px;
   }
   .cookie-pref input[type="checkbox"]:disabled { cursor: not-allowed; opacity: 0.7; }
   .cookie-pref-label {
@@ -4111,14 +4138,19 @@
     flex-wrap: wrap;
   }
   .cookie-banner button {
-    padding: 9px 16px;
+    padding: 11px 18px;
     border-radius: var(--r-md);
     font-size: 13px;
     font-weight: 600;
     font-family: inherit;
     cursor: pointer;
     border: none;
-    transition: all 0.2s ease;
+    min-height: 40px;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  }
+  .cookie-banner button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
   }
   .cookie-accept {
     background: var(--accent);
@@ -4238,7 +4270,7 @@
     border: none;
     box-shadow: 0 0 0 4px rgba(205,220,57,0.15);
   }
-  .roi-input input[type="range"]:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+  .roi-input input[type="range"]:focus-visible { outline: 2px solid var(--accent); outline-offset: 8px; border-radius: 2px; }
   .roi-output {
     font-family: var(--font-display);
     font-weight: 600;

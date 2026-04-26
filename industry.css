@@ -121,12 +121,13 @@ body {
     font-size: 14.5px;
     text-decoration: none;
     box-shadow: 0 12px 28px rgba(205, 220, 57, 0.18);
-    transition: all .2s ease;
+    transition: background .2s ease, transform .2s ease, box-shadow .2s ease;
     display: inline-flex;
     align-items: center;
     gap: 8px;
 }
 .ind-btn-primary:hover { background: var(--accent-hover); transform: translateY(-1px); }
+.ind-btn-primary:focus-visible { outline: 3px solid rgba(255,255,255,0.85); outline-offset: 3px; }
 .ind-btn-secondary {
     background: transparent;
     color: var(--text-primary);
@@ -136,9 +137,11 @@ body {
     font-weight: 600;
     font-size: 14.5px;
     text-decoration: none;
-    transition: all .2s ease;
+    transition: border-color .2s ease, color .2s ease;
 }
 .ind-btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+.ind-btn-secondary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.ind-nav-cta:focus-visible { outline: 3px solid rgba(255,255,255,0.85); outline-offset: 3px; }
 
 .ind-hero-trust {
     display: flex;
