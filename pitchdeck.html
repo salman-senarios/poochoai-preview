@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poocho AI — Pitch Deck</title>
+    <meta name="description" content="Poocho AI investor / sales pitch deck. Voice and chat AI for Urdu, Arabic, and English — deployed on your infrastructure.">
+    <meta name="robots" content="noindex">
+    <link rel="canonical" href="https://poochoai.com/pitchdeck.html">
+    <link rel="icon" href="logo-light.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --base: #0A0A0F;
+            --surface: #12121A;
+            --surface-card: #15151E;
+            --surface-elevated: #1A1A26;
+            --border: rgba(255, 255, 255, 0.10);
+            --border-strong: rgba(255, 255, 255, 0.18);
+            --text-primary: #FFFFFF;
+            --text-secondary: rgba(255, 255, 255, 0.72);
+            --text-tertiary: rgba(255, 255, 255, 0.50);
+            --accent: #CDDC39;
+            --accent-soft: #E8F38A;
+            --accent-dim: rgba(205, 220, 57, 0.12);
+            --danger: #FF7961;
+            --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+            --font-display: 'Instrument Sans', 'Inter', system-ui, sans-serif;
+            --font-serif: 'Instrument Serif', Georgia, serif;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html, body {
+            background: var(--base);
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            overflow: hidden;
+            height: 100%;
+        }
+        body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+        /* DECK CONTAINER */
+        .deck {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Each slide */
+        .slide {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 6vh 7vw;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.45s ease, transform 0.45s ease;
+            transform: translateX(40px);
+        }
+        .slide.active {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateX(0);
+        }
+        .slide.prev { transform: translateX(-40px); }
+
+        /* Subtle background glow per slide */
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: -10%; right: -10%;
+            width: 60%; height: 60%;
+            background: radial-gradient(ellipse at center, rgba(205,220,57,0.10) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        .slide > * { position: relative; z-index: 1; }
+
+        /* TYPOGRAPHY */
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 5px 12px;
+            background: var(--accent-dim);
+            border: 1px solid rgba(205,220,57,0.28);
+            border-radius: 999px;
+            color: var(--accent);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 28px;
+            width: fit-content;
+        }
+        .eyebrow::before {
+            content: '';
+            width: 6px; height: 6px; border-radius: 50%;
+            background: var(--accent);
+        }
+
+        h1.deck-title {
+            font-family: var(--font-display);
+            font-size: clamp(48px, 7vw, 92px);
+            font-weight: 600;
+            letter-spacing: -0.04em;
+            line-height: 0.98;
+            margin-bottom: 22px;
+            max-width: 1100px;
+        }
+        h1.deck-title em {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-weight: 400;
+            background: linear-gradient(95deg, var(--accent) 0%, var(--accent-soft) 70%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        h2.deck-h {
+            font-family: var(--font-display);
+            font-size: clamp(36px, 5vw, 64px);
+            font-weight: 600;
+            letter-spacing: -0.03em;
+            line-height: 1.05;
+            margin-bottom: 18px;
+            max-width: 1000px;
+        }
+        h2.deck-h em {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-weight: 400;
+            background: linear-gradient(95deg, var(--accent) 0%, var(--accent-soft) 70%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .deck-sub {
+            font-size: clamp(16px, 1.4vw, 20px);
+            color: var(--text-secondary);
+            line-height: 1.55;
+            max-width: 800px;
+            margin-bottom: 32px;
+        }
+
+        /* COVER SLIDE */
+        .cover-logo {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 22px;
+            letter-spacing: -0.02em;
+            margin-bottom: 60px;
+        }
+        .cover-logo img { height: 28px; vertical-align: middle; }
+        .cover-meta {
+            position: absolute;
+            bottom: 6vh;
+            left: 7vw;
+            right: 7vw;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            font-size: 13px;
+            color: var(--text-tertiary);
+        }
+
+        /* STAT GRID */
+        .stat-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin-top: 32px;
+            max-width: 1200px;
+        }
+        .stat-card {
+            background: var(--surface-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 24px 26px;
+        }
+        .stat-card.accent {
+            background: linear-gradient(180deg, rgba(205,220,57,0.10) 0%, var(--surface-card) 80%);
+            border-color: rgba(205,220,57,0.35);
+        }
+        .stat-n {
+            font-family: var(--font-display);
+            font-size: clamp(36px, 4vw, 52px);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+        .stat-card.accent .stat-n { color: var(--accent); }
+        .stat-l {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        /* TWO-COLUMN LAYOUT */
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+            max-width: 1300px;
+        }
+        .two-col-text h3 {
+            font-family: var(--font-display);
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1.8px;
+            margin-bottom: 14px;
+        }
+        .two-col-text ul { list-style: none; }
+        .two-col-text ul li {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.55;
+            padding-left: 20px;
+            position: relative;
+            margin-bottom: 12px;
+        }
+        .two-col-text ul li::before {
+            content: '';
+            position: absolute;
+            top: 9px;
+            left: 0;
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+        .two-col-text ul li strong { color: var(--text-primary); font-weight: 600; }
+
+        /* ARCHITECTURE FLOW */
+        .arch-flow {
+            display: grid;
+            grid-template-columns: 1fr auto 1.1fr auto 1fr;
+            align-items: stretch;
+            gap: 18px;
+            max-width: 1200px;
+            margin-top: 24px;
+        }
+        .arch-node {
+            background: var(--surface-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 22px 22px;
+        }
+        .arch-node.center {
+            background: linear-gradient(180deg, rgba(205,220,57,0.10) 0%, var(--surface-card) 75%);
+            border-color: rgba(205,220,57,0.4);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .arch-label {
+            font-size: 10px;
+            color: var(--text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 1.4px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .arch-node.center .arch-label { color: var(--accent); }
+        .arch-title {
+            font-family: var(--font-display);
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--text-primary);
+        }
+        .arch-node.center .arch-title { font-size: 24px; letter-spacing: -0.01em; }
+        .arch-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+        .arch-arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            opacity: 0.6;
+        }
+
+        /* PRICING ROW */
+        .pricing-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            max-width: 1100px;
+        }
+        .pricing-tier {
+            background: var(--surface-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 22px 24px;
+        }
+        .pricing-tier.featured {
+            background: linear-gradient(180deg, rgba(205,220,57,0.08) 0%, var(--surface-card) 70%);
+            border-color: rgba(205,220,57,0.4);
+        }
+        .pricing-name {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
+        .pricing-price {
+            font-family: var(--font-display);
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+        .pricing-price small { font-size: 14px; color: var(--text-tertiary); font-weight: 400; }
+        .pricing-tier p { font-size: 13px; color: var(--text-secondary); line-height: 1.45; }
+
+        /* CHIPS for verticals */
+        .chip-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 18px;
+        }
+        .chip {
+            padding: 9px 18px;
+            background: var(--surface-card);
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            font-size: 13.5px;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        /* FINAL CTA */
+        .final-cta {
+            background: linear-gradient(180deg, rgba(205,220,57,0.06) 0%, var(--surface-card) 100%);
+            border: 1px solid rgba(205,220,57,0.28);
+            border-radius: 18px;
+            padding: 48px 56px;
+            max-width: 900px;
+        }
+        .final-cta h2 {
+            font-family: var(--font-display);
+            font-size: clamp(32px, 4vw, 48px);
+            font-weight: 600;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            margin-bottom: 16px;
+        }
+        .final-cta p { font-size: 17px; color: var(--text-secondary); margin-bottom: 28px; line-height: 1.55; max-width: 620px; }
+        .final-cta-row {
+            display: flex;
+            gap: 14px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .btn-lime {
+            background: var(--accent);
+            color: #0A0A0F;
+            padding: 14px 24px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 15px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.2s ease;
+        }
+        .btn-lime:hover { background: var(--accent-soft); }
+        .btn-ghost {
+            background: transparent;
+            border: 1px solid var(--border-strong);
+            color: var(--text-primary);
+            padding: 14px 24px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 15px;
+            text-decoration: none;
+        }
+
+        /* DECK CHROME (counter, controls) */
+        .deck-chrome {
+            position: fixed;
+            bottom: 24px;
+            left: 24px;
+            right: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            pointer-events: none;
+        }
+        .deck-chrome > * { pointer-events: auto; }
+
+        .slide-counter {
+            font-family: var(--font-display);
+            font-size: 13px;
+            color: var(--text-tertiary);
+            font-variant-numeric: tabular-nums;
+            background: rgba(10,10,15,0.7);
+            backdrop-filter: blur(10px);
+            padding: 8px 14px;
+            border-radius: 999px;
+            border: 1px solid var(--border);
+        }
+        .slide-counter strong { color: var(--text-primary); font-weight: 600; }
+
+        .deck-controls {
+            display: flex;
+            gap: 8px;
+        }
+        .deck-controls button {
+            background: rgba(10,10,15,0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            width: 40px; height: 40px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            font-family: inherit;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s ease, border-color 0.2s ease;
+        }
+        .deck-controls button:hover { border-color: var(--accent); color: var(--accent); }
+        .deck-controls button:disabled { opacity: 0.3; cursor: default; }
+        .deck-controls .print-btn {
+            width: auto;
+            padding: 0 16px;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+
+        /* Progress bar at top */
+        .deck-progress {
+            position: fixed;
+            top: 0; left: 0;
+            height: 3px;
+            background: var(--accent);
+            z-index: 100;
+            transition: width 0.45s ease;
+        }
+
+        /* Top-right brand mark */
+        .brand-mark {
+            position: fixed;
+            top: 22px;
+            right: 28px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 15px;
+            color: var(--text-tertiary);
+            z-index: 50;
+            pointer-events: none;
+        }
+        .brand-mark img { height: 18px; }
+
+        /* SVG charts */
+        .chart-wrap {
+            background: var(--surface-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 28px 30px;
+        }
+        .chart-title {
+            font-family: var(--font-display);
+            font-size: 13px;
+            color: var(--text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 1.4px;
+            font-weight: 600;
+            margin-bottom: 14px;
+        }
+        .chart svg { width: 100%; height: auto; display: block; }
+
+        .legend {
+            display: flex;
+            gap: 20px;
+            margin-top: 16px;
+            flex-wrap: wrap;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12.5px;
+            color: var(--text-secondary);
+        }
+        .legend-dot {
+            width: 10px; height: 10px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        /* Comparison cards (slide 3) */
+        .compare-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            max-width: 1200px;
+            margin-top: 28px;
+        }
+        .compare {
+            background: var(--surface-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 24px 24px;
+        }
+        .compare h4 {
+            font-family: var(--font-display);
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 14px;
+        }
+        .compare ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+        }
+        .compare ul li {
+            font-size: 13.5px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            padding-left: 22px;
+            position: relative;
+        }
+        .compare ul li::before {
+            content: '✗';
+            position: absolute;
+            left: 0;
+            top: -1px;
+            color: var(--danger);
+            font-weight: 700;
+        }
+        .compare-tag {
+            display: inline-block;
+            font-size: 10.5px;
+            font-weight: 600;
+            color: var(--danger);
+            background: rgba(255,121,97,0.10);
+            border: 1px solid rgba(255,121,97,0.3);
+            padding: 3px 10px;
+            border-radius: 999px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        /* PRINT — flatten to multi-page A4 landscape PDF */
+        @media print {
+            html, body {
+                overflow: visible;
+                height: auto;
+                background: #0A0A0F;
+            }
+            .deck {
+                height: auto;
+                width: 100%;
+                overflow: visible;
+            }
+            .slide {
+                position: relative;
+                inset: auto;
+                opacity: 1 !important;
+                pointer-events: auto;
+                transform: none !important;
+                page-break-after: always;
+                break-after: page;
+                min-height: 100vh;
+                padding: 12mm 16mm;
+            }
+            .slide:last-child { page-break-after: auto; break-after: auto; }
+            .deck-chrome, .deck-progress, .brand-mark { display: none !important; }
+            @page { size: A4 landscape; margin: 0; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="deck-progress" id="progress" style="width: 0%;"></div>
+<div class="brand-mark" aria-hidden="true">
+    <img src="logo-light.svg" alt="">
+    <span>Poocho AI</span>
+</div>
+
+<div class="deck" id="deck">
+
+    <!-- ============ SLIDE 1: COVER ============ -->
+    <section class="slide active" data-slide="cover">
+        <div class="cover-logo"><img src="logo-light.svg" alt="Poocho AI"></div>
+        <div class="eyebrow">Pitch Deck · April 2026</div>
+        <h1 class="deck-title">Voice AI that speaks <em>Urdu, Arabic, English</em> — natively.</h1>
+        <p class="deck-sub">Enterprise voice and chat AI built for regulated organisations across MENA and South Asia. Deployed on your infrastructure.</p>
+
+        <div class="cover-meta">
+            <div>Built in Pakistan, trusted globally · poochoai.com</div>
+            <div>4-minute pitch · Press <strong style="color: var(--accent);">→</strong> to advance</div>
+        </div>
+    </section>
+
+    <!-- ============ SLIDE 2: THE PROBLEM (LANDSCAPE) ============ -->
+    <section class="slide" data-slide="problem-1">
+        <div class="eyebrow">The Problem</div>
+        <h2 class="deck-h">Most customer calls in MENA &amp; South Asia <em>aren't in English</em>.</h2>
+        <p class="deck-sub">Banks, telcos, governments, and healthcare providers across Pakistan and the GCC handle billions of customer interactions a year — predominantly in Urdu, Arabic, Punjabi, Sindhi, and regional dialects. Today, almost none of them are AI-handled.</p>
+
+        <div class="stat-row" style="grid-template-columns: repeat(3, 1fr);">
+            <div class="stat-card accent">
+                <div class="stat-n">~70%</div>
+                <div class="stat-l">Of contact-centre calls in PK / GCC are in regional languages, not English</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-n">&lt; 5%</div>
+                <div class="stat-l">Of those calls are handled by AI today — vs ~40% in English-speaking markets</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-n">2&times;</div>
+                <div class="stat-l">Average handling time for non-English calls vs English. Customers hang up.</div>
+            </div>
+        </div>
+
+        <p style="margin-top: 28px; font-size: 12px; color: var(--text-tertiary); max-width: 800px;">Indicative figures based on regional contact-centre operations data and Poocho AI deployment observations. Actual numbers vary by sector.</p>
+    </section>
+
+    <!-- ============ SLIDE 3: THE PROBLEM (THREE OPTIONS, NONE WORK) ============ -->
+    <section class="slide" data-slide="problem-2">
+        <div class="eyebrow">Today's options</div>
+        <h2 class="deck-h">Three paths. <em>None work.</em></h2>
+        <p class="deck-sub">When a regional bank, government agency, or telco wants to automate customer conversations today, they pick from three options. Each one fails on something they cannot compromise.</p>
+
+        <div class="compare-row">
+            <div class="compare">
+                <span class="compare-tag">Western AI SaaS</span>
+                <h4>Cognigy, Ada, Kore.ai</h4>
+                <ul>
+                    <li>"Supports" Urdu / Arabic via translation — fails on dialect &amp; code-switching</li>
+                    <li>SaaS only — data leaves the country, breaks PDPL / DPL UAE / KSA PDPL</li>
+                    <li>Enterprise tier $10k+/mo · 6-month integration cycles</li>
+                </ul>
+            </div>
+            <div class="compare">
+                <span class="compare-tag">Local BPO labour</span>
+                <h4>Outsourced contact centres</h4>
+                <ul>
+                    <li>Wage inflation 15-25% YoY in PK / GCC since 2022</li>
+                    <li>Cannot scale to peak hour (Eid, Ramadan, monsoon load)</li>
+                    <li>No 24/7 coverage in regional languages without 3× headcount</li>
+                </ul>
+            </div>
+            <div class="compare">
+                <span class="compare-tag">Build in-house</span>
+                <h4>Roll your own AI stack</h4>
+                <ul>
+                    <li>Native-language ML talent is rare and expensive in the region</li>
+                    <li>12-18 months to first production deployment</li>
+                    <li>Most projects stall at integration / compliance review</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ SLIDE 4: WHY NOW (TREND CHART) ============ -->
+    <section class="slide" data-slide="why-now">
+        <div class="eyebrow">Why Now</div>
+        <h2 class="deck-h">Three curves crossed in 2024.</h2>
+        <p class="deck-sub">Native-language LLMs reached production quality. Regional wages spiked. Customer patience collapsed. The gap that opened up is the company we're building.</p>
+
+        <div class="chart-wrap" style="max-width: 1100px;">
+            <div class="chart-title">Indicative trend lines · 2018–2026</div>
+            <div class="chart">
+                <svg viewBox="0 0 900 320" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+                    <!-- Axes -->
+                    <line x1="60" y1="280" x2="860" y2="280" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+                    <line x1="60" y1="40" x2="60" y2="280" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+
+                    <!-- X labels -->
+                    <text x="60" y="302" fill="rgba(255,255,255,0.4)" font-size="12" font-family="Inter">2018</text>
+                    <text x="220" y="302" fill="rgba(255,255,255,0.4)" font-size="12" font-family="Inter">2020</text>
+                    <text x="380" y="302" fill="rgba(255,255,255,0.4)" font-size="12" font-family="Inter">2022</text>
+                    <text x="540" y="302" fill="rgba(255,255,255,0.4)" font-size="12" font-family="Inter">2024</text>
+                    <text x="700" y="302" fill="rgba(255,255,255,0.4)" font-size="12" font-family="Inter">2026</text>
+
+                    <!-- Inflection band -->
+                    <rect x="540" y="40" width="60" height="240" fill="rgba(205,220,57,0.06)"/>
+                    <text x="570" y="58" fill="var(--accent)" font-size="11" font-family="Inter" font-weight="600" text-anchor="middle">2024</text>
+                    <text x="570" y="72" fill="var(--accent)" font-size="10" font-family="Inter" text-anchor="middle">crossover</text>
+
+                    <!-- Native-LLM quality (rising sharply) -->
+                    <path d="M 60 250 Q 200 245 300 230 Q 420 210 540 130 Q 680 50 860 30"
+                          stroke="#CDDC39" stroke-width="3" fill="none" stroke-linecap="round"/>
+                    <circle cx="860" cy="30" r="5" fill="#CDDC39"/>
+
+                    <!-- Agent wage cost (rising) -->
+                    <path d="M 60 220 Q 200 215 300 200 Q 420 175 540 140 Q 680 110 860 80"
+                          stroke="#FF7961" stroke-width="3" fill="none" stroke-linecap="round" stroke-dasharray="6 4"/>
+                    <circle cx="860" cy="80" r="5" fill="#FF7961"/>
+
+                    <!-- Customer patience (falling) -->
+                    <path d="M 60 80 Q 200 100 300 130 Q 420 170 540 200 Q 680 230 860 250"
+                          stroke="#8BC34A" stroke-width="3" fill="none" stroke-linecap="round" stroke-dasharray="2 5"/>
+                    <circle cx="860" cy="250" r="5" fill="#8BC34A"/>
+
+                    <!-- Labels at end of lines -->
+                    <text x="700" y="20" fill="#CDDC39" font-size="13" font-family="Inter" font-weight="600">Native-LLM quality ↑</text>
+                    <text x="700" y="100" fill="#FF7961" font-size="13" font-family="Inter" font-weight="500">Regional wages ↑</text>
+                    <text x="700" y="240" fill="#8BC34A" font-size="13" font-family="Inter" font-weight="500">Customer patience ↓</text>
+                </svg>
+            </div>
+            <div class="legend">
+                <div class="legend-item"><span class="legend-dot" style="background:#CDDC39;"></span>AI quality for Urdu / Arabic crossed production threshold</div>
+                <div class="legend-item"><span class="legend-dot" style="background:#FF7961;"></span>Contact-centre wages compounding 15–25% YoY</div>
+                <div class="legend-item"><span class="legend-dot" style="background:#8BC34A;"></span>Customer NPS for slow service falling sharply</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ SLIDE 5: THE SOLUTION (ARCHITECTURE) ============ -->
+    <section class="slide" data-slide="solution">
+        <div class="eyebrow">The Solution</div>
+        <h2 class="deck-h">One AI brain. <em>Trained natively.</em> Deployed where your regulator says it can.</h2>
+        <p class="deck-sub">Custom TTS, ASR, and LLMs built for Urdu, Arabic, and English — including regional dialects. One AI handles voice, WhatsApp, and chat across every customer-facing channel. The whole stack runs inside your infrastructure.</p>
+
+        <div class="arch-flow">
+            <div class="arch-node">
+                <div class="arch-label">Your customer</div>
+                <div class="arch-title" style="font-size: 16px; margin-bottom: 12px;">Speaks naturally</div>
+                <ul class="arch-list">
+                    <li>📞 Voice (in their language)</li>
+                    <li>💬 WhatsApp / web chat</li>
+                    <li>📱 SMS / IVR</li>
+                </ul>
+            </div>
+            <div class="arch-arrow">
+                <svg width="32" height="14" viewBox="0 0 32 14" fill="none"><path d="M0 7h28M22 1l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="arch-node center">
+                <div class="arch-label">Your infrastructure</div>
+                <div class="arch-title">Poocho AI</div>
+                <div style="font-size: 13px; color: var(--text-secondary); line-height: 1.5; margin-bottom: 10px;">Custom TTS · ASR · LLMs<br>Trained natively · Urdu · Arabic · English</div>
+                <div style="display: flex; gap: 6px; justify-content: center; flex-wrap: wrap;">
+                    <span style="font-size: 11px; padding: 3px 9px; background: var(--surface-elevated); border: 1px solid var(--border); border-radius: 6px;">On-prem</span>
+                    <span style="font-size: 11px; padding: 3px 9px; background: var(--surface-elevated); border: 1px solid var(--border); border-radius: 6px;">Private cloud</span>
+                    <span style="font-size: 11px; padding: 3px 9px; background: var(--surface-elevated); border: 1px solid var(--border); border-radius: 6px;">Air-gapped</span>
+                </div>
+            </div>
+            <div class="arch-arrow">
+                <svg width="32" height="14" viewBox="0 0 32 14" fill="none"><path d="M0 7h28M22 1l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="arch-node">
+                <div class="arch-label">Your stack</div>
+                <div class="arch-title" style="font-size: 16px; margin-bottom: 12px;">Already integrated</div>
+                <ul class="arch-list">
+                    <li>🏦 Core banking · CRM</li>
+                    <li>📞 Telephony · PBX</li>
+                    <li>📊 Ticketing · Analytics</li>
+                </ul>
+            </div>
+        </div>
+
+        <p style="margin-top: 24px; font-size: 13.5px; color: var(--text-tertiary); max-width: 900px;">No customer data leaves your environment. Compliant with PDPL (PK), DPL (UAE), KSA PDPL, GDPR, HIPAA-ready architecture.</p>
+    </section>
+
+    <!-- ============ SLIDE 6: PRODUCT — KEY METRICS ============ -->
+    <section class="slide" data-slide="product">
+        <div class="eyebrow">The Product</div>
+        <h2 class="deck-h">What enterprises see, day one.</h2>
+        <p class="deck-sub">Live deployments today serve government helplines, bank fraud-triage lines, telecom support, and hospital appointment desks. The numbers below are observed averages across those deployments.</p>
+
+        <div class="stat-row">
+            <div class="stat-card accent">
+                <div class="stat-n">48h</div>
+                <div class="stat-l">Typical deployment time for a new helpline · vs 6 months for legacy vendors</div>
+            </div>
+            <div class="stat-card accent">
+                <div class="stat-n">10k+</div>
+                <div class="stat-l">Concurrent conversations supported per deployment</div>
+            </div>
+            <div class="stat-card accent">
+                <div class="stat-n">~70%</div>
+                <div class="stat-l">Reduction in routine call-centre volume after rollout</div>
+            </div>
+            <div class="stat-card accent">
+                <div class="stat-n">&lt; 3s</div>
+                <div class="stat-l">Average first-response time across voice and chat</div>
+            </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-top: 32px; max-width: 1200px;">
+            <div>
+                <h3 style="font-size: 11px; color: var(--accent); text-transform: uppercase; letter-spacing: 1.4px; font-weight: 600; margin-bottom: 8px; font-family: var(--font-display);">Speaks like a native</h3>
+                <p style="font-size: 13.5px; color: var(--text-secondary); line-height: 1.55;">Custom TTS, ASR, LLMs trained on regional speech corpora — not translated. Karachi Urdu, Lahori Urdu, Gulf Arabic, Levantine, Egyptian, Punjabi, Sindhi.</p>
+            </div>
+            <div>
+                <h3 style="font-size: 11px; color: var(--accent); text-transform: uppercase; letter-spacing: 1.4px; font-weight: 600; margin-bottom: 8px; font-family: var(--font-display);">Sees your stack</h3>
+                <p style="font-size: 13.5px; color: var(--text-secondary); line-height: 1.55;">Pre-built integrations with Salesforce, MS Dynamics, Finacle, T24, Flexcube, Asterisk, FreeSWITCH, Avaya, Cisco UCM. Custom adapters in days, not quarters.</p>
+            </div>
+            <div>
+                <h3 style="font-size: 11px; color: var(--accent); text-transform: uppercase; letter-spacing: 1.4px; font-weight: 600; margin-bottom: 8px; font-family: var(--font-display);">Stays where you put it</h3>
+                <p style="font-size: 13.5px; color: var(--text-secondary); line-height: 1.55;">On-premise, private cloud, or sovereign-cloud (PK · UAE · KSA). No customer data leaves your environment. SOC 2 Type II &amp; ISO 27001 in progress.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ SLIDE 7: PRICING + VERTICALS ============ -->
+    <section class="slide" data-slide="commercial">
+        <div class="eyebrow">Commercial Model</div>
+        <h2 class="deck-h">Built for your scale, priced for your scope.</h2>
+        <p class="deck-sub">Three tiers. Every plan includes native Urdu, Arabic, and English. Volume scales with conversation count, channels, and deployment model.</p>
+
+        <div class="pricing-row">
+            <div class="pricing-tier">
+                <div class="pricing-name">Professional</div>
+                <div class="pricing-price">$1,499<small>/mo</small></div>
+                <p>10,000 conversations · 2 channels · cloud-hosted, shared tenant. Email support, 24h SLA.</p>
+            </div>
+            <div class="pricing-tier featured">
+                <div class="pricing-name">Business · Most popular</div>
+                <div class="pricing-price">$4,999<small>/mo</small></div>
+                <p>50,000 conversations · all channels · private cloud · custom training · CSM · 99% SLA.</p>
+            </div>
+            <div class="pricing-tier">
+                <div class="pricing-name">Enterprise</div>
+                <div class="pricing-price">Custom</div>
+                <p>Unlimited volume · on-prem / air-gapped / sovereign cloud · dedicated AI &amp; infra engineer · 99.9% SLA.</p>
+            </div>
+        </div>
+
+        <div style="margin-top: 32px;">
+            <h3 style="font-family: var(--font-display); font-size: 11px; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 1.4px; font-weight: 600; margin-bottom: 14px;">Verticals served today</h3>
+            <div class="chip-row">
+                <span class="chip">🏦 Banking &amp; finance</span>
+                <span class="chip">🏛️ Government</span>
+                <span class="chip">📡 Telecom</span>
+                <span class="chip">🏥 Healthcare</span>
+                <span class="chip">🛒 E-commerce</span>
+                <span class="chip">🎓 Education</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ SLIDE 8: THE ASK ============ -->
+    <section class="slide" data-slide="cta">
+        <div class="eyebrow">The Ask</div>
+
+        <div class="final-cta">
+            <h2>Pilot in 48 hours. <em>ROI in 90 days.</em></h2>
+            <p>Bring us your highest-volume call type. We'll show you Poocho AI handling it live — in your customer's language, on your infrastructure, with your data — within two business days. If it doesn't move the needle in 90 days, walk away. No retainer.</p>
+
+            <div class="final-cta-row">
+                <a class="btn-lime" href="mailto:hello@poochoai.com?subject=Poocho%20AI%20pitch%20deck%20follow-up">
+                    Book a 30-min scoping call
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+                </a>
+                <a class="btn-ghost" href="https://poochoai.com/trust.html">Review trust posture</a>
+            </div>
+
+            <div style="margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
+                <div style="font-size: 13px; color: var(--text-secondary);">
+                    <strong style="color: var(--text-primary);">hello@poochoai.com</strong><br>
+                    WhatsApp +92 323 800 2333
+                </div>
+                <div style="font-size: 13px; color: var(--text-secondary); text-align: right;">
+                    <strong style="color: var(--text-primary);">poochoai.com</strong><br>
+                    Trust centre: poochoai.com/trust.html
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+<!-- DECK CHROME -->
+<div class="deck-chrome">
+    <div class="slide-counter"><strong id="current-slide">1</strong> / <span id="total-slides">8</span></div>
+    <div class="deck-controls">
+        <button id="prev-btn" type="button" aria-label="Previous slide" title="Previous (←)">←</button>
+        <button id="next-btn" type="button" aria-label="Next slide" title="Next (→)">→</button>
+        <button class="print-btn" type="button" onclick="window.print()" aria-label="Save as PDF">Save as PDF</button>
+    </div>
+</div>
+
+<script>
+(function () {
+    const slides = document.querySelectorAll('.slide');
+    const total = slides.length;
+    document.getElementById('total-slides').textContent = total;
+    let current = 0;
+
+    function go(idx) {
+        if (idx < 0 || idx >= total) return;
+        slides.forEach((s, i) => {
+            s.classList.remove('active', 'prev');
+            if (i === idx) s.classList.add('active');
+            else if (i < idx) s.classList.add('prev');
+        });
+        current = idx;
+        document.getElementById('current-slide').textContent = idx + 1;
+        document.getElementById('progress').style.width = ((idx + 1) / total * 100) + '%';
+        document.getElementById('prev-btn').disabled = idx === 0;
+        document.getElementById('next-btn').disabled = idx === total - 1;
+        // Update URL hash for share-to-slide
+        history.replaceState(null, '', '#' + (idx + 1));
+    }
+
+    document.getElementById('next-btn').addEventListener('click', () => go(current + 1));
+    document.getElementById('prev-btn').addEventListener('click', () => go(current - 1));
+
+    document.addEventListener('keydown', (e) => {
+        if (['ArrowRight', 'PageDown', ' '].includes(e.key)) { e.preventDefault(); go(current + 1); }
+        else if (['ArrowLeft', 'PageUp'].includes(e.key)) { e.preventDefault(); go(current - 1); }
+        else if (e.key === 'Home') { e.preventDefault(); go(0); }
+        else if (e.key === 'End') { e.preventDefault(); go(total - 1); }
+    });
+
+    // Click-to-advance on right side, click-to-back on left side (gentle hint to non-keyboard users)
+    document.addEventListener('click', (e) => {
+        // Skip if clicking interactive element
+        if (e.target.closest('a, button, input, .deck-chrome')) return;
+        const x = e.clientX;
+        const w = window.innerWidth;
+        if (x > w * 0.6) go(current + 1);
+        else if (x < w * 0.4) go(current - 1);
+    });
+
+    // Honour deep-link to a specific slide (#3 → slide 3)
+    const hash = parseInt((location.hash || '').slice(1), 10);
+    if (!isNaN(hash) && hash >= 1 && hash <= total) go(hash - 1);
+    else go(0);
+})();
+</script>
+
+</body>
+</html>
