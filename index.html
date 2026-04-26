@@ -1287,22 +1287,26 @@
             font-size: 13.5px;
             color: var(--text-secondary);
             line-height: 1.5;
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
+            display: grid;
+            grid-template-columns: 12px 1fr;
+            column-gap: 12px;
+            align-items: start;
         }
 
         .arch-pillar-list li::before {
             content: '';
-            flex-shrink: 0;
-            width: 12px;
-            height: 12px;
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
             background: var(--accent-dim);
-            border: 1px solid rgba(205, 220, 57, 0.4);
-            /* Aligns the dot's vertical centre with the first line's
-               cap-height instead of sitting on the line baseline */
+            border: 1px solid rgba(205, 220, 57, 0.45);
+            /* Total visual size: 12px (10 + 1+1 border).
+               Optical centre of first line at line-height 1.5 × 13.5px
+               sits at y ≈ 10px from the top. Centring a 12px circle
+               there means top = 10 - 6 = 4px. */
             margin-top: 4px;
+            justify-self: center;
+            align-self: start;
         }
 
         .arch-pillar-highlight .arch-pillar-list li::before {
